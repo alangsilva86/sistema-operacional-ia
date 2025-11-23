@@ -35,3 +35,17 @@
 - [x] Validar hierarquia visual e legibilidade
 - [x] Testar formulário e CTAs
 - [x] Verificar acessibilidade básica
+
+## Melhorias de Webdesign Sênior
+- [x] Otimizar hierarquia tipográfica com contraste de tamanhos mais pronunciado
+- [x] Melhorar espaçamento vertical entre seções (breathing room)
+- [x] Adicionar animações sutis de entrada (fade-in, slide-up)
+- [x] Aprimorar contraste visual dos CTAs principais
+- [x] Adicionar hover states mais evidentes em botões e cards
+- [x] Otimizar hero section com maior impacto visual
+- [x] Melhorar legibilidade com line-height otimizado
+- [x] Adicionar elementos visuais de separação entre seções
+- [x] Refinar cores de destaque para maior conversão
+- [x] Otimizar formulário com melhor feedback visual
+- [x] Adicionar indicadores de progresso/scroll
+- [x] Melhorar acessibilidade com foco visível

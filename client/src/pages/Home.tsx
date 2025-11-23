@@ -29,42 +29,42 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/5 via-background to-primary/5 py-16 md:py-24">
+      <section className="bg-gradient-to-br from-primary/5 via-background to-primary/5 py-20 md:py-32">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-sm font-medium text-primary mb-4">
+            <div className="inline-block px-5 py-2.5 bg-primary/10 rounded-full text-sm font-semibold text-primary mb-4 border border-primary/20 shadow-sm">
               Presencial em Maringá • Turma limitada a 10 pessoas
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-foreground leading-tight">
               Sistema Operacional – IA NA PRÁTICA
             </h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground font-medium">
+            <p className="text-xl md:text-3xl text-muted-foreground font-medium leading-relaxed">
               Em 4 encontros presenciais, você vai construir ferramentas reais e úteis para o seu negócio usando IA.
             </p>
             
-            <p className="text-lg md:text-xl font-semibold text-foreground">
+            <p className="text-xl md:text-2xl font-bold text-foreground">
               Mesmo sem saber programar.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
-              <div className="flex items-center gap-2 bg-card px-4 py-2 rounded-lg border">
+              <div className="flex items-center gap-2 bg-card px-5 py-3 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
                 <MapPin className="w-5 h-5 text-primary" />
                 <span>Presencial em Maringá</span>
               </div>
-              <div className="flex items-center gap-2 bg-card px-4 py-2 rounded-lg border">
+              <div className="flex items-center gap-2 bg-card px-5 py-3 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
                 <Users className="w-5 h-5 text-primary" />
                 <span>Turma limitada a 10 pessoas</span>
               </div>
-              <div className="flex items-center gap-2 bg-card px-4 py-2 rounded-lg border">
+              <div className="flex items-center gap-2 bg-card px-5 py-3 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
                 <Calendar className="w-5 h-5 text-primary" />
                 <span>4 encontros</span>
               </div>
             </div>
 
-            <div className="pt-4">
-              <Button size="lg" className="text-lg px-8 py-6" onClick={scrollToForm}>
+            <div className="pt-6">
+              <Button size="lg" className="text-xl px-12 py-7 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105" onClick={scrollToForm}>
                 Garantir minha vaga na 1ª turma
               </Button>
             </div>
@@ -89,10 +89,10 @@ export default function Home() {
       </section>
 
       {/* Agenda Section */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="py-20 md:py-28 bg-muted/30">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-16 leading-tight">
               Agenda da 1ª turma – Dezembro/2025
             </h2>
             
@@ -103,7 +103,7 @@ export default function Home() {
                 { num: 3, data: "18/12", hora: "18h30", local: "Atrium – Escritório Próspera | Fatorcard" },
                 { num: 4, data: "20/12", hora: "10h00", local: "Atrium – Escritório Momentum | Acessus" }
               ].map((encontro) => (
-                <Card key={encontro.num} className="hover:shadow-lg transition-shadow">
+                <Card key={encontro.num} className="hover:shadow-xl hover:border-primary/30 transition-all duration-300 hover:-translate-y-1">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
                       <div className="bg-primary text-primary-foreground rounded-lg w-12 h-12 flex items-center justify-center font-bold text-xl flex-shrink-0">
@@ -139,10 +139,10 @@ export default function Home() {
       </section>
 
       {/* Para quem é Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-20 md:py-28">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 leading-tight">
               Para quem é este treinamento
             </h2>
             <p className="text-lg text-center text-muted-foreground mb-12">
@@ -157,7 +157,7 @@ export default function Home() {
                 "Quer automatizar processos, organizar informação, melhorar vendas ou atendimento, mas não quer depender de programador para cada ajuste.",
                 "Entende que quem souber construir soluções com IA terá uma vantagem enorme nos próximos anos."
               ].map((item, idx) => (
-                <Card key={idx} className="hover:border-primary/50 transition-colors">
+                <Card key={idx} className="hover:shadow-xl hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
                       <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
@@ -183,10 +183,10 @@ export default function Home() {
       </section>
 
       {/* O Problema Section */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="py-20 md:py-28 bg-muted/30">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 leading-tight">
               O problema hoje não é falta de IA. É não saber usar de forma útil.
             </h2>
             
@@ -234,10 +234,10 @@ export default function Home() {
       </section>
 
       {/* O que você vai ter Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-20 md:py-28">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 leading-tight">
               O que você vai ter ao final dos 4 encontros
             </h2>
             <p className="text-lg text-center text-muted-foreground mb-12">
@@ -267,7 +267,7 @@ export default function Home() {
                   text: "Vai sair com um plano claro de implementação na sua operação e de treinamento da sua equipe."
                 }
               ].map((item, idx) => (
-                <Card key={idx} className="hover:shadow-lg transition-shadow">
+                <Card key={idx} className="hover:shadow-xl hover:border-primary/30 transition-all duration-300 hover:-translate-y-1">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
                       <div className="bg-primary/10 rounded-lg p-3 flex-shrink-0">
@@ -295,10 +295,10 @@ export default function Home() {
       </section>
 
       {/* Exemplos do que você poderá construir */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="py-20 md:py-28 bg-muted/30">
         <div className="container">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 leading-tight">
               Exemplos do que você poderá construir
             </h2>
             <p className="text-lg text-center text-muted-foreground mb-12">
@@ -336,7 +336,7 @@ export default function Home() {
                   ]
                 }
               ].map((categoria, idx) => (
-                <Card key={idx} className="hover:border-primary/50 transition-colors">
+                <Card key={idx} className="hover:shadow-xl hover:border-primary/50 transition-all duration-300 hover:-translate-y-1">
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold text-primary mb-4">{categoria.title}</h3>
                     <ul className="space-y-3">
@@ -365,24 +365,24 @@ export default function Home() {
       </section>
 
       {/* CTA Intermediário */}
-      <section className="py-12 bg-primary text-primary-foreground">
+      <section className="py-16 md:py-20 bg-gradient-to-r from-primary via-primary to-primary/90 text-primary-foreground">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h3 className="text-2xl md:text-3xl font-bold">
               Pronto para transformar IA em soluções reais?
             </h3>
-            <Button size="lg" variant="secondary" className="text-lg px-8 py-6" onClick={scrollToForm}>
+            <Button size="lg" variant="secondary" className="text-xl px-12 py-7 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105" onClick={scrollToForm}>
               Quero participar da 1ª turma
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Como funcionam os 4 encontros - continua no próximo arquivo */}
-      <section className="py-16 md:py-24">
+      {/* Como funcionam os 4 encontros */}
+      <section className="py-20 md:py-28">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 leading-tight">
               Como funcionam os 4 encontros
             </h2>
             <p className="text-lg text-center text-muted-foreground mb-4">
@@ -394,7 +394,7 @@ export default function Home() {
             
             <div className="space-y-8">
               {/* Encontro 1 */}
-              <Card className="border-2 hover:border-primary/50 transition-colors">
+              <Card className="border-2 hover:shadow-xl hover:border-primary/50 transition-all duration-300">
                 <CardContent className="p-8">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="bg-primary text-primary-foreground rounded-lg w-16 h-16 flex items-center justify-center font-bold text-2xl flex-shrink-0">
@@ -438,7 +438,7 @@ export default function Home() {
               </Card>
 
               {/* Encontro 2 */}
-              <Card className="border-2 hover:border-primary/50 transition-colors">
+              <Card className="border-2 hover:shadow-xl hover:border-primary/50 transition-all duration-300">
                 <CardContent className="p-8">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="bg-primary text-primary-foreground rounded-lg w-16 h-16 flex items-center justify-center font-bold text-2xl flex-shrink-0">
@@ -482,7 +482,7 @@ export default function Home() {
               </Card>
 
               {/* Encontro 3 */}
-              <Card className="border-2 hover:border-primary/50 transition-colors">
+              <Card className="border-2 hover:shadow-xl hover:border-primary/50 transition-all duration-300">
                 <CardContent className="p-8">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="bg-primary text-primary-foreground rounded-lg w-16 h-16 flex items-center justify-center font-bold text-2xl flex-shrink-0">
@@ -525,7 +525,7 @@ export default function Home() {
               </Card>
 
               {/* Encontro 4 */}
-              <Card className="border-2 hover:border-primary/50 transition-colors">
+              <Card className="border-2 hover:shadow-xl hover:border-primary/50 transition-all duration-300">
                 <CardContent className="p-8">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="bg-primary text-primary-foreground rounded-lg w-16 h-16 flex items-center justify-center font-bold text-2xl flex-shrink-0">
@@ -573,10 +573,10 @@ export default function Home() {
       </section>
 
       {/* Turma pequena */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="py-20 md:py-28 bg-muted/30">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-16 leading-tight">
               Turma pequena, acompanhamento real
             </h2>
             
@@ -628,10 +628,10 @@ export default function Home() {
       </section>
 
       {/* Sobre quem vai te conduzir */}
-      <section className="py-16 md:py-24">
+      <section className="py-20 md:py-28">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-16 leading-tight">
               Sobre quem vai te conduzir
             </h2>
             
@@ -669,10 +669,10 @@ export default function Home() {
       </section>
 
       {/* Investimento */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="py-20 md:py-28 bg-muted/30">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-16 leading-tight">
               Investimento, condições e retorno
             </h2>
             
@@ -729,7 +729,7 @@ export default function Home() {
       </section>
 
       {/* Garantia */}
-      <section className="py-16 md:py-24">
+      <section className="py-20 md:py-28">
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <Card className="border-4 border-primary">
@@ -770,10 +770,10 @@ export default function Home() {
       </section>
 
       {/* O que está incluído */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="py-20 md:py-28 bg-muted/30">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-16 leading-tight">
               O que está incluído
             </h2>
             
@@ -805,7 +805,7 @@ export default function Home() {
                   description: "Método completo para você continuar construindo novas ferramentas"
                 }
               ].map((item, idx) => (
-                <Card key={idx} className="hover:shadow-lg transition-shadow">
+                <Card key={idx} className="hover:shadow-xl hover:border-primary/30 transition-all duration-300 hover:-translate-y-1">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
                       <div className="bg-primary/10 rounded-lg p-3 flex-shrink-0">
@@ -825,10 +825,10 @@ export default function Home() {
       </section>
 
       {/* O que você precisa ter */}
-      <section className="py-16 md:py-24">
+      <section className="py-20 md:py-28">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-16 leading-tight">
               O que você precisa ter para participar
             </h2>
             
@@ -869,10 +869,10 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section className="py-20 md:py-28 bg-muted/30">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-16 leading-tight">
               Perguntas frequentes
             </h2>
             
@@ -918,7 +918,7 @@ export default function Home() {
       </section>
 
       {/* Formulário de Inscrição */}
-      <section id="inscricao" className="py-16 md:py-24">
+      <section id="inscricao" className="py-20 md:py-28">
         <div className="container">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-12">
@@ -930,10 +930,10 @@ export default function Home() {
               </p>
             </div>
 
-            <Card className="border-2">
+            <Card className="border-2 shadow-xl">
               <CardContent className="p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  <div className="space-y-3">
                     <Label htmlFor="nome" className="text-base font-semibold">
                       Nome completo *
                     </Label>
@@ -943,12 +943,12 @@ export default function Home() {
                       required
                       value={formData.nome}
                       onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                      className="h-12"
+                      className="h-14 text-base"
                       placeholder="Seu nome completo"
                     />
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <Label htmlFor="email" className="text-base font-semibold">
                       E-mail *
                     </Label>
@@ -958,12 +958,12 @@ export default function Home() {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="h-12"
+                      className="h-14 text-base"
                       placeholder="seu@email.com"
                     />
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <Label htmlFor="whatsapp" className="text-base font-semibold">
                       WhatsApp *
                     </Label>
@@ -973,12 +973,12 @@ export default function Home() {
                       required
                       value={formData.whatsapp}
                       onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
-                      className="h-12"
+                      className="h-14 text-base"
                       placeholder="(00) 00000-0000"
                     />
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <Label htmlFor="empresa" className="text-base font-semibold">
                       Empresa
                     </Label>
@@ -987,12 +987,12 @@ export default function Home() {
                       type="text"
                       value={formData.empresa}
                       onChange={(e) => setFormData({ ...formData, empresa: e.target.value })}
-                      className="h-12"
+                      className="h-14 text-base"
                       placeholder="Nome da sua empresa (opcional)"
                     />
                   </div>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <Label htmlFor="cargo" className="text-base font-semibold">
                       Cargo/Função
                     </Label>
@@ -1001,12 +1001,12 @@ export default function Home() {
                       type="text"
                       value={formData.cargo}
                       onChange={(e) => setFormData({ ...formData, cargo: e.target.value })}
-                      className="h-12"
+                      className="h-14 text-base"
                       placeholder="Seu cargo ou função (opcional)"
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full text-lg py-6">
+                  <Button type="submit" size="lg" className="w-full text-xl py-7 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
                     Quero participar da 1ª turma
                   </Button>
 
@@ -1021,7 +1021,7 @@ export default function Home() {
       </section>
 
       {/* Chamada Final */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary via-primary to-primary/80 text-primary-foreground">
+      <section className="py-20 md:py-32 bg-gradient-to-br from-primary via-primary to-primary/80 text-primary-foreground">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h2 className="text-3xl md:text-5xl font-bold">
@@ -1063,7 +1063,7 @@ export default function Home() {
             </div>
 
             <div className="pt-6">
-              <Button size="lg" variant="secondary" className="text-lg px-8 py-6" onClick={scrollToForm}>
+              <Button size="lg" variant="secondary" className="text-xl px-12 py-7 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105" onClick={scrollToForm}>
                 Garantir minha vaga agora
               </Button>
             </div>
@@ -1081,8 +1081,8 @@ export default function Home() {
       </section>
 
       {/* CTA Fixo Mobile */}
-      <div className="fixed bottom-0 left-0 right-0 bg-primary text-primary-foreground p-4 shadow-lg md:hidden z-50">
-        <Button size="lg" variant="secondary" className="w-full" onClick={scrollToForm}>
+      <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground p-4 shadow-2xl md:hidden z-50 border-t-2 border-primary-foreground/20">
+        <Button size="lg" variant="secondary" className="w-full font-bold shadow-xl hover:shadow-2xl transition-all duration-300" onClick={scrollToForm}>
           Garantir minha vaga
         </Button>
       </div>
