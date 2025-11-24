@@ -112,7 +112,7 @@ export default function Home() {
     email: "",
     whatsapp: ""
   });
-  const [navExpanded, setNavExpanded] = useState(true);
+  const [navExpanded, setNavExpanded] = useState(false);
 
   const testimonials = [
     {
@@ -272,12 +272,18 @@ export default function Home() {
     return () => observer.disconnect();
   }, [mobileNavItems]);
 
+  useEffect(() => {
+    const handleScroll = () => setNavExpanded(false);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-[#f7f4ef] text-foreground lg:pl-24 xl:pl-72">
+    <div className="min-h-screen bg-[#f7f4ef] text-foreground">
       {/* Navegação lateral fixa */}
       <aside
         className={`hidden lg:flex flex-col gap-2 fixed top-24 left-4 z-40 rounded-2xl border border-border/70 bg-white shadow-lg transition-[width] duration-300 ${
-          navExpanded ? "w-64" : "w-14 items-center"
+          navExpanded ? "w-64" : "w-12 items-center"
         }`}
       >
         <button
