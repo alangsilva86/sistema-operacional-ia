@@ -30,6 +30,82 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
+type Encontro = {
+  num: number;
+  date: string;
+  time: string;
+  location: string;
+  title: string;
+  points: string[];
+  takeaway: string;
+};
+
+type RoadmapProps = {
+  steps: Encontro[];
+  onCtaClick: () => void;
+};
+
+function Roadmap({ steps, onCtaClick }: RoadmapProps) {
+  return (
+    <div className="mt-12">
+      <div className="relative">
+        <div className="hidden md:block absolute top-7 left-0 right-0 h-1 bg-primary/10" />
+        <div className="flex flex-col gap-6 md:flex-row md:gap-5">
+          {steps.map((step, idx) => (
+            <div key={step.num} className="relative flex flex-1">
+              <div className="flex flex-col items-center mr-4 md:mr-0">
+                <div className="relative">
+                  <div className="hidden md:block absolute -inset-1 rounded-full bg-primary/20 blur-sm" />
+                  <div className="relative w-11 h-11 md:w-12 md:h-12 rounded-full bg-primary text-primary-foreground font-bold flex items-center justify-center shadow-lg">
+                    {step.num}
+                  </div>
+                </div>
+                {idx < steps.length - 1 && <div className="mt-2 flex-1 w-px bg-primary/20 md:hidden" />}
+              </div>
+
+              <Card className="flex-1 bg-white/80 border-primary/15 shadow-sm hover:shadow-md transition-all">
+                <CardContent className="p-4 space-y-3">
+                  <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm font-semibold text-foreground/90">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-4 h-4 text-primary" />
+                      <span>{step.date}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-4 h-4 text-primary" />
+                      <span>{step.time}</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-foreground/80">
+                      <MapPin className="w-4 h-4 text-primary" />
+                      <span>{step.location}</span>
+                    </div>
+                  </div>
+
+                  <p className="text-base md:text-lg font-bold text-foreground leading-snug">{step.title}</p>
+
+                  <div className="rounded-lg bg-primary/10 border border-primary/20 p-3">
+                    <p className="text-xs uppercase font-semibold text-primary tracking-wide">Takeaway</p>
+                    <p className="text-sm text-foreground mt-1">{step.takeaway}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-8 flex justify-center">
+        <Button
+          size="lg"
+          className="rounded-full px-8 shadow-lg bg-primary text-primary-foreground hover:bg-primary/90"
+          onClick={onCtaClick}
+        >
+          Quero minha vaga
+        </Button>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [formData, setFormData] = useState({
     nome: "",
@@ -70,11 +146,67 @@ export default function Home() {
     document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const agenda = [
-    { num: 1, data: "06/12", hora: "10h00", local: "Atrium – Escritório Próspera | Fatorcard" },
-    { num: 2, data: "13/12", hora: "10h00", local: "Atrium – Escritório Momentum | Acessus" },
-    { num: 3, data: "18/12", hora: "18h30", local: "Atrium – Escritório Próspera | Fatorcard" },
-    { num: 4, data: "20/12", hora: "10h00", local: "Atrium – Escritório Momentum | Acessus" }
+  const encontros: Encontro[] = [
+    {
+      num: 1,
+      title: "PENSAR COMO ENGENHEIRO DE SOLUÇÕES",
+      date: "06/12",
+      time: "10h00",
+      location: "Atrium – Escritório Próspera | Fatorcard",
+      points: [
+        "Como sair do uso superficial da IA e passar a pensar como construtor de soluções.",
+        "Como quebrar qualquer problema em etapas simples e automatizáveis.",
+        "Estrutura de prompts que tira você do \"texto genérico\" e vai para saídas úteis para o seu contexto.",
+        "Mapeamento do seu problema principal: qual ferramenta vamos construir primeiro para o seu negócio.",
+        "Definição do blueprint da solução: entradas, lógica, saídas, integrações."
+      ],
+      takeaway: "Seu problema principal mapeado e o desenho da ferramenta que vamos construir juntos."
+    },
+    {
+      num: 2,
+      title: "CONSTRUÇÃO RÁPIDA: SUA 1ª FERRAMENTA FUNCIONANDO",
+      date: "13/12",
+      time: "10h00",
+      location: "Atrium – Escritório Momentum | Acessus",
+      points: [
+        "Escolha das ferramentas no-code que vamos usar.",
+        "Conexão da IA como \"cérebro\" por trás da solução.",
+        "Montagem do fluxo lógico: o que entra, o que a IA faz, o que sai.",
+        "Criação da primeira versão da sua ferramenta, já usável.",
+        "Testes, ajustes e correções em grupo."
+      ],
+      takeaway: "Sua ferramenta 1.0 funcionando, pronta para ser testada e usada."
+    },
+    {
+      num: 3,
+      title: "AUTOMAÇÃO E INTEGRAÇÃO COM A REALIDADE",
+      date: "18/12",
+      time: "18h30",
+      location: "Atrium – Escritório Próspera | Fatorcard",
+      points: [
+        "Como conectar sua ferramenta ao que você já usa (WhatsApp, e-mail, planilhas, sistemas).",
+        "Gatilhos e automações: o que dispara o quê e quando.",
+        "Criação de uma segunda solução OU evolução avançada da primeira, dependendo do seu caso.",
+        "Visualização básica de dados e acompanhamento do uso."
+      ],
+      takeaway: "Sua solução ligada à rotina real da empresa, com automação mínima já rodando."
+    },
+    {
+      num: 4,
+      title: "IMPLEMENTAÇÃO NA EMPRESA E ESCALA",
+      date: "20/12",
+      time: "10h00",
+      location: "Atrium – Escritório Momentum | Acessus",
+      points: [
+        "Como inserir a ferramenta no dia a dia da empresa sem travar o time.",
+        "Como treinar pessoas a usarem o que foi criado, mesmo sem entender nada de IA.",
+        "Como medir impacto e retorno das soluções.",
+        "Como definir os próximos processos a serem automatizados.",
+        "Roteiro para você continuar construindo novas ferramentas sozinho."
+      ],
+      takeaway:
+        "Ferramentas implantadas, equipe pronta para usar e um método para seguir expandindo o uso de IA na sua empresa."
+    }
   ];
 
   const whatsappLink =
@@ -440,7 +572,7 @@ export default function Home() {
           <div className="mt-12 max-w-5xl mx-auto relative">
             <div className="hidden md:block absolute left-8 top-0 bottom-0 w-px bg-border" />
             <div className="space-y-5">
-              {agenda.map((encontro) => (
+              {encontros.map((encontro) => (
                 <div key={encontro.num} className="relative pl-16 md:pl-24">
                   <div className="absolute left-4 md:left-6 top-3 w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-primary-foreground font-bold flex items-center justify-center shadow-sm">
                     {encontro.num}
@@ -450,16 +582,16 @@ export default function Home() {
                       <div className="flex flex-wrap items-center gap-3 text-sm font-semibold">
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4 text-primary" />
-                          <span>{encontro.data}</span>
+                          <span>{encontro.date}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Clock className="w-4 h-4 text-primary" />
-                          <span>{encontro.hora}</span>
+                          <span>{encontro.time}</span>
                         </div>
                       </div>
                       <div className="flex items-start gap-2 text-sm text-muted-foreground">
                         <MapPin className="w-4 h-4 text-primary mt-1" />
-                        <span>{encontro.local}</span>
+                        <span>{encontro.location}</span>
                       </div>
                       <p className="text-sm text-foreground font-semibold">
                         Encontro {encontro.num}: foco em construir e evoluir sua solução.
@@ -526,66 +658,11 @@ export default function Home() {
             ))}
           </div>
 
+          <Roadmap steps={encontros} onCtaClick={scrollToForm} />
+
           <div className="mt-10">
             <Accordion type="single" collapsible className="space-y-4">
-              {[
-                {
-                  num: 1,
-                  title: "PENSAR COMO ENGENHEIRO DE SOLUÇÕES",
-                  date: "06/12 – 10h00",
-                  location: "Atrium – Escritório Próspera | Fatorcard",
-                  points: [
-                    "Como sair do uso superficial da IA e passar a pensar como construtor de soluções.",
-                    "Como quebrar qualquer problema em etapas simples e automatizáveis.",
-                    "Estrutura de prompts que tira você do \"texto genérico\" e vai para saídas úteis para o seu contexto.",
-                    "Mapeamento do seu problema principal: qual ferramenta vamos construir primeiro para o seu negócio.",
-                    "Definição do blueprint da solução: entradas, lógica, saídas, integrações."
-                  ],
-                  takeaway: "Seu problema principal mapeado e o desenho da ferramenta que vamos construir juntos."
-                },
-                {
-                  num: 2,
-                  title: "CONSTRUÇÃO RÁPIDA: SUA 1ª FERRAMENTA FUNCIONANDO",
-                  date: "13/12 – 10h00",
-                  location: "Atrium – Escritório Momentum | Acessus",
-                  points: [
-                    "Escolha das ferramentas no-code que vamos usar.",
-                    "Conexão da IA como \"cérebro\" por trás da solução.",
-                    "Montagem do fluxo lógico: o que entra, o que a IA faz, o que sai.",
-                    "Criação da primeira versão da sua ferramenta, já usável.",
-                    "Testes, ajustes e correções em grupo."
-                  ],
-                  takeaway: "Sua ferramenta 1.0 funcionando, pronta para ser testada e usada."
-                },
-                {
-                  num: 3,
-                  title: "AUTOMAÇÃO E INTEGRAÇÃO COM A REALIDADE",
-                  date: "18/12 – 18h30",
-                  location: "Atrium – Escritório Próspera | Fatorcard",
-                  points: [
-                    "Como conectar sua ferramenta ao que você já usa (WhatsApp, e-mail, planilhas, sistemas).",
-                    "Gatilhos e automações: o que dispara o quê e quando.",
-                    "Criação de uma segunda solução OU evolução avançada da primeira, dependendo do seu caso.",
-                    "Visualização básica de dados e acompanhamento do uso."
-                  ],
-                  takeaway: "Sua solução ligada à rotina real da empresa, com automação mínima já rodando."
-                },
-                {
-                  num: 4,
-                  title: "IMPLEMENTAÇÃO NA EMPRESA E ESCALA",
-                  date: "20/12 – 10h00",
-                  location: "Atrium – Escritório Momentum | Acessus",
-                  points: [
-                    "Como inserir a ferramenta no dia a dia da empresa sem travar o time.",
-                    "Como treinar pessoas a usarem o que foi criado, mesmo sem entender nada de IA.",
-                    "Como medir impacto e retorno das soluções.",
-                    "Como definir os próximos processos a serem automatizados.",
-                    "Roteiro para você continuar construindo novas ferramentas sozinho."
-                  ],
-                  takeaway:
-                    "Ferramentas implantadas, equipe pronta para usar e um método para seguir expandindo o uso de IA na sua empresa."
-                }
-              ].map((encontro) => (
+              {encontros.map((encontro) => (
                 <AccordionItem
                   key={encontro.num}
                   value={`encontro-${encontro.num}`}
@@ -600,7 +677,7 @@ export default function Home() {
                         <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm text-muted-foreground">
                           <div className="flex items-center gap-1">
                             <Calendar className="w-4 h-4" />
-                            <span className="font-semibold text-foreground/80">{encontro.date}</span>
+                            <span className="font-semibold text-foreground/80">{`${encontro.date} – ${encontro.time}`}</span>
                           </div>
                           <div className="flex items-center gap-1">
                             <MapPin className="w-4 h-4" />
