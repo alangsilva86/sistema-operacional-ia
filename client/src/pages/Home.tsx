@@ -4,18 +4,23 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
-  AlertTriangle,
-  BarChart3,
+  Brain,
+  Briefcase,
   Calendar,
   CheckCircle2,
+  ClipboardCheck,
   Clock,
+  Compass,
+  CreditCard,
+  LineChart,
   MapPin,
   Play,
   Quote,
   Shield,
+  Sparkles,
   Target,
+  Type,
   Users,
-  Workflow,
   Zap
 } from "lucide-react";
 import { useState } from "react";
@@ -26,9 +31,7 @@ export default function Home() {
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
-    whatsapp: "",
-    empresa: "",
-    cargo: ""
+    whatsapp: ""
   });
 
   const testimonials = [
@@ -55,8 +58,8 @@ export default function Home() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Formulário enviado com sucesso! Em breve entraremos em contato.");
-    setFormData({ nome: "", email: "", whatsapp: "", empresa: "", cargo: "" });
+    toast.success("Pronto. Você está na pré-lista. Vamos falar com você no WhatsApp para confirmar pagamento e vaga.");
+    setFormData({ nome: "", email: "", whatsapp: "" });
   };
 
   const scrollToForm = () => {
@@ -76,25 +79,21 @@ export default function Home() {
       <section className="py-16 md:py-24 border-b border-border/60 bg-[#f4f0ea]">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-7">
-              <div className="flex flex-wrap items-center gap-3 text-sm font-semibold text-primary">
-                <span className="px-4 py-2 rounded-full bg-primary/10 border border-primary/25">
-                  1ª turma presencial • Maringá • Dezembro/2025
-                </span>
-                <span className="px-4 py-2 rounded-full bg-primary/10 border border-primary/25">
-                  Até 10 vagas
-                </span>
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-3 text-sm font-semibold text-primary bg-white px-4 py-2 rounded-full border border-primary/25 shadow-sm">
+                <Sparkles className="w-4 h-4" />
+                <span>1ª turma presencial • Maringá • Dezembro/2025 • 10 vagas</span>
               </div>
 
               <div className="space-y-4">
-                <p className="text-lg uppercase tracking-[0.2em] text-muted-foreground">
-                  Sistema Operacional – IA na prática
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+                  Sistema Operacional — IA na prática
                 </p>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
-                  Crie ferramentas reais de IA para o seu negócio em 4 encontros presenciais.
+                  Construa sua 1ª ferramenta de IA para o seu negócio em 4 encontros presenciais — mesmo sem programar.
                 </h1>
                 <p className="text-xl text-muted-foreground max-w-2xl">
-                  Pensado para empresários e gestores: prático, enxuto e 100% focado em colocar uma solução rodando, mesmo sem programar.
+                  Para empresários que já ouviram falar de IA (até pagam o ChatGPT), mas ainda não têm nenhuma ferramenta rodando na operação.
                 </p>
               </div>
 
@@ -102,7 +101,7 @@ export default function Home() {
                 {[
                   { icon: MapPin, label: "Presencial em Maringá" },
                   { icon: Users, label: "Turma reduzida, até 10 empresários" },
-                  { icon: Calendar, label: "4 encontros com entregas claras" }
+                  { icon: Calendar, label: "4 encontros e você sai com solução funcionando" }
                 ].map((item) => (
                   <div
                     key={item.label}
@@ -122,16 +121,16 @@ export default function Home() {
                 >
                   Quero construir minha 1ª ferramenta com IA
                 </Button>
-                <p className="text-sm text-muted-foreground">Turma limitada a 10 vagas • Início em 06/12</p>
+                <p className="text-sm text-muted-foreground">Início em 06/12 • Vagas limitadas</p>
               </div>
 
               <Card className="bg-white border-border/70">
                 <CardContent className="p-6 flex items-start gap-3">
                   <Target className="w-6 h-6 text-primary mt-1" />
                   <div className="space-y-1">
-                    <p className="font-semibold text-foreground">Não é um curso para “entender IA”.</p>
+                    <p className="font-semibold text-foreground">Não é “introdução à IA”.</p>
                     <p className="text-muted-foreground">
-                      É um treinamento para criar soluções reais para o seu negócio com IA, rápido e de forma simples.
+                      É um treinamento prático para criar uma ferramenta real que resolva um problema da sua empresa em 4 encontros.
                     </p>
                   </div>
                 </CardContent>
@@ -149,69 +148,128 @@ export default function Home() {
                       className="rounded-full bg-white/90 text-primary border border-primary/30 hover:-translate-y-0.5 transition-transform"
                     >
                       <Play className="w-5 h-5 mr-2" />
-                      Assistir prévia (2 min)
+                      Ver prévia de 2 min
                     </Button>
                   </div>
                 </CardContent>
               </Card>
-              <p className="text-sm text-muted-foreground">Entenda em 2 minutos o que você vai construir nos encontros.</p>
+              <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <Brain className="w-4 h-4 text-primary" />
+                  <span>Mostro o passo a passo e exemplos reais.</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Users className="w-4 h-4 text-primary" />
+                  <span>Turma pequena para ajustar cada caso.</span>
+                </div>
+              </div>
             </div>
           </div>
+
+          <nav className="mt-10 hidden md:flex flex-wrap gap-3 text-sm font-semibold text-foreground">
+            {[
+              { label: "Para quem é", href: "#para-quem-e" },
+              { label: "O que você leva", href: "#beneficios" },
+              { label: "Agenda", href: "#agenda" },
+              { label: "Como funciona", href: "#processo" },
+              { label: "Investimento", href: "#investimento" },
+              { label: "FAQ", href: "#faq" },
+              { label: "Inscrição", href: "#inscricao" }
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="px-4 py-2 rounded-full bg-white border border-border/70 hover:border-primary/50 hover:-translate-y-0.5 transition-all shadow-sm"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
         </div>
       </section>
 
       {/* Gap da IA */}
-      <section className="py-16 md:py-24 border-b border-border/60 bg-white">
-        <div className="container">
-          <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+      <section id="gap-ia" className="py-16 md:py-24 border-b border-border/60 bg-white">
+        <div className="container space-y-10">
+          <div className="max-w-5xl mx-auto grid lg:grid-cols-[1fr,1.1fr] gap-10 items-start">
             <div className="space-y-4">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">O gap da IA</p>
               <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">
-                O problema hoje não é falta de IA. É não saber usar de forma útil.
+                Hoje quase todo mundo fala de IA. Menos de 15% aplica de forma útil dentro do negócio.
               </h2>
               <p className="text-lg text-muted-foreground">
-                A rotina real das PME está cheia de pedidos, planilhas improvisadas e retrabalho. A IA só vira resultado quando
-                entra em um fluxo pensado para o seu negócio.
+                A maioria paga ferramentas, mas fica presa entre curiosidade, medo de errar e falta de método para colocar algo
+                para rodar na operação. É aqui que o negócio trava.
               </p>
             </div>
-            <div className="space-y-3">
-              {[
-                { icon: AlertTriangle, text: "E-mails e demandas se acumulando, sem prioridade clara." },
-                { icon: Workflow, text: "Processos críticos rodando em planilhas e mensagens soltas." },
-                { icon: BarChart3, text: "Equipes gastando horas em tarefas repetitivas que poderiam ser automatizadas." },
-                { icon: Target, text: "Ideias boas que não andam porque sempre “falta alguém de tecnologia” para executar." }
-              ].map((item) => (
-                <Card key={item.text} className="bg-[#f9f7f3] border-border/70">
-                  <CardContent className="p-5 flex gap-3 items-start">
-                    <item.icon className="w-5 h-5 text-primary mt-0.5" />
-                    <p className="text-foreground">{item.text}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <Card className="bg-[#f9f7f3] border-border/70">
+              <CardContent className="p-6 flex gap-4 items-start">
+                <div className="bg-primary/10 p-3 rounded-lg">
+                  <LineChart className="w-6 h-6 text-primary" />
+                </div>
+                <div className="space-y-1">
+                  <p className="text-sm uppercase tracking-[0.15em] text-muted-foreground">Estatística brutal</p>
+                  <p className="text-xl font-bold text-foreground">
+                    Menos de 15% dos empresários usam IA de forma realmente efetiva hoje.
+                  </p>
+                  <p className="text-muted-foreground">
+                    O resto fica no uso superficial: gerar texto, testar prompts, fazer “mais do mesmo” e seguir com retrabalho.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { icon: Type, title: "Uso IA só para gerar texto", desc: "Posts, e-mails, respostas prontas… mas nenhuma automação rodando." },
+              { icon: CreditCard, title: "Pago ChatGPT, mas nada roda", desc: "Assinatura em dia e zero ferramenta conectada à operação." },
+              { icon: Compass, title: "Quero usar, mas não sei por onde começar", desc: "Não tem método, passo a passo ou alguém puxando a mão." }
+            ].map((item) => (
+              <Card key={item.title} className="bg-[#f9f7f3] border-border/70 hover:-translate-y-1 hover:shadow-md transition-all">
+                <CardContent className="p-5 space-y-2">
+                  <div className="flex items-center gap-2">
+                    <item.icon className="w-5 h-5 text-primary" />
+                    <p className="font-semibold text-foreground">{item.title}</p>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <Card className="max-w-5xl mx-auto bg-primary text-primary-foreground border-none">
+            <CardContent className="p-6 text-center text-lg font-semibold">
+              Este treinamento foi criado para quem já entendeu que IA é inevitável, mas ainda não encontrou método para aplicar dentro da própria empresa.
+            </CardContent>
+          </Card>
         </div>
       </section>
 
       {/* Para quem é */}
-      <section className="py-16 md:py-24 border-b border-border/60 bg-[#f7f4ef]">
+      <section id="para-quem-e" className="py-16 md:py-24 border-b border-border/60 bg-[#f7f4ef]">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-4">
             <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">Para quem é este treinamento</h2>
-            <p className="text-lg text-muted-foreground">Desenhado para quem já vive operação e precisa de resultado rápido.</p>
+            <p className="text-lg text-muted-foreground">Se você vive operação e precisa de resultado rápido, é para você.</p>
           </div>
 
-          <div className="mt-10 grid md:grid-cols-2 gap-4">
+          <div className="mt-10 grid md:grid-cols-3 gap-4">
             {[
-              "Empresários e gestores de pequenas e médias empresas.",
-              "Sobrecarregados com operação, planilhas e retrabalho.",
-              "Quem já ouviu falar de IA, talvez use ChatGPT, mas ainda não transformou em ferramenta de verdade.",
-              "Quem quer automatizar processos, organizar informação, vender melhor ou atender melhor sem depender de programador.",
-              "Quem entende que dominar construção com IA é vantagem nos próximos anos."
+              { icon: Briefcase, title: "Empresários e gestores", desc: "Pequenas e médias empresas que precisam ganhar eficiência." },
+              { icon: ClipboardCheck, title: "Quem está sobrecarregado", desc: "Operação, retrabalho, planilhas demais e nada automatizado." },
+              { icon: Sparkles, title: "Já testou IA, mas nada roda", desc: "Quer transformar ideia em sistema real, sem depender de programador." }
             ].map((item) => (
-              <Card key={item} className="bg-white border-border/80 hover:-translate-y-1 hover:shadow-md transition-all">
-                <CardContent className="p-5 flex gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-1" />
-                  <p>{item}</p>
+              <Card
+                key={item.title}
+                className="bg-white border-border/80 hover:-translate-y-1 hover:shadow-md transition-all"
+              >
+                <CardContent className="p-5 space-y-2 text-left">
+                  <div className="flex items-center gap-2">
+                    <item.icon className="w-5 h-5 text-primary" />
+                    <p className="font-semibold text-foreground">{item.title}</p>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
                 </CardContent>
               </Card>
             ))}
@@ -219,15 +277,17 @@ export default function Home() {
 
           <Card className="mt-8 bg-[#efe9de] border-border/70">
             <CardContent className="p-6 text-center space-y-2">
-              <p className="font-semibold">Se você busca teoria e certificado bonito, não é aqui.</p>
-              <p className="text-primary font-bold">Aqui é ferramenta, processo e resultado aplicado.</p>
+              <p className="font-semibold">
+                Se você quer só “entender o que é IA” ou colecionar certificado, essa turma não é para você.
+              </p>
+              <p className="text-primary font-bold">Aqui é ferramenta rodando, processo claro e método replicável.</p>
             </CardContent>
           </Card>
         </div>
       </section>
 
       {/* O que você vai ter */}
-      <section className="py-16 md:py-24 border-b border-border/60 bg-white">
+      <section id="beneficios" className="py-16 md:py-24 border-b border-border/60 bg-white">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-4">
             <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">O que você vai ter ao final dos 4 encontros</h2>
@@ -236,26 +296,12 @@ export default function Home() {
 
           <div className="mt-12 grid md:grid-cols-2 gap-6">
             {[
-              {
-                icon: Zap,
-                text: "Pelo menos uma ferramenta funcional criada para a sua empresa (geralmente mais de uma)."
-              },
-              {
-                icon: Target,
-                text: "Capacidade de pegar qualquer problema recorrente e transformar em um fluxo estruturado."
-              },
-              {
-                icon: CheckCircle2,
-                text: 'Entender IA como "motor invisível" por trás de sistemas, formulários, bots e decisões.'
-              },
-              {
-                icon: Users,
-                text: "Método replicável para criar novas soluções sem depender totalmente de terceiros."
-              },
-              {
-                icon: MapPin,
-                text: "Plano claro de implementação e de treinamento da equipe."
-              }
+              { icon: Zap, text: "Pelo menos uma ferramenta de IA funcionando na sua empresa (geralmente mais de uma)." },
+              { icon: Target, text: "Método simples para transformar qualquer problema recorrente em fluxo automatizável." },
+              { icon: CheckCircle2, text: 'Capacidade de usar IA como "motor invisível" atrás de atendimentos, relatórios e decisões.' },
+              { icon: Users, text: "Roteiro para treinar a equipe e implementar sem travar ninguém." },
+              { icon: MapPin, text: "Lista clara dos próximos processos candidatos a virar solução com IA." },
+              { icon: Calendar, text: "Agenda de evolução para continuar construindo depois da turma." }
             ].map((item) => (
               <Card
                 key={item.text}
@@ -277,11 +323,17 @@ export default function Home() {
               <p className="text-xl font-bold">É um processo para colocar solução de pé.</p>
             </CardContent>
           </Card>
+
+          <div className="mt-6 flex justify-center">
+            <Button variant="outline" size="lg" className="px-6" onClick={scrollToForm}>
+              Quero sair dessa turma com uma solução pronta
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* Exemplos práticos */}
-      <section className="py-16 md:py-24 border-b border-border/60 bg-[#f7f4ef]">
+      <section id="exemplos" className="py-16 md:py-24 border-b border-border/60 bg-[#f7f4ef]">
         <div className="container">
           <div className="max-w-5xl mx-auto text-center space-y-4">
             <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">Exemplos do que você poderá construir</h2>
@@ -290,34 +342,30 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-10 grid md:grid-cols-2 gap-6">
+          <div className="mt-10 grid md:grid-cols-3 gap-6">
             {[
               {
-                title: "Para quem vende serviços ou produtos",
+                title: "Vendas e marketing",
                 items: [
-                  "Funil inteligente que qualifica leads, faz perguntas certas e organiza respostas.",
-                  "Ferramenta que registra contatos, organiza oportunidades e gera follow-ups automáticos."
+                  "Funil inteligente que qualifica leads e faz as perguntas certas.",
+                  "Follow-up automático com respostas personalizadas.",
+                  "Qualificação de leads com critérios claros para o time comercial."
                 ]
               },
               {
-                title: "Para quem tem equipe operacional",
+                title: "Operação",
                 items: [
-                  "Sistema simples que recebe informações da equipe, organiza, resume e gera relatórios prontos.",
-                  "Checklist inteligente que orienta o passo a passo e registra tudo no final."
+                  "Checklist inteligente que orienta o passo a passo e registra tudo no final.",
+                  "Consolidação automática de informações que hoje estão espalhadas.",
+                  "Relatórios que se geram sozinhos a partir do que sua equipe envia."
                 ]
               },
               {
-                title: "Para quem lida com muitos clientes",
+                title: "Atendimento",
                 items: [
-                  "Assistente com IA para responder dúvidas frequentes, coletar informações e encaminhar para a pessoa certa.",
-                  "Robô que lê formulários, contratos ou e-mails e extrai só o que importa."
-                ]
-              },
-              {
-                title: "Para quem precisa de controle interno",
-                items: [
-                  "Painel que consolida dados de várias fontes e gera visão resumida de indicadores.",
-                  "Ferramenta para organizar demandas, prazos e responsáveis sem depender de dezenas de planilhas."
+                  "Bot assistido por IA para dúvidas frequentes e coleta de informações.",
+                  "Triagem de demanda que encaminha para a pessoa certa.",
+                  "Respostas frequentes com histórico e registro automático."
                 ]
               }
             ].map((categoria) => (
@@ -350,53 +398,100 @@ export default function Home() {
       </section>
 
       {/* Agenda */}
-      <section className="py-16 md:py-24 border-b border-border/60 bg-white">
+      <section id="agenda" className="py-16 md:py-24 border-b border-border/60 bg-white">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-4">
             <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">Agenda da 1ª turma – Dezembro/2025</h2>
             <p className="text-muted-foreground">Todas as sessões são presenciais e gravadas.</p>
           </div>
 
-          <div className="mt-12 grid md:grid-cols-2 gap-4">
-            {agenda.map((encontro) => (
-              <Card
-                key={encontro.num}
-                className="bg-[#f9f7f3] border-border/80 hover:-translate-y-1 hover:shadow-md transition-all"
-              >
-                <CardContent className="p-6 space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-lg bg-primary text-primary-foreground font-bold flex items-center justify-center">
-                      {encontro.num}
-                    </div>
-                    <div className="flex gap-3 text-sm font-semibold">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4 text-primary" />
-                        <span>{encontro.data}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-4 h-4 text-primary" />
-                        <span>{encontro.hora}</span>
-                      </div>
-                    </div>
+          <div className="mt-12 max-w-5xl mx-auto relative">
+            <div className="hidden md:block absolute left-8 top-0 bottom-0 w-px bg-border" />
+            <div className="space-y-5">
+              {agenda.map((encontro) => (
+                <div key={encontro.num} className="relative pl-16 md:pl-24">
+                  <div className="absolute left-4 md:left-6 top-3 w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-primary-foreground font-bold flex items-center justify-center shadow-sm">
+                    {encontro.num}
                   </div>
-                  <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <MapPin className="w-4 h-4 text-primary mt-1" />
-                    <span>{encontro.local}</span>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  <Card className="bg-[#f9f7f3] border-border/80">
+                    <CardContent className="p-6 space-y-3">
+                      <div className="flex flex-wrap items-center gap-3 text-sm font-semibold">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-4 h-4 text-primary" />
+                          <span>{encontro.data}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-4 h-4 text-primary" />
+                          <span>{encontro.hora}</span>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <MapPin className="w-4 h-4 text-primary mt-1" />
+                        <span>{encontro.local}</span>
+                      </div>
+                      <p className="text-sm text-foreground font-semibold">
+                        Encontro {encontro.num}: foco em construir e evoluir sua solução.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8 grid md:grid-cols-2 gap-4 max-w-5xl mx-auto">
+            <Card className="bg-white border-border/70">
+              <CardContent className="p-5 space-y-2">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-primary" />
+                  <p className="font-semibold text-foreground">Todos os encontros são gravados.</p>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Se precisar faltar em algum, você acompanha depois e continua a construção sem ficar para trás.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="bg-[#f9f7f3] border-border/70">
+              <CardContent className="p-5 space-y-2">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-primary" />
+                  <p className="font-semibold text-foreground">E se eu não acompanhar o ritmo?</p>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Turma reduzida, revisões constantes e suporte durante os encontros para garantir que a sua ferramenta saia do papel.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Como funcionam os 4 encontros */}
-      <section className="py-16 md:py-24 border-b border-border/60 bg-[#f7f4ef]">
+      <section id="processo" className="py-16 md:py-24 border-b border-border/60 bg-[#f7f4ef]">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-3">
             <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">Como funcionam os 4 encontros</h2>
             <p className="text-muted-foreground">Práticos, diretos e com acompanhamento real para cada negócio.</p>
             <p className="text-primary font-semibold">Turma reduzida: máximo de 10 participantes.</p>
+          </div>
+
+          <div className="mt-8 grid md:grid-cols-4 gap-3">
+            {[
+              "Mapear problema",
+              "Construir 1ª versão",
+              "Integrar e automatizar",
+              "Implantar e escalar"
+            ].map((step, idx) => (
+              <div
+                key={step}
+                className="flex items-center gap-2 rounded-xl bg-white border border-primary/40 px-4 py-3 text-sm font-semibold"
+              >
+                <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">
+                  {idx + 1}
+                </div>
+                <span>{step}</span>
+              </div>
+            ))}
           </div>
 
           <div className="mt-10">
@@ -509,7 +604,7 @@ export default function Home() {
       </section>
 
       {/* Turma pequena */}
-      <section className="py-16 md:py-24 border-b border-border/60 bg-white">
+      <section id="faq" className="py-16 md:py-24 border-b border-border/60 bg-white">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-3">
             <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">Turma pequena, acompanhamento real</h2>
@@ -609,7 +704,7 @@ export default function Home() {
       </section>
 
       {/* Investimento e garantia */}
-      <section className="py-16 md:py-24 border-b border-border/60 bg-white">
+      <section id="investimento" className="py-16 md:py-24 border-b border-border/60 bg-white">
         <div className="container">
           <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
             <div className="space-y-6">
@@ -660,10 +755,11 @@ export default function Home() {
                 <CardContent className="p-6 space-y-2">
                   <h3 className="text-lg font-bold">Retorno do investimento</h3>
                   <p>
-                    Um único processo automatizado que economize 10 horas mensais já começa a pagar o investimento em poucos meses.
+                    Se a ferramenta que você construir economizar 10 horas por mês (ou da sua equipe), o treinamento se paga em
+                    menos de 2 meses.
                   </p>
                   <p className="text-xl font-semibold">
-                    Se a hora do seu trabalho vale R$ 100,00, essas 10 horas representam R$ 1.000,00 por mês.
+                    Considerando R$ 150 por hora, 10 horas valem R$ 1.500 mensais — mais que o valor da turma.
                   </p>
                 </CardContent>
               </Card>
@@ -950,40 +1046,12 @@ export default function Home() {
                       />
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="empresa" className="text-sm font-semibold">
-                        Empresa
-                      </Label>
-                      <Input
-                        id="empresa"
-                        type="text"
-                        value={formData.empresa}
-                        onChange={(e) => setFormData({ ...formData, empresa: e.target.value })}
-                        className="h-12 text-base"
-                        placeholder="Nome da sua empresa (opcional)"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="cargo" className="text-sm font-semibold">
-                        Cargo/Função
-                      </Label>
-                      <Input
-                        id="cargo"
-                        type="text"
-                        value={formData.cargo}
-                        onChange={(e) => setFormData({ ...formData, cargo: e.target.value })}
-                        className="h-12 text-base"
-                        placeholder="Seu cargo ou função (opcional)"
-                      />
-                    </div>
-
                     <Button
                       type="submit"
                       size="lg"
                       className="w-full text-base py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
                     >
-                      Quero garantir minha vaga
+                      Quero garantir minha vaga na 1ª turma
                     </Button>
                     <p className="text-xs text-muted-foreground text-center">
                       Ao enviar este formulário, você concorda em receber informações sobre o treinamento.
