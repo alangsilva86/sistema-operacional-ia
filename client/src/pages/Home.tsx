@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Calendar, Clock, MapPin, CheckCircle2, Users, Target, Zap, Shield } from "lucide-react";
+import { Calendar, Clock, MapPin, CheckCircle2, Users, Target, Zap, Shield, Play } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -31,59 +31,80 @@ export default function Home() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/5 via-background to-primary/5 py-20 md:py-32">
         <div className="container">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="inline-block px-5 py-2.5 bg-primary/10 rounded-full text-sm font-semibold text-primary mb-4 border border-primary/20 shadow-sm">
-              Presencial em Maringá • Turma limitada a 10 pessoas
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-foreground leading-tight">
-              Sistema Operacional – IA NA PRÁTICA
-            </h1>
-            
-            <p className="text-xl md:text-3xl text-muted-foreground font-medium leading-relaxed">
-              Em 4 encontros presenciais, você vai construir ferramentas reais e úteis para o seu negócio usando IA.
-            </p>
-            
-            <p className="text-xl md:text-2xl font-bold text-foreground">
-              Mesmo sem saber programar.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
-              <div className="flex items-center gap-2 bg-card px-5 py-3 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
-                <MapPin className="w-5 h-5 text-primary" />
-                <span>Presencial em Maringá</span>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8 text-center md:text-left">
+              <div className="inline-block px-5 py-2.5 bg-primary/10 rounded-full text-sm font-semibold text-primary border border-primary/20 shadow-sm">
+                Presencial em Maringá • Turma limitada a 10 pessoas
               </div>
-              <div className="flex items-center gap-2 bg-card px-5 py-3 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
-                <Users className="w-5 h-5 text-primary" />
-                <span>Turma limitada a 10 pessoas</span>
-              </div>
-              <div className="flex items-center gap-2 bg-card px-5 py-3 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
-                <Calendar className="w-5 h-5 text-primary" />
-                <span>4 encontros</span>
-              </div>
-            </div>
 
-            <div className="pt-6">
-              <Button size="lg" className="text-xl px-12 py-7 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105" onClick={scrollToForm}>
-                Garantir minha vaga na 1ª turma
-              </Button>
-            </div>
+              <div className="space-y-4">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground leading-tight">
+                  Sistema Operacional – IA NA PRÁTICA
+                </h1>
 
-            <Card className="bg-destructive/10 border-destructive/20">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-3">
-                  <Target className="w-6 h-6 text-destructive flex-shrink-0 mt-1" />
-                  <div className="text-left">
-                    <p className="font-semibold text-foreground mb-2">
-                      Não é um curso para "entender IA".
-                    </p>
-                    <p className="text-muted-foreground">
-                      É um treinamento para criar soluções <strong>reais para o seu negócio com IA, rápido e de forma simples.</strong>
-                    </p>
-                  </div>
+                <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-medium leading-relaxed">
+                  Em 4 encontros presenciais, você vai construir ferramentas reais e úteis para o seu negócio usando IA.
+                </p>
+
+                <p className="text-xl md:text-2xl font-bold text-foreground">
+                  Mesmo sem saber programar.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap justify-center md:justify-start gap-4 text-sm md:text-base">
+                <div className="flex items-center gap-2 bg-card px-5 py-3 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
+                  <MapPin className="w-5 h-5 text-primary" />
+                  <span>Presencial em Maringá</span>
                 </div>
-              </CardContent>
-            </Card>
+                <div className="flex items-center gap-2 bg-card px-5 py-3 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
+                  <Users className="w-5 h-5 text-primary" />
+                  <span>Turma limitada a 10 pessoas</span>
+                </div>
+                <div className="flex items-center gap-2 bg-card px-5 py-3 rounded-lg border shadow-sm hover:shadow-md transition-shadow">
+                  <Calendar className="w-5 h-5 text-primary" />
+                  <span>4 encontros</span>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <Button size="lg" className="text-lg md:text-xl px-10 md:px-12 py-6 md:py-7 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105" onClick={scrollToForm}>
+                  Garantir minha vaga na 1ª turma
+                </Button>
+              </div>
+
+              <Card className="bg-destructive/10 border-destructive/20">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-3 text-left">
+                    <Target className="w-6 h-6 text-destructive flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-semibold text-foreground mb-2">
+                        Não é um curso para "entender IA".
+                      </p>
+                      <p className="text-muted-foreground">
+                        É um treinamento para criar soluções <strong>reais para o seu negócio com IA, rápido e de forma simples.</strong>
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="space-y-4">
+              <Card className="overflow-hidden shadow-2xl border-primary/20 bg-card/80 backdrop-blur">
+                <CardContent className="p-0">
+                  <div className="relative aspect-video bg-gradient-to-br from-primary/30 via-primary/20 to-primary/40 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.15),transparent_40%)]" />
+                    <Button variant="secondary" size="lg" className="rounded-full bg-background/90 backdrop-blur text-primary hover:scale-105 transition-transform">
+                      <Play className="w-6 h-6 mr-2" />
+                      Assistir prévia
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+              <p className="text-sm md:text-base text-muted-foreground text-center md:text-left">
+                Veja em 2 minutos como será a construção
+              </p>
+            </div>
           </div>
         </div>
       </section>
