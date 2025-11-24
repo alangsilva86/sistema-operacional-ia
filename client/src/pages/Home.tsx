@@ -26,7 +26,7 @@ import {
   ChevronsLeft,
   ChevronsRight
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -80,21 +80,65 @@ export default function Home() {
   const whatsappLink =
     "https://wa.me/5544999999999?text=Quero%20construir%20minha%201%C2%AA%20ferramenta%20de%20IA%20na%20turma%20presencial";
 
-  const navItems = [
-    { label: "Para quem é", href: "#para-quem-e", icon: Users },
-    { label: "O que você leva", href: "#beneficios", icon: Zap },
-    { label: "Exemplos", href: "#exemplos", icon: Sparkles },
-    { label: "Agenda", href: "#agenda", icon: Calendar },
-    { label: "Como funciona", href: "#processo", icon: Brain },
-    { label: "Investimento", href: "#investimento", icon: Shield },
-    { label: "FAQ", href: "#faq", icon: Type },
-    { label: "Inscrição", href: "#inscricao", icon: MessageCircle }
-  ];
+  const navItems = useMemo(
+    () => [
+      { label: "Para quem é", href: "#para-quem-e", icon: Users },
+      { label: "O que você leva", href: "#beneficios", icon: Zap },
+      { label: "Exemplos", href: "#exemplos", icon: Sparkles },
+      { label: "Agenda", href: "#agenda", icon: Calendar },
+      { label: "Como funciona", href: "#processo", icon: Brain },
+      { label: "Investimento", href: "#investimento", icon: Shield },
+      { label: "FAQ", href: "#faq", icon: Type },
+      { label: "Inscrição", href: "#inscricao", icon: MessageCircle }
+    ],
+    []
+  );
+  const mobileNavItems = useMemo(
+    () =>
+      navItems.filter((item) =>
+        ["#para-quem-e", "#agenda", "#processo", "#inscricao"].includes(item.href)
+      ),
+    [navItems]
+  );
+  const [activeSection, setActiveSection] = useState(mobileNavItems[0]?.href ?? "");
 
   const handleNavClick = (href: string) => {
     const el = document.querySelector(href);
     el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setActiveSection(href);
   };
+
+  useEffect(() => {
+    const sections = mobileNavItems
+      .map((item) => {
+        const element = document.querySelector(item.href);
+        return element ? { id: item.href, element } : null;
+      })
+      .filter(Boolean) as { id: string; element: Element }[];
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries.find((entry) => entry.isIntersecting);
+
+        if (visibleEntry) {
+          const matched = sections.find((section) => section.element === visibleEntry.target);
+          if (matched) {
+            setActiveSection(matched.id);
+          }
+        }
+      },
+      {
+        threshold: 0.25,
+        rootMargin: "-40% 0px -45% 0px"
+      }
+    );
+
+    sections.forEach(({ element }) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, [mobileNavItems]);
 
   return (
     <div className="min-h-screen bg-[#f7f4ef] text-foreground lg:pl-24 xl:pl-72">
@@ -126,6 +170,29 @@ export default function Home() {
           ))}
         </div>
       </aside>
+
+      {/* Navegação móvel sticky */}
+      <div className="lg:hidden sticky top-0 z-40 border-b border-border/60 bg-[#f7f4ef]/95 backdrop-blur supports-[backdrop-filter]:bg-[#f7f4ef]/80">
+        <div className="container py-3">
+          <div className="flex items-center gap-2 overflow-x-auto">
+            {mobileNavItems.map((item) => (
+              <button
+                key={item.href}
+                onClick={() => handleNavClick(item.href)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-colors shrink-0 ${
+                  activeSection === item.href
+                    ? "bg-primary text-primary-foreground border-primary shadow-md"
+                    : "bg-white/90 text-foreground border-border hover:border-primary/50"
+                }`}
+                aria-pressed={activeSection === item.href}
+              >
+                <item.icon className="w-4 h-4" />
+                <span>{item.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
       {/* Hero Section */}
       <section className="py-16 md:py-24 border-b border-border/60 bg-[#f4f0ea]">
         <div className="container">
