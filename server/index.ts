@@ -23,7 +23,18 @@ async function startServer() {
     res.sendFile(path.join(staticPath, "index.html"));
   });
 
-  const port = process.env.PORT || 3000;
+  const port = Number(process.env.PORT) || 3000;
+
+  const shutdown = () => {
+    console.log("Shutting down server...");
+    server.close(() => {
+      console.log("HTTP server closed.");
+      process.exit(0);
+    });
+  };
+
+  process.on("SIGINT", shutdown);
+  process.on("SIGTERM", shutdown);
 
   server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}/`);
