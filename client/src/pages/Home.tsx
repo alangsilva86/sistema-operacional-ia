@@ -14,6 +14,7 @@ import {
   CreditCard,
   LineChart,
   MapPin,
+  MessageCircle,
   Play,
   Quote,
   Shield,
@@ -21,7 +22,9 @@ import {
   Target,
   Type,
   Users,
-  Zap
+  Zap,
+  ChevronsLeft,
+  ChevronsRight
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -33,6 +36,7 @@ export default function Home() {
     email: "",
     whatsapp: ""
   });
+  const [navExpanded, setNavExpanded] = useState(true);
 
   const testimonials = [
     {
@@ -73,8 +77,55 @@ export default function Home() {
     { num: 4, data: "20/12", hora: "10h00", local: "Atrium – Escritório Momentum | Acessus" }
   ];
 
+  const whatsappLink =
+    "https://wa.me/5544999999999?text=Quero%20construir%20minha%201%C2%AA%20ferramenta%20de%20IA%20na%20turma%20presencial";
+
+  const navItems = [
+    { label: "Para quem é", href: "#para-quem-e", icon: Users },
+    { label: "O que você leva", href: "#beneficios", icon: Zap },
+    { label: "Exemplos", href: "#exemplos", icon: Sparkles },
+    { label: "Agenda", href: "#agenda", icon: Calendar },
+    { label: "Como funciona", href: "#processo", icon: Brain },
+    { label: "Investimento", href: "#investimento", icon: Shield },
+    { label: "FAQ", href: "#faq", icon: Type },
+    { label: "Inscrição", href: "#inscricao", icon: MessageCircle }
+  ];
+
+  const handleNavClick = (href: string) => {
+    const el = document.querySelector(href);
+    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
-    <div className="min-h-screen bg-[#f7f4ef] text-foreground">
+    <div className="min-h-screen bg-[#f7f4ef] text-foreground lg:pl-24 xl:pl-72">
+      {/* Navegação lateral fixa */}
+      <aside
+        className={`hidden lg:flex flex-col gap-2 fixed top-24 left-4 z-40 rounded-2xl border border-border/70 bg-white shadow-lg transition-[width] duration-300 ${
+          navExpanded ? "w-64" : "w-14 items-center"
+        }`}
+      >
+        <button
+          onClick={() => setNavExpanded((prev) => !prev)}
+          className="flex items-center justify-center gap-2 px-3 py-3 text-sm font-semibold text-muted-foreground hover:text-foreground"
+        >
+          {navExpanded ? <ChevronsLeft className="w-5 h-5" /> : <ChevronsRight className="w-5 h-5" />}
+          {navExpanded && <span>Menu</span>}
+        </button>
+        <div className="px-2 pb-3 flex flex-col gap-2">
+          {navItems.map((item) => (
+            <button
+              key={item.href}
+              onClick={() => handleNavClick(item.href)}
+              className={`group flex items-center gap-3 w-full text-left px-3 py-2 rounded-xl border border-transparent hover:border-primary/40 hover:bg-primary/10 transition-all ${
+                navExpanded ? "justify-start" : "justify-center"
+              }`}
+            >
+              <item.icon className="w-5 h-5 text-primary" />
+              {navExpanded && <span className="text-sm font-semibold text-foreground">{item.label}</span>}
+            </button>
+          ))}
+        </div>
+      </aside>
       {/* Hero Section */}
       <section className="py-16 md:py-24 border-b border-border/60 bg-[#f4f0ea]">
         <div className="container">
@@ -166,25 +217,6 @@ export default function Home() {
             </div>
           </div>
 
-          <nav className="mt-10 hidden md:flex flex-wrap gap-3 text-sm font-semibold text-foreground">
-            {[
-              { label: "Para quem é", href: "#para-quem-e" },
-              { label: "O que você leva", href: "#beneficios" },
-              { label: "Agenda", href: "#agenda" },
-              { label: "Como funciona", href: "#processo" },
-              { label: "Investimento", href: "#investimento" },
-              { label: "FAQ", href: "#faq" },
-              { label: "Inscrição", href: "#inscricao" }
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="px-4 py-2 rounded-full bg-white border border-border/70 hover:border-primary/50 hover:-translate-y-0.5 transition-all shadow-sm"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
         </div>
       </section>
 
@@ -1075,6 +1107,19 @@ export default function Home() {
           Garantir minha vaga
         </Button>
       </div>
+
+      {/* Botão flutuante WhatsApp */}
+      <a
+        href={whatsappLink}
+        target="_blank"
+        rel="noreferrer"
+        className="fixed bottom-24 right-4 md:bottom-8 md:right-8 z-40"
+      >
+        <div className="flex items-center gap-2 bg-green-600 text-white px-4 py-3 rounded-full shadow-xl hover:shadow-2xl transition-all hover:-translate-y-0.5">
+          <MessageCircle className="w-5 h-5" />
+          <span className="text-sm font-semibold whitespace-nowrap">Falar no WhatsApp</span>
+        </div>
+      </a>
 
       {/* Footer */}
       <footer className="py-10 bg-white border-t border-border/60">
