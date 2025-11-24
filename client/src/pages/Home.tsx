@@ -139,7 +139,7 @@ export default function Home() {
             </div>
 
             <div className="space-y-4">
-              <Card className="overflow-hidden border-none shadow-lg bg-gradient-to-br from-white to-primary/10">
+              <Card className="overflow-hidden border-none shadow-lg bg-linear-to-br from-white to-primary/10">
                 <CardContent className="p-0">
                   <div className="relative aspect-video flex items-center justify-center bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.4),transparent_55%)]">
                     <div className="absolute inset-0 border border-white/60 rounded-xl m-6" />
@@ -466,7 +466,7 @@ export default function Home() {
                 >
                   <AccordionTrigger className="px-6 py-5 md:px-8 md:py-6 hover:no-underline">
                     <div className="flex w-full items-start gap-4">
-                      <div className="bg-primary text-primary-foreground rounded-lg w-12 h-12 md:w-14 md:h-14 flex items-center justify-center font-bold text-xl md:text-2xl flex-shrink-0">
+                      <div className="bg-primary text-primary-foreground rounded-lg w-12 h-12 md:w-14 md:h-14 flex items-center justify-center font-bold text-xl md:text-2xl shrink-0">
                         {encontro.num}
                       </div>
                       <div className="flex-1 text-left space-y-2">
@@ -490,7 +490,7 @@ export default function Home() {
                     <ul className="space-y-2 mb-6">
                       {encontro.points.map((item) => (
                         <li key={item} className="flex items-start gap-3">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0" />
                           <span className="text-muted-foreground">{item}</span>
                         </li>
                       ))}
