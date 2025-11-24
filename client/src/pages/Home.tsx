@@ -3,9 +3,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Calendar, Clock, MapPin, CheckCircle2, Users, Target, Zap, Shield } from "lucide-react";
+import { Calendar, Clock, MapPin, CheckCircle2, Users, Target, Zap, Shield, Quote } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -15,6 +16,28 @@ export default function Home() {
     empresa: "",
     cargo: ""
   });
+
+  const testimonials = [
+    {
+      name: "Amanda Costa",
+      role: "Head de Operações • Momentum",
+      quote: "Em poucas horas colocamos no ar um fluxo que tirou a equipe do retrabalho.",
+      initials: "AC"
+    },
+    {
+      name: "Bruno Martins",
+      role: "CEO • Fatorcard",
+      quote: "Conseguimos testar rápido e medir impacto antes de envolver o time de dev.",
+      initials: "BM",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      name: "Carla Ribeiro",
+      role: "Diretora Comercial • Grupo Acessus",
+      quote: "A clareza do passo a passo deixou fácil evoluir a solução depois das sessões.",
+      initials: "CR"
+    }
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -864,6 +887,52 @@ export default function Home() {
                 </Card>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Quem já construiu solução comigo */}
+      <section className="py-20 md:py-28 bg-primary/5">
+        <div className="container">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
+              <p className="text-sm font-semibold text-primary uppercase tracking-[0.2em]">Social proof</p>
+              <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
+                Quem já construiu solução comigo
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Casos reais, com gente de operação e liderança que precisava tirar a ideia do papel rápido.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {testimonials.map((testimonial) => (
+                <Card
+                  key={testimonial.name}
+                  className="bg-card border shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300"
+                >
+                  <CardContent className="p-6 space-y-4">
+                    <div className="flex items-start gap-4">
+                      <Avatar className="h-12 w-12 border bg-muted">
+                        {testimonial.image && <AvatarImage src={testimonial.image} alt={testimonial.name} />}
+                        <AvatarFallback className="font-semibold text-primary bg-primary/10">
+                          {testimonial.initials}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="space-y-1">
+                        <p className="text-lg font-semibold text-foreground">{testimonial.name}</p>
+                        <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3 text-muted-foreground">
+                      <Quote className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                      <p className="leading-relaxed">“{testimonial.quote}”</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </section>
