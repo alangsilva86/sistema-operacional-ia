@@ -4,8 +4,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Calendar, Clock, MapPin, CheckCircle2, Users, Target, Zap, Shield, Play } from "lucide-react";
+import { Calendar, Clock, MapPin, CheckCircle2, Users, Target, Zap, Shield, Quote } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -15,6 +17,28 @@ export default function Home() {
     empresa: "",
     cargo: ""
   });
+
+  const testimonials = [
+    {
+      name: "Amanda Costa",
+      role: "Head de Operações • Momentum",
+      quote: "Em poucas horas colocamos no ar um fluxo que tirou a equipe do retrabalho.",
+      initials: "AC"
+    },
+    {
+      name: "Bruno Martins",
+      role: "CEO • Fatorcard",
+      quote: "Conseguimos testar rápido e medir impacto antes de envolver o time de dev.",
+      initials: "BM",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      name: "Carla Ribeiro",
+      role: "Diretora Comercial • Grupo Acessus",
+      quote: "A clareza do passo a passo deixou fácil evoluir a solução depois das sessões.",
+      initials: "CR"
+    }
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -413,182 +437,112 @@ export default function Home() {
               Turma reduzida, máximo de 10 participantes, para garantir atenção real a cada negócio.
             </p>
             
-            <div className="space-y-8">
-              {/* Encontro 1 */}
-              <Card className="border-2 hover:shadow-xl hover:border-primary/50 transition-all duration-300">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="bg-primary text-primary-foreground rounded-lg w-16 h-16 flex items-center justify-center font-bold text-2xl flex-shrink-0">
-                      1
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold mb-2">PENSAR COMO ENGENHEIRO DE SOLUÇÕES</h3>
-                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>06/12 – 10h00</span>
+            <Accordion type="single" collapsible className="space-y-4">
+              {[
+                {
+                  num: 1,
+                  title: "PENSAR COMO ENGENHEIRO DE SOLUÇÕES",
+                  date: "06/12 – 10h00",
+                  location: "Atrium – Escritório Próspera | Fatorcard",
+                  points: [
+                    "Como sair do uso superficial da IA e passar a pensar como construtor de soluções.",
+                    "Como quebrar qualquer problema em etapas simples e automatizáveis.",
+                    "Estrutura de prompts que tira você do \"texto genérico\" e vai para saídas úteis para o seu contexto.",
+                    "Mapeamento do seu problema principal: qual ferramenta vamos construir primeiro para o seu negócio.",
+                    "Definição do blueprint da solução: entradas, lógica, saídas, integrações."
+                  ],
+                  takeaway:
+                    "Seu problema principal mapeado e o desenho da ferramenta que vamos construir juntos."
+                },
+                {
+                  num: 2,
+                  title: "CONSTRUÇÃO RÁPIDA: SUA 1ª FERRAMENTA FUNCIONANDO",
+                  date: "13/12 – 10h00",
+                  location: "Atrium – Escritório Momentum | Acessus",
+                  points: [
+                    "Escolha das ferramentas no-code que vamos usar.",
+                    "Conexão da IA como \"cérebro\" por trás da solução.",
+                    "Montagem do fluxo lógico: o que entra, o que a IA faz, o que sai.",
+                    "Criação da primeira versão da sua ferramenta, já usável.",
+                    "Testes, ajustes e correções em grupo."
+                  ],
+                  takeaway: "Sua ferramenta 1.0 funcionando, pronta para ser testada e usada."
+                },
+                {
+                  num: 3,
+                  title: "AUTOMAÇÃO E INTEGRAÇÃO COM A REALIDADE",
+                  date: "18/12 – 18h30",
+                  location: "Atrium – Escritório Próspera | Fatorcard",
+                  points: [
+                    "Como conectar sua ferramenta ao que você já usa (WhatsApp, e-mail, planilhas, sistemas).",
+                    "Gatilhos e automações: o que dispara o quê e quando.",
+                    "Criação de uma segunda solução OU evolução avançada da primeira, dependendo do seu caso.",
+                    "Visualização básica de dados e acompanhamento do uso."
+                  ],
+                  takeaway:
+                    "Sua solução ligada à rotina real da empresa, com automação mínima já rodando."
+                },
+                {
+                  num: 4,
+                  title: "IMPLEMENTAÇÃO NA EMPRESA E ESCALA",
+                  date: "20/12 – 10h00",
+                  location: "Atrium – Escritório Momentum | Acessus",
+                  points: [
+                    "Como inserir a ferramenta no dia a dia da empresa sem travar o time.",
+                    "Como treinar pessoas a usarem o que foi criado, mesmo sem entender nada de IA.",
+                    "Como medir impacto e retorno das soluções.",
+                    "Como definir os próximos processos a serem automatizados.",
+                    "Roteiro para você continuar construindo novas ferramentas sozinho."
+                  ],
+                  takeaway:
+                    "Ferramentas implantadas, equipe pronta para usar e um método para seguir expandindo o uso de IA na sua empresa."
+                }
+              ].map((encontro) => (
+                <AccordionItem
+                  key={encontro.num}
+                  value={`encontro-${encontro.num}`}
+                  className="overflow-hidden rounded-xl border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-xl"
+                >
+                  <AccordionTrigger className="px-6 py-5 md:px-8 md:py-6 hover:no-underline">
+                    <div className="flex w-full items-start gap-4">
+                      <div className="bg-primary text-primary-foreground rounded-lg w-14 h-14 md:w-16 md:h-16 flex items-center justify-center font-bold text-xl md:text-2xl flex-shrink-0">
+                        {encontro.num}
+                      </div>
+                      <div className="flex-1 text-left space-y-2">
+                        <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-4 h-4" />
+                            <span className="font-semibold text-foreground/80">{encontro.date}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <MapPin className="w-4 h-4" />
+                            <span className="text-foreground/80">{encontro.location}</span>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          <span>Atrium – Escritório Próspera | Fatorcard</span>
-                        </div>
+                        <h3 className="text-lg md:text-2xl font-bold leading-snug text-foreground">
+                          {encontro.title}
+                        </h3>
                       </div>
                     </div>
-                  </div>
-                  
-                  <ul className="space-y-2 mb-6">
-                    {[
-                      "Como sair do uso superficial da IA e passar a pensar como construtor de soluções.",
-                      "Como quebrar qualquer problema em etapas simples e automatizáveis.",
-                      "Estrutura de prompts que tira você do \"texto genérico\" e vai para saídas úteis para o seu contexto.",
-                      "Mapeamento do seu problema principal: qual ferramenta vamos construir primeiro para o seu negócio.",
-                      "Definição do blueprint da solução: entradas, lógica, saídas, integrações."
-                    ].map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                        <span className="text-muted-foreground">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <div className="bg-primary/10 rounded-lg p-4">
-                    <p className="font-semibold text-foreground">Você sai com:</p>
-                    <p className="text-muted-foreground">Seu problema principal mapeado e o desenho da ferramenta que vamos construir juntos.</p>
-                  </div>
-                </CardContent>
-              </Card>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-6 md:px-8">
+                    <ul className="space-y-2 mb-6">
+                      {encontro.points.map((item, idx) => (
+                        <li key={idx} className="flex items-start gap-3">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                          <span className="text-muted-foreground">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
 
-              {/* Encontro 2 */}
-              <Card className="border-2 hover:shadow-xl hover:border-primary/50 transition-all duration-300">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="bg-primary text-primary-foreground rounded-lg w-16 h-16 flex items-center justify-center font-bold text-2xl flex-shrink-0">
-                      2
+                    <div className="bg-primary/10 rounded-lg p-4">
+                      <p className="font-semibold text-foreground">Você sai com:</p>
+                      <p className="text-muted-foreground">{encontro.takeaway}</p>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold mb-2">CONSTRUÇÃO RÁPIDA: SUA 1ª FERRAMENTA FUNCIONANDO</h3>
-                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>13/12 – 10h00</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          <span>Atrium – Escritório Momentum | Acessus</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <ul className="space-y-2 mb-6">
-                    {[
-                      "Escolha das ferramentas no-code que vamos usar.",
-                      "Conexão da IA como \"cérebro\" por trás da solução.",
-                      "Montagem do fluxo lógico: o que entra, o que a IA faz, o que sai.",
-                      "Criação da primeira versão da sua ferramenta, já usável.",
-                      "Testes, ajustes e correções em grupo."
-                    ].map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                        <span className="text-muted-foreground">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <div className="bg-primary/10 rounded-lg p-4">
-                    <p className="font-semibold text-foreground">Você sai com:</p>
-                    <p className="text-muted-foreground">Sua ferramenta 1.0 funcionando, pronta para ser testada e usada.</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Encontro 3 */}
-              <Card className="border-2 hover:shadow-xl hover:border-primary/50 transition-all duration-300">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="bg-primary text-primary-foreground rounded-lg w-16 h-16 flex items-center justify-center font-bold text-2xl flex-shrink-0">
-                      3
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold mb-2">AUTOMAÇÃO E INTEGRAÇÃO COM A REALIDADE</h3>
-                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>18/12 – 18h30</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          <span>Atrium – Escritório Próspera | Fatorcard</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <ul className="space-y-2 mb-6">
-                    {[
-                      "Como conectar sua ferramenta ao que você já usa (WhatsApp, e-mail, planilhas, sistemas).",
-                      "Gatilhos e automações: o que dispara o quê e quando.",
-                      "Criação de uma segunda solução OU evolução avançada da primeira, dependendo do seu caso.",
-                      "Visualização básica de dados e acompanhamento do uso."
-                    ].map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                        <span className="text-muted-foreground">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <div className="bg-primary/10 rounded-lg p-4">
-                    <p className="font-semibold text-foreground">Você sai com:</p>
-                    <p className="text-muted-foreground">Sua solução ligada à rotina real da empresa, com automação mínima já rodando.</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Encontro 4 */}
-              <Card className="border-2 hover:shadow-xl hover:border-primary/50 transition-all duration-300">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="bg-primary text-primary-foreground rounded-lg w-16 h-16 flex items-center justify-center font-bold text-2xl flex-shrink-0">
-                      4
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold mb-2">IMPLEMENTAÇÃO NA EMPRESA E ESCALA</h3>
-                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>20/12 – 10h00</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          <span>Atrium – Escritório Momentum | Acessus</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <ul className="space-y-2 mb-6">
-                    {[
-                      "Como inserir a ferramenta no dia a dia da empresa sem travar o time.",
-                      "Como treinar pessoas a usarem o que foi criado, mesmo sem entender nada de IA.",
-                      "Como medir impacto e retorno das soluções.",
-                      "Como definir os próximos processos a serem automatizados.",
-                      "Roteiro para você continuar construindo novas ferramentas sozinho."
-                    ].map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                        <span className="text-muted-foreground">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <div className="bg-primary/10 rounded-lg p-4">
-                    <p className="font-semibold text-foreground">Você sai com:</p>
-                    <p className="text-muted-foreground">Ferramentas implantadas, equipe pronta para usar e um método para seguir expandindo o uso de IA na sua empresa.</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
@@ -885,6 +839,52 @@ export default function Home() {
                 </Card>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Quem já construiu solução comigo */}
+      <section className="py-20 md:py-28 bg-primary/5">
+        <div className="container">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
+              <p className="text-sm font-semibold text-primary uppercase tracking-[0.2em]">Social proof</p>
+              <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
+                Quem já construiu solução comigo
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Casos reais, com gente de operação e liderança que precisava tirar a ideia do papel rápido.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {testimonials.map((testimonial) => (
+                <Card
+                  key={testimonial.name}
+                  className="bg-card border shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300"
+                >
+                  <CardContent className="p-6 space-y-4">
+                    <div className="flex items-start gap-4">
+                      <Avatar className="h-12 w-12 border bg-muted">
+                        {testimonial.image && <AvatarImage src={testimonial.image} alt={testimonial.name} />}
+                        <AvatarFallback className="font-semibold text-primary bg-primary/10">
+                          {testimonial.initials}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="space-y-1">
+                        <p className="text-lg font-semibold text-foreground">{testimonial.name}</p>
+                        <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3 text-muted-foreground">
+                      <Quote className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                      <p className="leading-relaxed">“{testimonial.quote}”</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </section>
