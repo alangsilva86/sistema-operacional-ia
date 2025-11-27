@@ -1,7 +1,8 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Calendar, CheckCircle2, Clock, MapPin } from "lucide-react";
+import { Calendar, CheckCircle2, Clock, MapPin, Users } from "lucide-react";
 
 import type { Encontro } from "../homeData";
 import { processoSteps } from "../homeData";
@@ -13,9 +14,9 @@ type AgendaSectionProps = {
 
 function Roadmap({ steps, onCtaClick }: { steps: Encontro[]; onCtaClick: () => void }) {
   return (
-    <div className="mt-12">
+    <div className="mt-12 space-y-6">
       <div className="relative">
-        <div className="hidden md:block absolute top-7 left-0 right-0 h-1 bg-primary/10" />
+        <div className="hidden md:block absolute top-7 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         <div className="flex flex-col gap-6 md:flex-row md:gap-5">
           {steps.map((step, idx) => (
             <div key={step.num} className="relative flex flex-1">
@@ -29,8 +30,8 @@ function Roadmap({ steps, onCtaClick }: { steps: Encontro[]; onCtaClick: () => v
                 {idx < steps.length - 1 && <div className="mt-2 flex-1 w-px bg-primary/20 md:hidden" />}
               </div>
 
-              <Card className="flex-1 bg-white/80 border-primary/15 shadow-sm hover:shadow-md transition-all">
-                <CardContent className="p-4 space-y-3">
+              <Card className="flex-1 bg-white/90 border-primary/20 shadow-md hover:-translate-y-0.5 transition-all">
+                <CardContent className="p-5 space-y-3">
                   <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm font-semibold text-foreground/90">
                     <div className="flex items-center gap-1">
                       <Calendar className="w-4 h-4 text-primary" />
@@ -44,6 +45,9 @@ function Roadmap({ steps, onCtaClick }: { steps: Encontro[]; onCtaClick: () => v
                       <MapPin className="w-4 h-4 text-primary" />
                       <span>{step.location}</span>
                     </div>
+                    <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                      Encontro {step.num}
+                    </Badge>
                   </div>
 
                   <p className="text-base md:text-lg font-bold text-foreground leading-snug">{step.title}</p>
@@ -59,7 +63,7 @@ function Roadmap({ steps, onCtaClick }: { steps: Encontro[]; onCtaClick: () => v
         </div>
       </div>
 
-      <div className="mt-8 flex justify-center">
+      <div className="flex justify-center">
         <Button
           size="lg"
           className="rounded-full px-8 shadow-lg bg-primary text-primary-foreground hover:bg-primary/90"
@@ -76,10 +80,27 @@ export function AgendaSection({ encontros, onCtaClick }: AgendaSectionProps) {
   return (
     <>
       <section id="agenda" className="py-16 md:py-24 border-b border-border/60 bg-white">
-        <div className="container">
+        <div className="container space-y-10">
           <div className="max-w-4xl mx-auto text-center space-y-4">
-            <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">Agenda da 1ª turma – Dezembro/2025</h2>
-            <p className="text-muted-foreground">Todas as sessões são presenciais e gravadas.</p>
+            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/30 font-semibold">
+              Dezembro/2025 — Maringá
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">Agenda da 1ª turma presencial</h2>
+            <p className="text-muted-foreground">Sessões gravadas, turma pequena e acompanhamento de perto.</p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Badge className="bg-primary text-primary-foreground border-none">
+                <Calendar className="w-3.5 h-3.5" />
+                4 encontros presenciais
+              </Badge>
+              <Badge variant="secondary" className="bg-white text-foreground border-border">
+                <Users className="w-3.5 h-3.5" />
+                Máx. 10 participantes
+              </Badge>
+              <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                <Clock className="w-3.5 h-3.5" />
+                Gravação liberada
+              </Badge>
+            </div>
           </div>
 
           <div className="mt-12 max-w-5xl mx-auto relative">
@@ -90,8 +111,8 @@ export function AgendaSection({ encontros, onCtaClick }: AgendaSectionProps) {
                   <div className="absolute left-4 md:left-6 top-3 w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-primary-foreground font-bold flex items-center justify-center shadow-sm">
                     {encontro.num}
                   </div>
-                  <Card className="bg-[#f9f7f3] border-border/80">
-                    <CardContent className="p-6 space-y-3">
+                  <Card className="bg-[#f9f7f3] border-primary/30 shadow-sm hover:-translate-y-0.5 transition-all">
+                    <CardContent className="p-6 space-y-4">
                       <div className="flex flex-wrap items-center gap-3 text-sm font-semibold">
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4 text-primary" />
@@ -101,14 +122,21 @@ export function AgendaSection({ encontros, onCtaClick }: AgendaSectionProps) {
                           <Clock className="w-4 h-4 text-primary" />
                           <span>{encontro.time}</span>
                         </div>
+                        <Badge variant="secondary" className="bg-white text-foreground border-border">
+                          Encontro {encontro.num}
+                        </Badge>
                       </div>
                       <div className="flex items-start gap-2 text-sm text-muted-foreground">
                         <MapPin className="w-4 h-4 text-primary mt-1" />
                         <span>{encontro.location}</span>
                       </div>
-                      <p className="text-sm text-foreground font-semibold">
-                        Encontro {encontro.num}: foco em construir e evoluir sua solução.
+                      <p className="text-base text-foreground font-semibold">
+                        Foco em construir e evoluir sua solução.
                       </p>
+                      <div className="text-sm bg-white border border-border/70 rounded-lg p-3 text-muted-foreground">
+                        <span className="font-semibold text-primary">Saída: </span>
+                        {encontro.takeaway}
+                      </div>
                     </CardContent>
                   </Card>
                 </div>
@@ -144,30 +172,38 @@ export function AgendaSection({ encontros, onCtaClick }: AgendaSectionProps) {
       </section>
 
       <section id="processo" className="py-16 md:py-24 border-b border-border/60 bg-[#f7f4ef]">
-        <div className="container">
+        <div className="container space-y-8">
           <div className="max-w-4xl mx-auto text-center space-y-3">
+            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/30 font-semibold">
+              Método na prática
+            </Badge>
             <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">Como funcionam os 4 encontros</h2>
             <p className="text-muted-foreground">Práticos, diretos e com acompanhamento real para cada negócio.</p>
             <p className="text-primary font-semibold">Turma reduzida: máximo de 10 participantes.</p>
           </div>
 
-          <div className="mt-8 grid md:grid-cols-4 gap-3">
+          <div className="grid md:grid-cols-4 gap-3">
             {processoSteps.map((step, idx) => (
-              <div
-                key={step}
-                className="flex items-center gap-2 rounded-xl bg-white border border-primary/40 px-4 py-3 text-sm font-semibold"
-              >
-                <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">
-                  {idx + 1}
-                </div>
-                <span>{step}</span>
-              </div>
+              <Card key={step} className="bg-white border-primary/30 shadow-sm">
+                <CardContent className="p-4 flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">
+                    {idx + 1}
+                  </div>
+                  <span className="text-sm font-semibold">{step}</span>
+                </CardContent>
+              </Card>
             ))}
           </div>
 
           <Roadmap steps={encontros} onCtaClick={onCtaClick} />
 
           <div className="mt-10">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-3">
+              <p className="font-semibold text-foreground">Detalhe do que acontece em cada encontro</p>
+              <Badge variant="secondary" className="bg-white text-foreground border-border">
+                Playbook aberto durante a turma
+              </Badge>
+            </div>
             <Accordion type="single" collapsible className="space-y-4">
               {encontros.map((encontro) => (
                 <AccordionItem

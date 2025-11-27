@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -20,8 +21,20 @@ export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormPro
     <Card className="bg-white border-2 border-primary/30 shadow-lg">
       <CardContent className="p-8">
         <div className="space-y-6">
-          <h3 className="text-2xl font-bold">Garanta sua vaga na 1ª turma</h3>
-          <form onSubmit={onSubmit} className="space-y-6">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/30 font-semibold">
+                Pré-lista
+              </Badge>
+              <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Resposta rápida</span>
+            </div>
+            <h3 className="text-2xl font-bold">Garanta sua vaga na 1ª turma</h3>
+            <p className="text-sm text-muted-foreground">
+              Preencha seus dados. Respondemos pelo WhatsApp para confirmar pagamento e detalhes.
+            </p>
+          </div>
+
+          <form onSubmit={onSubmit} className="space-y-5">
             <div className="space-y-2">
               <Label htmlFor="nome" className="text-sm font-semibold">
                 Nome completo *
@@ -65,6 +78,7 @@ export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormPro
                 className="h-12 text-base"
                 placeholder="(00) 00000-0000"
               />
+              <p className="text-xs text-muted-foreground">Usamos só para confirmar vaga e pagamento.</p>
             </div>
 
             <Button

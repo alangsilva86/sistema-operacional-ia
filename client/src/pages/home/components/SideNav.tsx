@@ -23,16 +23,17 @@ export function SideNav({
   return (
     <>
       <aside
-        className={`hidden lg:flex flex-col gap-2 fixed top-24 left-4 z-40 rounded-2xl border border-border/70 bg-white shadow-lg transition-[width] duration-300 ${
-          navExpanded ? "w-64" : "w-12 items-center"
+        className={`hidden lg:flex flex-col gap-2 fixed top-24 left-4 z-40 rounded-2xl border border-border/60 bg-white/90 backdrop-blur shadow-2xl transition-[width] duration-300 ${
+          navExpanded ? "w-64" : "w-14 items-center"
         }`}
       >
         <button
           onClick={onToggle}
+          aria-expanded={navExpanded}
           className="flex items-center justify-center gap-2 px-3 py-3 text-sm font-semibold text-muted-foreground hover:text-foreground"
         >
           {navExpanded ? <ChevronsLeft className="w-5 h-5" /> : <ChevronsRight className="w-5 h-5" />}
-          {navExpanded && <span>Menu</span>}
+          {navExpanded && <span className="tracking-wide uppercase text-xs">Percurso</span>}
         </button>
         <div className="px-2 pb-3 flex flex-col gap-2">
           {navItems.map((item) => (
@@ -41,8 +42,13 @@ export function SideNav({
               variant="ghost"
               className={`group flex items-center gap-3 w-full text-left px-3 py-2 rounded-xl border border-transparent hover:border-primary/40 hover:bg-primary/10 transition-all ${
                 navExpanded ? "justify-start" : "justify-center"
-              } ${activeSection === item.href ? "text-primary" : "text-foreground"}`}
+              } ${
+                activeSection === item.href
+                  ? "text-primary bg-primary/10 border-primary/50 shadow-sm"
+                  : "text-foreground"
+              }`}
               onClick={() => onNavClick(item.href)}
+              aria-pressed={activeSection === item.href}
             >
               <item.icon className="w-5 h-5 text-primary" />
               {navExpanded && <span className="text-sm font-semibold text-foreground">{item.label}</span>}
