@@ -3,11 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 export type InscricaoFormData = {
   nome: string;
   email: string;
   whatsapp: string;
+  perfil?: string;
+  caos?: string;
 };
 
 type InscricaoFormProps = {
@@ -18,17 +22,17 @@ type InscricaoFormProps = {
 
 export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormProps) {
   return (
-    <Card className="bg-white border-2 border-primary/30 shadow-lg">
+    <Card className="bg-[#111118] border border-border/70 shadow-lg">
       <CardContent className="p-8">
         <div className="space-y-6">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/30 font-semibold">
+              <Badge variant="secondary" className="bg-primary/20 text-white border border-primary/40 font-semibold">
                 Pré-lista
               </Badge>
               <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Resposta rápida</span>
             </div>
-            <h3 className="text-2xl font-bold">Garanta sua vaga na 1ª turma</h3>
+            <h3 className="text-2xl font-bold text-white">Garanta sua vaga na próxima turma</h3>
             <p className="text-sm text-muted-foreground">
               Preencha seus dados. Respondemos pelo WhatsApp para confirmar pagamento e detalhes.
             </p>
@@ -36,7 +40,7 @@ export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormPro
 
           <form onSubmit={onSubmit} className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="nome" className="text-sm font-semibold">
+              <Label htmlFor="nome" className="text-sm font-semibold text-white">
                 Nome completo *
               </Label>
               <Input
@@ -45,13 +49,13 @@ export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormPro
                 required
                 value={formData.nome}
                 onChange={(e) => onChange("nome", e.target.value)}
-                className="h-12 text-base"
+                className="h-12 text-base bg-[#1a1a24] border-border text-foreground"
                 placeholder="Seu nome completo"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-semibold">
+              <Label htmlFor="email" className="text-sm font-semibold text-white">
                 E-mail *
               </Label>
               <Input
@@ -60,13 +64,13 @@ export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormPro
                 required
                 value={formData.email}
                 onChange={(e) => onChange("email", e.target.value)}
-                className="h-12 text-base"
+                className="h-12 text-base bg-[#1a1a24] border-border text-foreground"
                 placeholder="seu@email.com"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="whatsapp" className="text-sm font-semibold">
+              <Label htmlFor="whatsapp" className="text-sm font-semibold text-white">
                 WhatsApp *
               </Label>
               <Input
@@ -75,18 +79,51 @@ export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormPro
                 required
                 value={formData.whatsapp}
                 onChange={(e) => onChange("whatsapp", e.target.value)}
-                className="h-12 text-base"
+                className="h-12 text-base bg-[#1a1a24] border-border text-foreground"
                 placeholder="(00) 00000-0000"
               />
               <p className="text-xs text-muted-foreground">Usamos só para confirmar vaga e pagamento.</p>
             </div>
 
+            <div className="space-y-2">
+              <Label htmlFor="perfil" className="text-sm font-semibold text-white">
+                Seu perfil
+              </Label>
+              <Select value={formData.perfil ?? ""} onValueChange={(value) => onChange("perfil", value)}>
+                <SelectTrigger id="perfil" className="h-12 text-base bg-[#1a1a24] border-border text-foreground">
+                  <SelectValue placeholder="Selecione" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="servico">Serviço / Consultoria / Agência</SelectItem>
+                  <SelectItem value="comercio">Comércio / PMEs</SelectItem>
+                  <SelectItem value="corban">Corban / Promotora</SelectItem>
+                  <SelectItem value="gestor">Gestor / Operações</SelectItem>
+                  <SelectItem value="outro">Outro</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="caos" className="text-sm font-semibold text-white">
+                Qual é hoje o maior caos na sua operação?
+              </Label>
+              <Textarea
+                id="caos"
+                value={formData.caos ?? ""}
+                onChange={(e) => onChange("caos", e.target.value)}
+                className="min-h-[90px] text-base bg-[#1a1a24] border-border text-foreground"
+                placeholder="Ex.: follow-up perdido, retrabalho em contratos, atendimento sem padrão..."
+              />
+            </div>
+
             <Button
               type="submit"
               size="lg"
-              className="w-full text-base py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              id="cta-form-submit"
+              data-analytics="cta-form-submit"
+              className="w-full text-base py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 bg-primary text-primary-foreground hover:bg-[#ff8640]"
             >
-              Quero garantir minha vaga na 1ª turma
+              Quero entrar na próxima turma
             </Button>
             <p className="text-xs text-muted-foreground text-center">
               Ao enviar este formulário, você concorda em receber informações sobre o treinamento.

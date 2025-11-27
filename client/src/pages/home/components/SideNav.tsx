@@ -23,7 +23,7 @@ export function SideNav({
   return (
     <>
       <aside
-        className={`hidden lg:flex flex-col gap-2 fixed top-24 left-4 z-40 rounded-2xl border border-border/60 bg-white/90 backdrop-blur shadow-2xl transition-[width] duration-300 ${
+        className={`hidden lg:flex flex-col gap-2 fixed top-24 left-4 z-40 rounded-2xl border border-border/60 bg-[#111118]/90 backdrop-blur shadow-2xl transition-[width] duration-300 ${
           navExpanded ? "w-64" : "w-14 items-center"
         }`}
       >
@@ -57,7 +57,7 @@ export function SideNav({
         </div>
       </aside>
 
-      <div className="lg:hidden sticky top-0 z-40 border-b border-border/60 bg-[#f7f4ef]/95 backdrop-blur supports-[backdrop-filter]:bg-[#f7f4ef]/80">
+      <div className="lg:hidden sticky top-0 z-40 border-b border-border/60 bg-[#0e0e11]/95 backdrop-blur supports-[backdrop-filter]:bg-[#0e0e11]/80">
         <div className="container py-3">
           <div className="flex items-center gap-2 overflow-x-auto">
             {mobileNavItems.map((item) => (
@@ -67,7 +67,7 @@ export function SideNav({
                 className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-colors shrink-0 ${
                   activeSection === item.href
                     ? "bg-primary text-primary-foreground border-primary shadow-md"
-                    : "bg-white/90 text-foreground border-border hover:border-primary/50"
+                    : "bg-[#111118] text-foreground border-border hover:border-primary/50"
                 }`}
                 aria-pressed={activeSection === item.href}
               >
@@ -77,7 +77,7 @@ export function SideNav({
             ))}
             <div className="ml-auto">
               <button
-                onClick={() => onNavClick("#inscricao")}
+                onClick={() => onNavClick("#cta-final")}
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground shadow-md text-sm font-semibold"
               >
                 Reservar vaga

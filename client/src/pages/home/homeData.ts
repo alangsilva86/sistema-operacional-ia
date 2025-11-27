@@ -1,21 +1,16 @@
-import {
-  Brain,
-  Briefcase,
-  Calendar,
-  CheckCircle2,
-  ClipboardCheck,
-  Compass,
-  CreditCard,
-  MapPin,
-  MessageCircle,
-  Shield,
-  Sparkles,
-  Target,
-  Type,
-  Users,
-  Zap
-} from "lucide-react";
+import { AlertTriangle, CheckCircle2, ClipboardCheck, CreditCard, HelpCircle, MessageCircle, Shield, Users, Zap } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+
+export type NavItem = {
+  label: string;
+  href: string;
+  icon: LucideIcon;
+};
+
+export type FAQItem = {
+  question: string;
+  answer: string;
+};
 
 export type Encontro = {
   num: number;
@@ -27,88 +22,124 @@ export type Encontro = {
   takeaway: string;
 };
 
-export type NavItem = {
-  label: string;
-  href: string;
-  icon: LucideIcon;
-};
-
-export type Testimonial = {
-  name: string;
-  role: string;
-  quote: string;
-  initials: string;
-  image?: string;
-};
-
 export const navItems: NavItem[] = [
-  { label: "Para quem é", href: "#para-quem-e", icon: Users },
-  { label: "O que você leva", href: "#beneficios", icon: Zap },
-  { label: "Exemplos", href: "#exemplos", icon: Sparkles },
-  { label: "Agenda", href: "#agenda", icon: Calendar },
-  { label: "Como funciona", href: "#processo", icon: Brain },
-  { label: "Investimento", href: "#investimento", icon: Shield },
-  { label: "FAQ", href: "#faq", icon: Type },
-  { label: "Inscrição", href: "#inscricao", icon: MessageCircle }
+  { label: "Para quem", href: "#para-quem", icon: Users },
+  { label: "Dor & realidade", href: "#dor-realidade", icon: AlertTriangle },
+  { label: "Resultados", href: "#resultado", icon: Zap },
+  { label: "Sobre", href: "#sobre-alan", icon: Users },
+  { label: "Prova social", href: "#prova-social", icon: MessageCircle },
+  { label: "Oferta", href: "#oferta", icon: CreditCard },
+  { label: "Segurança", href: "#seguranca", icon: Shield },
+  { label: "FAQ", href: "#faq", icon: HelpCircle },
+  { label: "Inscrição", href: "#cta-final", icon: ClipboardCheck }
 ];
 
-export const mobileNavHrefs = ["#para-quem-e", "#agenda", "#processo", "#inscricao"];
+export const mobileNavHrefs = ["#para-quem", "#dor-realidade", "#resultado", "#oferta", "#cta-final"];
 
-export const heroHighlights = [
-  { icon: MapPin, label: "Presencial em Maringá" },
-  { icon: Users, label: "Turma reduzida, até 10 empresários" },
-  { icon: Calendar, label: "4 encontros e você sai com solução funcionando" }
+export const heroBullets = [
+  "Feito para empreendedores, donos de pequenas e médias empresas, gestores, correspondentes e consultores.",
+  "Foco em processo e execução, não em hype.",
+  "Baseado em casos reais das operações Momentum Aceleradora de Negócios."
 ];
 
-export const gapPainPoints = [
-  { icon: Type, title: "Uso IA só para gerar texto", desc: "Posts, e-mails, respostas prontas… mas nenhuma automação rodando." },
-  { icon: CreditCard, title: "Pago ChatGPT, mas nada roda", desc: "Assinatura em dia e zero ferramenta conectada à operação." },
-  { icon: Compass, title: "Quero usar, mas não sei por onde começar", desc: "Não tem método, passo a passo ou alguém puxando a mão." }
+export const heroMetrics = [
+  { label: "10–20h/mês", desc: "Horas salvas quando IA vira rotina." },
+  { label: "Serviços • Comércio • Fintech • Agências • Crédito", desc: "Setores que já aplicaram." },
+  { label: "Execução", desc: "Foco em colocar para rodar, não teoria." }
 ];
 
-export const paraQuemItems = [
-  { icon: Briefcase, title: "Empresários e gestores", desc: "Pequenas e médias empresas que precisam ganhar eficiência." },
-  { icon: ClipboardCheck, title: "Quem está sobrecarregado", desc: "Operação, retrabalho, planilhas demais e nada automatizado." },
-  { icon: Sparkles, title: "Já testou IA, mas nada roda", desc: "Quer transformar ideia em sistema real, sem depender de programador." }
-];
-
-export const benefits = [
-  { icon: Zap, text: "Pelo menos uma ferramenta de IA funcionando na sua empresa (geralmente mais de uma)." },
-  { icon: Target, text: "Método simples para transformar qualquer problema recorrente em fluxo automatizável." },
-  { icon: CheckCircle2, text: 'Capacidade de usar IA como "motor invisível" atrás de atendimentos, relatórios e decisões.' },
-  { icon: Users, text: "Roteiro para treinar a equipe e implementar sem travar ninguém." },
-  { icon: MapPin, text: "Lista clara dos próximos processos candidatos a virar solução com IA." },
-  { icon: Calendar, text: "Agenda de evolução para continuar construindo depois da turma." }
-];
-
-export const exampleSections = [
+export const audienceCards = [
   {
-    title: "Vendas e marketing",
-    items: [
-      "Funil inteligente que qualifica leads e faz as perguntas certas.",
-      "Follow-up automático com respostas personalizadas.",
-      "Qualificação de leads com critérios claros para o time comercial."
-    ]
+    title: "Donos de PMEs & gestores",
+    desc: "Quem vive apagando incêndio e precisa de rotinas claras, checklists e processos com IA integrada."
   },
   {
-    title: "Operação",
-    items: [
-      "Checklist inteligente que orienta o passo a passo e registra tudo no final.",
-      "Consolidação automática de informações que hoje estão espalhadas.",
-      "Relatórios que se geram sozinhos a partir do que sua equipe envia."
-    ]
+    title: "Empreendedores de serviços",
+    desc: "Consultorias, agências, especialistas e negócios B2B que precisam organizar entrega, atendimento e bastidor com IA."
   },
   {
-    title: "Atendimento",
-    items: [
-      "Bot assistido por IA para dúvidas frequentes e coleta de informações.",
-      "Triagem de demanda que encaminha para a pessoa certa.",
-      "Respostas frequentes com histórico e registro automático."
-    ]
+    title: "Corbans & promotoras",
+    desc: "Operações de crédito consignado e financeiro que querem IA para simulação, argumentos, follow-up e rotina comercial."
   }
 ];
 
+export const painPoints = [
+  "Conhecimento perdido e retrabalho constante.",
+  "Ferramentas assinadas e pouco usadas.",
+  "Equipe sem padrão e sem orientação.",
+  "Operação travada no improviso e na memória."
+];
+
+export const methodShifts = [
+  "Base de Conhecimento centraliza com IA.",
+  "Fluxos e processos claros para todos.",
+  "Biblioteca organizada de prompts por contexto.",
+  "Ferramentas com IA integrada ao seu jeito de trabalhar.",
+  "Sistema que você e seu time conseguem criar e manter."
+];
+
 export const processoSteps = ["Mapear problema", "Construir 1ª versão", "Integrar e automatizar", "Implantar e escalar"];
+
+export const capabilities = [
+  {
+    title: "Criar e treinar sua IA com sua base de conhecimento própria",
+    desc: "Você e sua equipe com acesso ao conhecimento TOTAL do seu negócio o tempo todo, treine mais rápido, acabe com a dependência por você."
+  },
+  {
+    title: "Desenhar fluxos completos com IA",
+    desc: "Lead → atendimento → follow-up → fechamento → pós-venda, com IA em cada etapa certa."
+  },
+  {
+    title: "Criar prompts reutilizáveis",
+    desc: "Biblioteca estruturada por objetivo, canal, produto e persona, pronta para ser reaplicada."
+  },
+  {
+    title: "Rodar rotinas diárias com IA",
+    desc: "Checklists, cadências e scripts para que IA entre todo dia, sem fricção."
+  },
+  {
+    title: "Integrar IA no seu time",
+    desc: "Acordos claros de uso, revisão e limite, para ninguém virar refém da ferramenta."
+  }
+];
+
+export const proofVideos = [
+  { title: "Depoimento 1", subtitle: "Empreendedor • Serviços" },
+  { title: "Depoimento 2", subtitle: "Gestor • Operação" },
+  { title: "Depoimento 3", subtitle: "Corban • Crédito" }
+];
+
+export const proofPrints = [
+  "Base de conhecimento que treina equipe.",
+  "Simulação automatizada reduzindo tempo manual.",
+  "Rotinas organizadas e menos retrabalho."
+];
+
+export const offerBullets = ["4 encontros presenciais", "Grupo reduzido (máx. 10 participantes)", "Materiais, fluxos e modelos incluídos"];
+
+export const securityBullets = [
+  "Suporte online entre encontros para dúvidas.",
+  "Materiais para revisar depois da turma.",
+  "Aplicação imediata em casos reais do seu negócio.",
+  "Método testado em operações reais.",
+  "Bônus: Mentoria individual de acompanhamento e implementação pós curso 1hr."
+];
+
+export const faqItems: FAQItem[] = [
+  {
+    question: "E se eu não entender nada de IA?",
+    answer:
+      "Começamos a partir da sua realidade de negócio, não da teoria técnica. Você vai aprender o necessário para conversar bem com a IA e encaixá-la na rotina."
+  },
+  {
+    question: "Serve para negócio pequeno, só eu ou eu + 1 pessoa?",
+    answer: "Sim. Negócios pequenos sentem mais rápido o ganho de tempo e clareza quando organizam IA por fluxo e rotina."
+  },
+  {
+    question: "Vai ter material de apoio?",
+    answer: "Você terá acesso as gravções, fluxos, checklists, prompts-base e modelos para seguir usando após a turma."
+  }
+];
 
 export const faqHighlights = [
   {
@@ -125,90 +156,5 @@ export const faqHighlights = [
       "Travou em qualquer parte? Voltamos e destravamos.",
       "Objetivo é sair com solução real, não com anotações."
     ]
-  }
-];
-
-export const encontros: Encontro[] = [
-  {
-    num: 1,
-    title: "PENSAR COMO ENGENHEIRO DE SOLUÇÕES",
-    date: "06/12",
-    time: "10h00",
-    location: "Atrium – Escritório Próspera | Fatorcard",
-    points: [
-      "Como sair do uso superficial da IA e passar a pensar como construtor de soluções.",
-      "Como quebrar qualquer problema em etapas simples e automatizáveis.",
-      "Estrutura de prompts que tira você do \"texto genérico\" e vai para saídas úteis para o seu contexto.",
-      "Mapeamento do seu problema principal: qual ferramenta vamos construir primeiro para o seu negócio.",
-      "Definição do blueprint da solução: entradas, lógica, saídas, integrações."
-    ],
-    takeaway: "Seu problema principal mapeado e o desenho da ferramenta que vamos construir juntos."
-  },
-  {
-    num: 2,
-    title: "CONSTRUÇÃO RÁPIDA: SUA 1ª FERRAMENTA FUNCIONANDO",
-    date: "13/12",
-    time: "10h00",
-    location: "Atrium – Escritório Momentum | Acessus",
-    points: [
-      "Escolha das ferramentas no-code que vamos usar.",
-      "Conexão da IA como \"cérebro\" por trás da solução.",
-      "Montagem do fluxo lógico: o que entra, o que a IA faz, o que sai.",
-      "Criação da primeira versão da sua ferramenta, já usável.",
-      "Testes, ajustes e correções em grupo."
-    ],
-    takeaway: "Sua ferramenta 1.0 funcionando, pronta para ser testada e usada."
-  },
-  {
-    num: 3,
-    title: "AUTOMAÇÃO E INTEGRAÇÃO COM A REALIDADE",
-    date: "18/12",
-    time: "18h30",
-    location: "Atrium – Escritório Próspera | Fatorcard",
-    points: [
-      "Como conectar sua ferramenta ao que você já usa (WhatsApp, e-mail, planilhas, sistemas).",
-      "Gatilhos e automações: o que dispara o quê e quando.",
-      "Criação de uma segunda solução OU evolução avançada da primeira, dependendo do seu caso.",
-      "Visualização básica de dados e acompanhamento do uso."
-    ],
-    takeaway: "Sua solução ligada à rotina real da empresa, com automação mínima já rodando."
-  },
-  {
-    num: 4,
-    title: "IMPLEMENTAÇÃO NA EMPRESA E ESCALA",
-    date: "20/12",
-    time: "10h00",
-    location: "Atrium – Escritório Momentum | Acessus",
-    points: [
-      "Como inserir a ferramenta no dia a dia da empresa sem travar o time.",
-      "Como treinar pessoas a usarem o que foi criado, mesmo sem entender nada de IA.",
-      "Como medir impacto e retorno das soluções.",
-      "Como definir os próximos processos a serem automatizados.",
-      "Roteiro para você continuar construindo novas ferramentas sozinho."
-    ],
-    takeaway:
-      "Ferramentas implantadas, equipe pronta para usar e um método para seguir expandindo o uso de IA na sua empresa."
-  }
-];
-
-export const testimonials: Testimonial[] = [
-  {
-    name: "Amanda Costa",
-    role: "Head de Operações • Momentum",
-    quote: "Em poucas horas colocamos no ar um fluxo que tirou a equipe do retrabalho.",
-    initials: "AC"
-  },
-  {
-    name: "Bruno Martins",
-    role: "CEO • Fatorcard",
-    quote: "Conseguimos testar rápido e medir impacto antes de envolver o time de dev.",
-    initials: "BM",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
-  },
-  {
-    name: "Carla Ribeiro",
-    role: "Diretora Comercial • Grupo Acessus",
-    quote: "A clareza do passo a passo deixou fácil evoluir a solução depois das sessões.",
-    initials: "CR"
   }
 ];
