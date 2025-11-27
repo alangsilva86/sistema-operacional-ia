@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
-import { CheckCircle2, MessageCircle } from "lucide-react";
+import { CheckCircle2, MessageCircle, ShieldCheck } from "lucide-react";
 
 import { trackEvent, useTrackView } from "@/lib/analytics";
 import { InscricaoForm, type InscricaoFormData } from "./home/components/InscricaoForm";
@@ -70,6 +70,44 @@ const fadeUp = {
     transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] as [number, number, number, number] }
   }
 };
+
+function GuaranteeRibbon() {
+  return (
+    <div className="w-full flex justify-start">
+      <div className="mt-4 flex items-center gap-4 rounded-lg border border-[#ff6b35]/30 bg-[#ff6b35]/10 px-4 py-3 backdrop-blur-sm max-w-xl">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#ff6b35]/20 text-[#ff6b35] shadow-[0_0_18px_rgba(255,107,53,0.35)]">
+          <ShieldCheck size={20} strokeWidth={2.5} />
+        </div>
+        <div className="flex flex-col gap-0.5">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#ffb28f]">Protocolo de Risco Zero</span>
+          <p className="text-xs sm:text-sm text-gray-100 leading-snug">
+            Assista até o <span className="font-semibold text-white">2º encontro</span>. Se não fizer sentido para a sua realidade,
+            <span className="font-semibold text-emerald-300"> devolvemos 100% do valor investido</span>.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BonusMentoria() {
+  return (
+    <div className="w-full flex justify-start">
+      <div className="mt-3 flex items-center gap-4 rounded-lg border border-emerald-400/25 bg-emerald-400/5 px-4 py-3 backdrop-blur-sm max-w-xl">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-300 shadow-[0_0_18px_rgba(16,185,129,0.45)]">
+          🎧
+        </div>
+        <div className="flex flex-col gap-0.5">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300/90">Bônus Exclusivo</span>
+          <p className="text-xs sm:text-sm text-gray-100 leading-snug">
+            Você recebe <span className="font-semibold text-white">1 hora de mentoria individual</span> após o curso para garantir sua
+            implementação e tirar dúvidas estruturais.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function Section({
   id,
@@ -165,7 +203,13 @@ export default function Home() {
     <div className="min-h-screen bg-[#0a0a0a] text-white font-body">
       <header className="sticky top-0 z-50 backdrop-blur bg-[#0a0a0a]/80 border-b border-white/10">
         <div className="container flex items-center justify-between py-3">
-          <div className="text-sm font-semibold tracking-[0.18em] uppercase">Sistema Operacional | IA na Prática</div>
+          <div className="flex flex-col gap-1">
+            <div className="text-sm font-semibold tracking-[0.18em] uppercase">Sistema Operacional | IA na Prática</div>
+            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-300 border border-white/10">
+              <span className="h-2 w-2 rounded-full bg-[#ff6b35] animate-pulse" />
+              Desenvolvido 100% com IA
+            </span>
+          </div>
           <CTAButton id="cta-header" label="Garantir minha vaga" onClick={() => handleCta("header")} />
         </div>
       </header>
@@ -193,10 +237,7 @@ export default function Home() {
                 onClick={() => handleCta("hero", "#oferta")}
               />
               <p className="text-sm text-gray-400">Turma Presencial | Aplicação sujeita a aprovação.</p>
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-xs text-gray-200 border border-white/20">
-                <CheckCircle2 className="w-4 h-4 text-[#ff6b35]" />
-                Garantia: até o 2º encontro devolvemos 100% se não fizer sentido.
-              </div>
+              <GuaranteeRibbon />
             </div>
           </motion.div>
 
@@ -212,6 +253,10 @@ export default function Home() {
             <div className="absolute bottom-4 left-4 bg-black/60 px-4 py-2 rounded-full text-xs tracking-[0.2em] uppercase border border-white/10">
               Do caos à criação
             </div>
+            <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-200 border border-white/15">
+              <span className="h-2 w-2 rounded-full bg-[#ff6b35] animate-pulse" />
+              Desenvolvido 100% com IA
+            </div>
           </motion.div>
         </div>
       </Section>
@@ -221,10 +266,7 @@ export default function Home() {
           <p className="text-sm uppercase tracking-[0.24em] text-gray-400">Estratégia aplicada nas operações de:</p>
           <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3">
             {logos.map((logo) => (
-              <div
-                key={logo.name}
-                className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 flex items-center justify-center"
-              >
+              <div key={logo.name} className="rounded-xl px-3 py-2 flex items-center justify-center">
                 <img
                   src={logo.src}
                   alt={logo.name}
@@ -258,7 +300,7 @@ export default function Home() {
 
       <Section id="metodo">
         <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-8">
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold">Conheça o Método P→P→S: Sistema Operacional</h2>
+          <h2 className="font-heading text-3xl md:text-4xl font-semibold">Conheça o Método P→P→S:</h2>
           <p className="text-gray-300">Não é sobre ferramentas. É sobre arquitetura de negócios.</p>
           <div className="grid md:grid-cols-3 gap-4">
             {pps.map((item, idx) => (
@@ -387,15 +429,9 @@ export default function Home() {
               </div>
 
               <CTAButton id="cta-oferta" label="GARANTIR MINHA VAGA NO PRESENCIAL" onClick={() => handleCta("oferta")} />
-              <div className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-xl p-3">
-                <CheckCircle2 className="w-6 h-6 text-[#ff6b35] mt-0.5" />
-                <p className="text-sm text-gray-200">
-                  BONUS: 1hr de mentoria pós curso para acompanhamento e implementação
-                </p>
-              </div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-xs text-gray-200 border border-white/20">
-                <CheckCircle2 className="w-4 h-4 text-[#ff6b35]" />
-                Garantia: até o 2º encontro devolvemos 100% se não fizer sentido.
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+                <BonusMentoria />
+                <GuaranteeRibbon />
               </div>
             </div>
           </div>
