@@ -40,6 +40,12 @@ export default function Home() {
     document.getElementById("inscricao")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const impactoStats = [
+    { label: "63% usam IA diariamente", desc: "Pequenas empresas já automatizando rotinas.", accent: "Dados SBA/2024" },
+    { label: "20h+ salvas/mês", desc: "Média de economia entre quem implanta IA na operação.", accent: "Pesquisa Thryv" },
+    { label: "3,5x ROI médio", desc: "Retorno citado em estudos da Microsoft/McKinsey sobre automação.", accent: "ROI esperado" }
+  ];
+
   return (
     <div className="min-h-screen bg-[#f7f4ef] text-foreground">
       <SideNav
@@ -141,6 +147,46 @@ export default function Home() {
                 Este treinamento é para quem quer destravar logo a primeira ferramenta e criar um efeito bola de neve.
               </p>
               <p className="text-primary font-bold">Menos slides, mais construção com acompanhamento real.</p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Impacto em números */}
+      <section className="py-14 md:py-20 border-b border-border/60 bg-[#f7f4ef]">
+        <div className="container space-y-6">
+          <div className="max-w-4xl mx-auto text-center space-y-2">
+            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/30 font-semibold">
+              Impacto e ROI
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">O que quem usa IA já está colhendo</h2>
+            <p className="text-muted-foreground">
+              Referências reais para empresários: economia de tempo, redução de custo e ROI rápido.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {impactoStats.map((item) => (
+              <Card
+                key={item.label}
+                className="bg-white border-primary/25 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all"
+              >
+                <CardContent className="p-5 space-y-2">
+                  <p className="text-xl font-bold text-primary leading-tight">{item.label}</p>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                  <p className="text-xs uppercase tracking-[0.18em] text-foreground/60">{item.accent}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <Card className="bg-white border-dashed border-2 border-primary/40">
+            <CardContent className="p-5 text-center space-y-1">
+              <p className="text-base font-semibold text-foreground">
+                Se 10 horas economizadas por mês a R$ 150/h já pagam a turma em menos de 2 meses, imagine repetir isso em vários
+                processos.
+              </p>
+              <p className="text-sm text-muted-foreground">Vamos mapear juntos quais fluxos geram mais retorno primeiro.</p>
             </CardContent>
           </Card>
         </div>
@@ -657,7 +703,7 @@ export default function Home() {
                 className="text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
                 onClick={scrollToForm}
               >
-                Quero participar da 1ª turma
+                Quero reservar minha vaga
               </Button>
               <p className="text-sm text-muted-foreground">Responda e retornamos para finalizar sua inscrição.</p>
             </div>
@@ -679,7 +725,7 @@ export default function Home() {
           className="w-full font-bold shadow-xl hover:shadow-2xl transition-all"
           onClick={scrollToForm}
         >
-          Garantir minha vaga
+          Reservar minha vaga
         </Button>
       </div>
 
@@ -692,7 +738,7 @@ export default function Home() {
       >
         <div className="flex items-center gap-2 bg-green-600 text-white px-4 py-3 rounded-full shadow-xl hover:shadow-2xl transition-all hover:-translate-y-0.5">
           <MessageCircle className="w-5 h-5" />
-          <span className="text-sm font-semibold whitespace-nowrap">Falar no WhatsApp</span>
+          <span className="text-sm font-semibold whitespace-nowrap">Tirar dúvida no WhatsApp</span>
         </div>
       </a>
 

@@ -69,7 +69,7 @@ function Roadmap({ steps, onCtaClick }: { steps: Encontro[]; onCtaClick: () => v
           className="rounded-full px-8 shadow-lg bg-primary text-primary-foreground hover:bg-primary/90"
           onClick={onCtaClick}
         >
-          Quero minha vaga
+          Quero reservar minha vaga
         </Button>
       </div>
     </div>

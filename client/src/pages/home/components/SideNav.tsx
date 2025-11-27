@@ -75,6 +75,14 @@ export function SideNav({
                 <span>{item.label}</span>
               </button>
             ))}
+            <div className="ml-auto">
+              <button
+                onClick={() => onNavClick("#inscricao")}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground shadow-md text-sm font-semibold"
+              >
+                Reservar vaga
+              </button>
+            </div>
           </div>
         </div>
       </div>

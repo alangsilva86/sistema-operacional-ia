@@ -86,7 +86,7 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
                 className="text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5 bg-gradient-to-r from-primary to-[#f4975e] border-none"
                 onClick={onCtaClick}
               >
-                Quero construir minha 1ª ferramenta com IA
+                Quero reservar minha vaga
               </Button>
               <p className="text-sm text-muted-foreground">Início em 06/12 • Vagas limitadas</p>
             </div>
