@@ -12,6 +12,7 @@ export type InscricaoFormData = {
   whatsapp: string;
   perfil?: string;
   caos?: string;
+  plano?: string;
 };
 
 type InscricaoFormProps = {
@@ -116,11 +117,22 @@ export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormPro
               />
             </div>
 
+            <div className="space-y-1 rounded-xl border border-white/10 bg-white/5 p-3 text-sm text-gray-200">
+              <div className="flex items-center gap-2">
+                <span className="text-xs uppercase tracking-[0.16em] text-gray-400">Plano escolhido</span>
+                <span className="rounded-full bg-primary/20 text-primary px-2 py-0.5 text-xs font-semibold">
+                  {formData.plano || "Não selecionado"}
+                </span>
+              </div>
+              <input type="hidden" name="plano" value={formData.plano ?? ""} />
+              <p className="text-xs text-gray-400">Você pode alterar na seção de investimento.</p>
+            </div>
+
             <Button
               type="submit"
               size="lg"
-              id="cta-form-submit"
-              data-analytics="cta-form-submit"
+              id="cta-form"
+              data-analytics="click-cta-form"
               className="w-full text-base py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 bg-primary text-primary-foreground hover:bg-[#ff8640]"
             >
               Quero entrar na próxima turma
