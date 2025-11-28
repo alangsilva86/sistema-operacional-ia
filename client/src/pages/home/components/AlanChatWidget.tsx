@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ChatKit, useChatKit } from "@openai/chatkit-react";
 import { MessageCircle } from "lucide-react";
 
@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
 const DEVICE_ID_STORAGE_KEY = "alan-ia-chat-device-id";
+const CHATKIT_SCRIPT_SRC = "https://cdn.platform.openai.com/deployments/chatkit/chatkit.js";
+const DOMAIN_KEY = "domain_pk_69290b0418488194bc48a2660b0d57fc084f1760513e8648";
 
 function getOrCreateDeviceId() {
   if (typeof window === "undefined" || typeof crypto === "undefined" || !crypto.randomUUID) {
@@ -22,7 +24,50 @@ function getOrCreateDeviceId() {
 
 export function AlanChatWidget() {
   const [lastError, setLastError] = useState<string | null>(null);
+  const [isScriptReady, setIsScriptReady] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return Boolean(window.customElements?.get("openai-chatkit"));
+  });
   const deviceId = useMemo(() => getOrCreateDeviceId(), []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.customElements?.get("openai-chatkit")) {
+      setIsScriptReady(true);
+      return;
+    }
+
+    const existingScript = document.querySelector<HTMLScriptElement>('script[data-chatkit-script="true"]');
+
+    const handleLoad = () => setIsScriptReady(true);
+    const handleError = () => {
+      setLastError("Não foi possível carregar o chat. Recarregue a página ou tente novamente.");
+      setIsScriptReady(false);
+    };
+
+    if (existingScript) {
+      existingScript.addEventListener("load", handleLoad, { once: true });
+      existingScript.addEventListener("error", handleError, { once: true });
+      return () => {
+        existingScript.removeEventListener("load", handleLoad);
+        existingScript.removeEventListener("error", handleError);
+      };
+    }
+
+    const script = document.createElement("script");
+    script.src = CHATKIT_SCRIPT_SRC;
+    script.async = true;
+    script.dataset.chatkitScript = "true";
+    script.dataset.openaiDomainKey = DOMAIN_KEY;
+    script.addEventListener("load", handleLoad, { once: true });
+    script.addEventListener("error", handleError, { once: true });
+    document.body.appendChild(script);
+
+    return () => {
+      script.removeEventListener("load", handleLoad);
+      script.removeEventListener("error", handleError);
+    };
+  }, []);
 
   const { control, focusComposer } = useChatKit({
     api: {
@@ -104,7 +149,13 @@ export function AlanChatWidget() {
         )}
 
         <div className="rounded-xl border border-white/10 overflow-hidden">
-          <ChatKit control={control} className="h-[520px] w-full bg-transparent" />
+          {isScriptReady ? (
+            <ChatKit control={control} className="h-[520px] w-full bg-transparent" />
+          ) : (
+            <div className="h-[520px] w-full flex items-center justify-center text-sm text-gray-300">
+              Carregando Alan IA...
+            </div>
+          )}
         </div>
       </CardContent>
     </Card>
