@@ -26,7 +26,7 @@ export function AlanChatWidget() {
 
   const { control, focusComposer } = useChatKit({
     api: {
-      async getClientSecret() {
+      async getClientSecret(existing) {
         setLastError(null);
 
         try {
@@ -35,7 +35,7 @@ export function AlanChatWidget() {
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ user: deviceId })
+            body: JSON.stringify({ user: deviceId, existing })
           });
 
           if (!response.ok) {
