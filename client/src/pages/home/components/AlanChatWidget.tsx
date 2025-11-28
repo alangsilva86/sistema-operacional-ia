@@ -118,6 +118,12 @@ export function AlanChatWidget() {
     }
   });
 
+  useEffect(() => {
+    if (isScriptReady) {
+      focusComposer();
+    }
+  }, [isScriptReady, focusComposer]);
+
   return (
     <Card className="bg-white/5 border border-white/10 backdrop-blur">
       <CardContent className="p-4 sm:p-6 space-y-4">
