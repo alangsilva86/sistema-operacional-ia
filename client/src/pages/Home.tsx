@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { CheckCircle2, MessageCircle, ShieldCheck } from "lucide-react";
 
 import { trackEvent, useTrackView } from "@/lib/analytics";
+import { AlanChatWidget } from "./home/components/AlanChatWidget";
 import { InscricaoForm, type InscricaoFormData } from "./home/components/InscricaoForm";
 
 const logos = [
@@ -469,6 +470,36 @@ export default function Home() {
               </CardContent>
             </Card>
           </div>
+        </motion.div>
+      </Section>
+
+      <Section id="alan-ia" className="border-b border-white/10">
+        <motion.div variants={fadeUp} initial="hidden" animate="show" className="grid lg:grid-cols-[0.9fr,1.1fr] gap-8 items-start">
+          <div className="space-y-4">
+            <Badge className="w-fit bg-white/10 text-white border border-white/20 uppercase tracking-[0.18em]">
+              Alan IA • Agente Comercial
+            </Badge>
+            <div className="space-y-2">
+              <h3 className="font-heading text-3xl font-semibold">Converse agora com a Alan IA</h3>
+              <p className="text-gray-300">
+                Tire dúvidas sobre o método, confira como o fluxo funciona e veja a IA reagir em tempo real antes de se inscrever.
+              </p>
+            </div>
+            <ul className="space-y-2 text-sm text-gray-200">
+              {[
+                "Perguntas frequentes respondidas pelo próprio workflow que usamos nas turmas.",
+                "Veja diagnósticos e sugestões sob medida para o seu caos operacional.",
+                "Experimente a experiência que levamos para o seu time ao instalar o sistema."
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#ff6b35] mt-0.5" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <AlanChatWidget />
         </motion.div>
       </Section>
 
