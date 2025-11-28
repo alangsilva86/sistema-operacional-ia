@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
-import { CheckCircle2, MessageCircle, ShieldCheck } from "lucide-react";
+import { CheckCircle2, MessageCircle, ShieldCheck, X } from "lucide-react";
 
 import { trackEvent, useTrackView } from "@/lib/analytics";
 import { AlanChatWidget } from "./home/components/AlanChatWidget";
@@ -183,6 +183,7 @@ export default function Home() {
   );
   const [formData, setFormData] = useState<InscricaoFormData>(initialFormData);
   const [selectedPlan, setSelectedPlan] = useState<"parcelado" | "avista">("parcelado");
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const handleCta = (id: string, target = "#cta-final") => {
     trackEvent(`click_cta_${id}`);
@@ -542,7 +543,7 @@ export default function Home() {
         </motion.div>
       </Section>
 
-      <div className="fixed bottom-6 right-4 md:right-8 z-40">
+      <div className="fixed bottom-6 left-4 right-4 md:left-8 md:right-8 z-40 flex items-center justify-between gap-3">
         <a
           href="https://wa.me/5544999999999?text=Quero%20entrar%20na%20pr%C3%B3xima%20turma%20do%20Workshop%20IA%20na%20Pr%C3%A1tica"
           target="_blank"
@@ -558,7 +559,46 @@ export default function Home() {
           <MessageCircle className="w-4 h-4" />
           Tirar dúvida no WhatsApp
         </a>
+
+        <button
+          type="button"
+          id="cta-alan-floating"
+          data-analytics="click-cta-alan-floating"
+          className="inline-flex items-center gap-2 rounded-full bg-[#ff6b35] px-4 py-3 text-sm font-semibold text-black shadow-xl hover:shadow-2xl transition-all"
+          onClick={() => {
+            trackEvent("click_cta_alan_floating");
+            setIsChatOpen(true);
+          }}
+        >
+          <MessageCircle className="w-4 h-4" />
+          Falar com Alan IA
+        </button>
       </div>
+
+      {isChatOpen && (
+        <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/60 backdrop-blur-sm px-4 py-6 md:py-10">
+          <div
+            className="relative w-full max-w-4xl"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <div className="absolute -top-10 right-0 flex gap-2 text-sm text-gray-300">
+              <button
+                type="button"
+                className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 border border-white/20 hover:bg-white/15 transition"
+                onClick={() => setIsChatOpen(false)}
+              >
+                <X className="w-4 h-4" />
+                Fechar
+              </button>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-[#0b0b0f] shadow-2xl overflow-hidden">
+              <AlanChatWidget />
+            </div>
+          </div>
+        </div>
+      )}
 
       <footer className="py-8 bg-[#0a0a0a] border-t border-white/10">
         <div className="container text-center text-xs text-gray-500">
