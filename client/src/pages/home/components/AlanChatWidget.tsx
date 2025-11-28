@@ -154,11 +154,11 @@ export function AlanChatWidget() {
           </p>
         )}
 
-        <div className="rounded-xl border border-white/10 overflow-hidden">
+        <div className="rounded-xl border border-white/10">
           {isScriptReady ? (
-            <ChatKit control={control} className="h-[520px] w-full bg-transparent" />
+            <ChatKit control={control} className="block h-[580px] w-full bg-transparent" />
           ) : (
-            <div className="h-[520px] w-full flex items-center justify-center text-sm text-gray-300">
+            <div className="h-[580px] w-full flex items-center justify-center text-sm text-gray-300">
               Carregando Alan IA...
             </div>
           )}
