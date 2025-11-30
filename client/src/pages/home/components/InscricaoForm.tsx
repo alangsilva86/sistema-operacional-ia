@@ -23,19 +23,19 @@ type InscricaoFormProps = {
 
 export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormProps) {
   return (
-    <Card className="bg-[#111118] border border-border/70 shadow-lg">
+    <Card className="bg-[#0d0f16] border border-white/10 shadow-lg">
       <CardContent className="p-8">
         <div className="space-y-6">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <Badge variant="secondary" className="bg-primary/20 text-white border border-primary/40 font-semibold">
-                Pré-lista
+                Vagas limitadas
               </Badge>
               <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Resposta rápida</span>
             </div>
-            <h3 className="text-2xl font-bold text-white">Garanta sua vaga na próxima turma</h3>
+            <h3 className="text-2xl font-bold text-white">Garanta sua vaga na turma presencial</h3>
             <p className="text-sm text-muted-foreground">
-              Preencha seus dados. Respondemos pelo WhatsApp para confirmar pagamento e detalhes.
+              Preencha seus dados. Respondemos pelo WhatsApp para confirmar pagamento, datas e garantir sua cadeira.
             </p>
           </div>
 
@@ -50,7 +50,7 @@ export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormPro
                 required
                 value={formData.nome}
                 onChange={(e) => onChange("nome", e.target.value)}
-                className="h-12 text-base bg-[#1a1a24] border-border text-foreground"
+                className="h-12 text-base bg-[#131522] border-white/10 text-foreground"
                 placeholder="Seu nome completo"
               />
             </div>
@@ -65,7 +65,7 @@ export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormPro
                 required
                 value={formData.email}
                 onChange={(e) => onChange("email", e.target.value)}
-                className="h-12 text-base bg-[#1a1a24] border-border text-foreground"
+                className="h-12 text-base bg-[#131522] border-white/10 text-foreground"
                 placeholder="seu@email.com"
               />
             </div>
@@ -80,7 +80,7 @@ export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormPro
                 required
                 value={formData.whatsapp}
                 onChange={(e) => onChange("whatsapp", e.target.value)}
-                className="h-12 text-base bg-[#1a1a24] border-border text-foreground"
+                className="h-12 text-base bg-[#131522] border-white/10 text-foreground"
                 placeholder="(00) 00000-0000"
               />
               <p className="text-xs text-muted-foreground">Usamos só para confirmar vaga e pagamento.</p>
@@ -91,7 +91,7 @@ export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormPro
                 Seu perfil
               </Label>
               <Select value={formData.perfil ?? ""} onValueChange={(value) => onChange("perfil", value)}>
-                <SelectTrigger id="perfil" className="h-12 text-base bg-[#1a1a24] border-border text-foreground">
+                <SelectTrigger id="perfil" className="h-12 text-base bg-[#131522] border-white/10 text-foreground">
                   <SelectValue placeholder="Selecione" />
                 </SelectTrigger>
                 <SelectContent>
@@ -112,7 +112,7 @@ export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormPro
                 id="caos"
                 value={formData.caos ?? ""}
                 onChange={(e) => onChange("caos", e.target.value)}
-                className="min-h-[90px] text-base bg-[#1a1a24] border-border text-foreground"
+                className="min-h-[90px] text-base bg-[#131522] border-white/10 text-foreground"
                 placeholder="Ex.: follow-up perdido, retrabalho em contratos, atendimento sem padrão..."
               />
             </div>
@@ -133,7 +133,7 @@ export function InscricaoForm({ formData, onChange, onSubmit }: InscricaoFormPro
               size="lg"
               id="cta-form"
               data-analytics="click-cta-form"
-              className="w-full text-base py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 bg-primary text-primary-foreground hover:bg-[#ff8640]"
+              className="w-full text-base py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 bg-[#ff5c39] text-[#0b0909] hover:bg-[#ff754f]"
             >
               Quero entrar na próxima turma
             </Button>

@@ -1,67 +1,138 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { toast } from "sonner";
-import { CheckCircle2, MessageCircle, ShieldCheck, X } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Brain,
+  Check,
+  CheckCircle2,
+  Clock,
+  Cog,
+  Cpu,
+  Droplets,
+  Dumbbell,
+  Flame,
+  HelpCircle,
+  Lightbulb,
+  MessageCircle,
+  PhoneCall,
+  Play,
+  PlugZap,
+  ShieldCheck,
+  Sparkles,
+  Users,
+  Wrench
+} from "lucide-react";
 
 import { trackEvent, useTrackView } from "@/lib/analytics";
-import { AlanChatWidget } from "./home/components/AlanChatWidget";
-import { InscricaoForm, type InscricaoFormData } from "./home/components/InscricaoForm";
 
-const logos = [
-  { name: "Acessus", src: "/acessus.png" },
-  { name: "Dafnee", src: "/dafnee.png" },
-  { name: "Flycost", src: "/flycost.png" },
-  { name: "Momentum", src: "/momentum.png" },
-  { name: "Opta", src: "/opta.png" },
-  { name: "Paramettrus", src: "/paramettrus.png" },
-  { name: "Próspera", src: "/prospera.png" }
+const credibilidade = [
+  "3 encontros presenciais",
+  "Método aplicado em Próspera, Fatorcard, FlyCost, Opta",
+  "Garantia incondicional até o 2º encontro"
 ];
+
+const heroSteps = [
+  { label: "Diagnóstico guiado", icon: <Lightbulb size={16} /> },
+  { label: "Mapa + IA plugada", icon: <PlugZap size={16} /> },
+  { label: "Ferramenta rodando", icon: <Cog size={16} /> }
+];
+
 const dores = [
-  { title: "O Caos", desc: "Sua equipe depende de você e da sua cabeça para tudo. Nada fica registrado de forma inteligente." },
-  { title: "A Ilusão", desc: "Você tenta usar IA, mas só gera textos genéricos que ninguém lê." },
+  { title: "Dependência de pessoas", desc: "“Se o João faltar, o setor para.”", icon: <Users className="w-5 h-5" /> },
+  { title: "Lucro evaporando", desc: "“Faturamos bem, mas o dinheiro nunca sobra.”", icon: <Droplets className="w-5 h-5" /> },
+  { title: "Tech que não resolve", desc: "“ChatGPT dá texto bonito, não opera.”", icon: <Cpu className="w-5 h-5" /> }
+];
+
+const pilares = [
   {
-    title: "O Custo",
-    desc: "Você responde as mesmas coisas todos os dias. Sua equipe trava e a margem de lucro é devorada pela ineficiência operacional."
+    title: "O Cérebro",
+    desc: "Base de conhecimento viva",
+    bullets: ["Centralização do que sua equipe sabe", "Prompts da sua operação", "IA treinada na sua realidade"]
+  },
+  {
+    title: "O Músculo",
+    desc: "Processos repetitivos mapeados",
+    bullets: ["Fluxos visíveis, sem depender da memória", "Checklists acionáveis", "Integrações com ferramentas diárias"]
+  },
+  {
+    title: "O Sistema",
+    desc: "IA aplicada para escalar",
+    bullets: ["Automação amarrada a resultado", "Gatilhos e entregas claras", "Monitoramento simples"]
   }
 ];
-const pps = [
-  { title: "Prompt", desc: "Engenharia real, não dicas prontas. Base de conhecimento centralizada e viva." },
-  { title: "Processo", desc: "IA encaixada no fluxo de trabalho e nas rotinas diárias que já existem." },
-  { title: "Sistema", desc: "Automação sem programar, integrada à IA, escalando com controle e padrão." }
+
+const entregaveis = {
+  imediato: ["1 ferramenta funcional no ar", "Retrabalho cortado na primeira semana"],
+  estrutural: ["Base de conhecimento consultável pela equipe e pela IA", "Blueprint para qualquer problema recorrente"],
+  operacional: ["Método replicável sem terceiros", "Plano de treinamento da equipe + rotinas de uso"]
+};
+
+const demos = [
+  { title: "WhatsApp respondendo sozinho", desc: "Lead filtrado e respondido pela IA em segundos.", img: "/alan.jpeg" },
+  { title: "Fluxo rodando", desc: "Blueprint visual com etapas e gatilhos conectados.", img: "/alan2.jpeg" },
+  { title: "Automação funcionando", desc: "Entrada → IA → saída entregue em múltiplos canais.", img: "/alan.jpeg" }
 ];
-const resultados = [
-  "Redução de 40h/mês de retrabalho",
-  "Velocidade 10x maior nas operações",
-  "Padrão de atendimento replicável",
-  "Equipe treinada automaticamente"
+
+const socialProof = [
+  { name: "Acessus", stat: "3x+", desc: "Conversão filtrando leads com IA" },
+  { name: "Fatorcard", stat: "24/7", desc: "URA cognitiva + simuladores" },
+  { name: "Opta", stat: "2x", desc: "Automação e URA cognitiva" },
+  { name: "Flycost", stat: "30%", desc: "Otimização de economia na aviação" }
 ];
-const checklistOferta = [
-  "4 encontros presenciais intensivos",
-  "Mapas de processo aplicáveis",
-  "Base de conhecimento pronta para replicar",
-  "Biblioteca de prompts para seu negócio",
-  "Ferramentas instaladas",
-  "Rotina diária estruturada",
-  "Suporte e acompanhamento"
+
+const cronograma = [
+  {
+    titulo: "Pensar como engenheiro de soluções",
+    data: "13/12 – 10h00 • Atrium – Escritório Próspera | Fatorcard",
+    bullets: ["Problema quebrado em etapas simples", "Base de Conhecimento pronta para treinar a IA", "Blueprint da 1ª ferramenta"],
+    saida: "Problema principal mapeado + desenho da ferramenta.",
+    icon: <Lightbulb className="w-5 h-5" />
+  },
+  {
+    titulo: "Construção rápida: ferramenta 1.0",
+    data: "18/12 – 10h00 • Atrium – Escritório Momentum | Acessus",
+    bullets: ["Ferramentas no-code escolhidas", "IA plugada como cérebro", "Versão 1.0 pronta e testada"],
+    saida: "Ferramenta 1.0 rodando e usável.",
+    icon: <Wrench className="w-5 h-5" />
+  },
+  {
+    titulo: "Automação e integração com a realidade",
+    data: "20/12 – 18h30 • Atrium – Escritório Próspera | Fatorcard",
+    bullets: ["WhatsApp, e-mail, planilhas conectados", "Gatilhos e rotas configurados", "Segunda solução ou evolução da primeira"],
+    saida: "Solução ligada à rotina real com automação mínima.",
+    icon: <PlugZap className="w-5 h-5" />
+  },
+  {
+    titulo: "Sessão extra — mentoria individual",
+    data: "Agendada após os encontros • Online",
+    bullets: ["Ajustes finos e expansão", "Plano de treinamento interno", "Checklist para seguir sozinho"],
+    saida: "Plano personalizado de expansão segura.",
+    icon: <Sparkles className="w-5 h-5" />
+  }
 ];
-const paraQuem = [
-  "Está sobrecarregado",
-  "Quer eficiência real",
-  "Quer IA integrada na rotina",
-  "Lidera equipes pequenas ou médias"
-];
-const naoPara = ["Quer “prompt mágico”", "Acha que IA é modinha", "Não quer mudar processo nenhum"];
+
+const comparativo = {
+  sem: [
+    "Funcionário extra: R$ 36.000/ano",
+    "Perda de leads: ≥ R$ 5.000/mês",
+    "Consultorias: R$ 10.000 + mensalidade"
+  ],
+  com: ["Automação permanente", "Cobertura 24h", "Autonomia total"]
+};
+
 const faqs = [
-  { q: "Preciso saber programar?", a: "Não. Você instala o sistema com ferramentas no-code e fluxos guiados." },
-  { q: "Vai funcionar no meu negócio?", a: "Sim, desde que exista rotina e repetição. Ajustamos o método ao seu processo." },
-  { q: "Quanto tempo exige por dia?", a: "Durante a turma, foco nos encontros. Depois, rotinas curtas e consistentes." },
-  { q: "Posso levar alguém da equipe?", a: "Pode. Idealmente quem vai operar/implantar para ganhar velocidade." },
-  { q: "E se eu já fiz cursos de IA e não funcionou?", a: "Aqui não é curso. É implantação orientada a processo e sistema." }
+  { q: "Preciso saber programar?", a: "Não. Você só precisa saber explicar como seu processo funciona. A tecnologia faz o resto." },
+  { q: "Serve para meu nicho?", a: "Se você tem clientes, rotinas repetitivas e WhatsApp, funciona." },
+  { q: "Posso levar meu sócio?", a: "Sim, condições especiais no WhatsApp." },
+  { q: "Posso parcelar?", a: "Sim, em até 12x." }
 ];
+
+const checkoutUrl = "https://pay.kiwify.com.br/eeAM4On";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -71,44 +142,6 @@ const fadeUp = {
     transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] as [number, number, number, number] }
   }
 };
-
-function GuaranteeRibbon() {
-  return (
-    <div className="w-full flex justify-start">
-      <div className="mt-4 flex items-center gap-4 rounded-lg border border-[#ff6b35]/30 bg-[#ff6b35]/10 px-4 py-3 backdrop-blur-sm max-w-xl">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#ff6b35]/20 text-[#ff6b35] shadow-[0_0_18px_rgba(255,107,53,0.35)]">
-          <ShieldCheck size={20} strokeWidth={2.5} />
-        </div>
-        <div className="flex flex-col gap-0.5">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#ffb28f]">Protocolo de Risco Zero</span>
-          <p className="text-xs sm:text-sm text-gray-100 leading-snug">
-            Assista até o <span className="font-semibold text-white">2º encontro</span>. Se não fizer sentido para a sua realidade,
-            <span className="font-semibold text-emerald-300"> devolvemos 100% do valor investido</span>.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function BonusMentoria() {
-  return (
-    <div className="w-full flex justify-start">
-      <div className="mt-3 flex items-center gap-4 rounded-lg border border-emerald-400/25 bg-emerald-400/5 px-4 py-3 backdrop-blur-sm max-w-xl">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-300 shadow-[0_0_18px_rgba(16,185,129,0.45)]">
-          🎧
-        </div>
-        <div className="flex flex-col gap-0.5">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300/90">Bônus Exclusivo</span>
-          <p className="text-xs sm:text-sm text-gray-100 leading-snug">
-            Você recebe <span className="font-semibold text-white">1 hora de mentoria individual</span> após o curso para garantir sua
-            implementação e tirar dúvidas estruturais.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function Section({
   id,
@@ -122,10 +155,10 @@ function Section({
   return (
     <section
       id={id}
-      className={`relative overflow-hidden py-16 md:py-24 border-b border-white/10 bg-gradient-to-br from-[#0a0a0a] via-[#0f0f14] to-[#0a0a0a] ${className}`}
+      className={`relative overflow-hidden border-b border-white/5 bg-gradient-to-br from-[#050507] via-[#0a0c14] to-[#050507] ${className}`}
     >
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_20%,rgba(255,107,53,0.07),transparent_35%),radial-gradient(circle_at_80%_30%,rgba(79,179,255,0.07),transparent_35%)]" />
-      <div className="container relative">{children}</div>
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_15%_15%,rgba(255,92,57,0.08),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(245,196,81,0.08),transparent_28%)]" />
+      <div className="container relative py-24 md:py-32">{children}</div>
     </section>
   );
 }
@@ -141,16 +174,17 @@ function CTAButton({
   onClick: () => void;
   variant?: "primary" | "ghost";
 }) {
-  const base = "rounded-full px-8 py-4 text-base font-semibold transition-all";
+  const base = "rounded-full px-7 py-4 text-base font-semibold transition-all flex items-center gap-2";
   if (variant === "primary") {
     return (
       <Button
         id={id}
         data-analytics={`click-cta-${id}`}
-        className={`${base} bg-[#ff6b35] text-black hover:bg-[#ff8a5a] shadow-[0_0_40px_rgba(255,107,53,0.25)]`}
+        className={`${base} bg-[#ff5c39] text-[#0b0909] hover:bg-[#ff754f] shadow-[0_10px_35px_rgba(255,92,57,0.35)]`}
         onClick={onClick}
       >
         {label}
+        <ArrowUpRight size={18} />
       </Button>
     );
   }
@@ -167,385 +201,583 @@ function CTAButton({
   );
 }
 
+function GuaranteeRibbon() {
+  return (
+    <div className="w-full flex justify-start">
+      <div className="mt-3 flex items-center gap-3 rounded-2xl border border-[#ff5c39]/30 bg-[#ff5c39]/10 px-4 py-3 backdrop-blur-sm max-w-2xl">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#ff5c39]/20 text-[#ff5c39] shadow-[0_0_18px_rgba(255,92,57,0.35)]">
+          <ShieldCheck size={20} strokeWidth={2.4} />
+        </div>
+        <div className="flex flex-col gap-1">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#ffb99f]">Protocolo Risco Zero</span>
+          <p className="text-xs sm:text-sm text-gray-100 leading-snug">
+            Participe até o <span className="font-semibold text-white">2º encontro</span>. Se não sentir valor real e imediato,{" "}
+            <span className="font-semibold text-emerald-300">devolvo 100% do investimento</span>.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   useTrackView("view_lp_workshop");
 
-  const initialFormData = useMemo<InscricaoFormData>(
-    () => ({
-      nome: "",
-      email: "",
-      whatsapp: "",
-      perfil: "",
-      caos: "",
-      plano: "parcelado"
-    }),
-    []
-  );
-  const [formData, setFormData] = useState<InscricaoFormData>(initialFormData);
   const [selectedPlan, setSelectedPlan] = useState<"parcelado" | "avista">("parcelado");
-  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const handleCta = (id: string, target = "#cta-final") => {
     trackEvent(`click_cta_${id}`);
     document.querySelector(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const handleSubmit = (data: InscricaoFormData) => {
-    trackEvent("submit_form_lead", data);
-    toast.success("Pronto. Você está na pré-lista. Vamos falar com você no WhatsApp para confirmar pagamento e vaga.");
-    setFormData(initialFormData);
-  };
-
   const selectPlan = (plan: "parcelado" | "avista") => {
     setSelectedPlan(plan);
-    setFormData((prev) => ({ ...prev, plano: plan }));
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white font-body">
-      <header className="sticky top-0 z-50 backdrop-blur bg-[#0a0a0a]/80 border-b border-white/10">
-        <div className="container flex items-center justify-between py-3">
-          <div className="flex flex-col gap-1">
-            <div className="text-sm font-semibold tracking-[0.18em] uppercase">Sistema Operacional | IA na Prática</div>
-            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-300 border border-white/10">
-              <span className="h-2 w-2 rounded-full bg-[#ff6b35] animate-pulse" />
-              Desenvolvido 100% com IA
-            </span>
+    <div className="min-h-screen bg-[#050507] text-foreground font-body">
+      <div className="sticky top-0 z-50 shadow-lg">
+        <div className="bg-gradient-to-r from-[#9f1d16] via-[#ff5c39] to-[#d28a1f] text-white text-sm font-semibold">
+          <div className="container flex items-center justify-between py-2">
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-yellow-300 animate-pulse" aria-hidden />
+              ⚠️ Turma Presencial em Maringá • Restam 4 vagas
+            </div>
+            <span className="hidden sm:inline text-xs uppercase tracking-[0.16em]">Decida rápido — alta demanda</span>
           </div>
-          <CTAButton id="cta-header" label="Garantir minha vaga" onClick={() => handleCta("header")} />
         </div>
-      </header>
 
-      <Section id="hero" className="border-b border-white/10">
-        <div className="grid lg:grid-cols-2 gap-10 items-center">
-          <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-6">
-            <Badge className="w-fit bg-white/10 text-white border border-white/20 uppercase tracking-[0.2em]">
-              Workshop Presencial Exclusivo
-            </Badge>
-            <div className="space-y-4">
-              <h1 className="font-heading text-4xl md:text-5xl leading-tight">
-                A I.A. NÃO VAI SUBSTITUIR VOCÊ. QUEM USA I.A. COMO <span className="text-[#4fb3ff]">SISTEMA OPERACIONAL </span>
-                VAI.
-              </h1>
-              <p className="text-lg text-gray-300">
-                Transforme sua operação caótica em uma máquina de eficiência com o Método P→P→S. Pare de brincar de ChatGPT e
-                construa um negócio que roda sem você.
-              </p>
-            </div>
-            <div className="space-y-2">
-              <CTAButton
-                id="cta-hero"
-                label="QUERO INSTALAR O SISTEMA OPERACIONAL"
-                onClick={() => handleCta("hero", "#oferta")}
-              />
-              <p className="text-sm text-gray-400">Turma Presencial | Aplicação sujeita a aprovação.</p>
-              <GuaranteeRibbon />
-            </div>
-          </motion.div>
-
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            transition={{ delay: 0.1 }}
-            className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur"
-          >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,107,53,0.25),transparent_40%),radial-gradient(circle_at_80%_20%,rgba(79,179,255,0.2),transparent_45%)]" />
-            <img src="/alan.jpeg" alt="Alan Silva" className="relative w-full h-full object-cover opacity-90" loading="lazy" />
-            <div className="absolute bottom-4 left-4 bg-black/60 px-4 py-2 rounded-full text-xs tracking-[0.2em] uppercase border border-white/10">
-              Do caos à criação
-            </div>
-            <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-200 border border-white/15">
-              <span className="h-2 w-2 rounded-full bg-[#ff6b35] animate-pulse" />
-              Desenvolvido 100% com IA
-            </div>
-          </motion.div>
-        </div>
-      </Section>
-
-      <Section className="border-b border-white/10">
-        <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-6">
-          <p className="text-sm uppercase tracking-[0.24em] text-gray-400">Estratégia aplicada nas operações de:</p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3">
-            {logos.map((logo) => (
-              <div key={logo.name} className="rounded-xl px-3 py-2 flex items-center justify-center">
-                <img
-                  src={logo.src}
-                  alt={logo.name}
-                  className="max-h-10 object-contain opacity-70 hover:opacity-100 transition-opacity duration-200"
-                  loading="lazy"
-                />
+        <header className="backdrop-blur bg-[#050507]/85 border-b border-white/10">
+          <div className="container flex items-center justify-between py-4">
+            <div className="flex items-center gap-3">
+              <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-[#ff5c39] to-[#f5c451] flex items-center justify-center text-[#0b0909] font-black shadow-[0_10px_35px_rgba(255,92,57,0.35)]">
+                IA
               </div>
-            ))}
-          </div>
-        </motion.div>
-      </Section>
-
-      <Section id="problema">
-        <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-8">
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold">Você virou um Bombeiro de Luxo?</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            {dores.map((item) => (
-              <Card
-                key={item.title}
-                className="bg-white/5 border border-white/10 backdrop-blur shadow-[0_30px_80px_rgba(0,0,0,0.35)]"
-              >
-                <CardContent className="p-6 space-y-3">
-                  <p className="text-lg font-semibold">{item.title}</p>
-                  <p className="text-sm text-gray-300">{item.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </motion.div>
-      </Section>
-
-      <Section id="metodo">
-        <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-8">
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold">Conheça o Método P→P→S:</h2>
-          <p className="text-gray-300">Não é sobre ferramentas. É sobre arquitetura de negócios.</p>
-          <div className="grid md:grid-cols-3 gap-4">
-            {pps.map((item, idx) => (
-              <Card key={item.title} className="bg-white/5 border border-white/10 backdrop-blur">
-                <CardContent className="p-6 space-y-2">
-                  <div className="text-sm text-gray-400">Passo {idx + 1}</div>
-                  <p className="text-lg font-semibold">{item.title}</p>
-                  <p className="text-sm text-gray-300">{item.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </motion.div>
-      </Section>
-
-      <Section id="resultados">
-        <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-6">
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold">Resultados reais</h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            {resultados.map((res) => (
-              <Card key={res} className="bg-white/5 border border-white/10 backdrop-blur">
-                <CardContent className="p-4 flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#ff6b35] mt-1" />
-                  <p className="text-sm text-gray-200">{res}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </motion.div>
-      </Section>
-
-      <Section id="especialista">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          className="grid lg:grid-cols-2 gap-12 items-center"
-        >
-          <div className="space-y-5 lg:pr-6">
-            <Badge className="w-fit bg-white/10 text-white border border-white/20 uppercase tracking-[0.18em]">
-              Fundador Momentum
-            </Badge>
-            <div className="space-y-3">
-              <h3 className="font-heading text-2xl md:text-3xl font-semibold">Especialista em sistemas operacionais de IA</h3>
-              <p className="text-gray-300">
-                Transformo operações caóticas em sistemas previsíveis. Implementação em campo, não em slides. Criador do método
-                P→P→S aplicado em PMEs, corbans e times enxutos.
-              </p>
+              <div className="flex flex-col leading-tight">
+                <span className="text-xs uppercase tracking-[0.24em] text-gray-400">Sistema Operacional</span>
+                <span className="text-lg font-semibold">IA na Prática</span>
+              </div>
             </div>
-            <div className="grid sm:grid-cols-2 gap-3">
-              {[
-                "20 anos empreendendo e liderando operação",
-                "IA integrada em Próspera, Flycost, Fatorcard, Opta, Acessus",
-                "Método P→P→S: pessoas, processos, sistemas",
-                "ICP: PMEs, correspondentes bancários, times sobrecarregados"
-              ].map((item) => (
-                <div key={item} className="flex items-start gap-2 text-sm text-gray-200 bg-white/5 border border-white/10 rounded-xl p-3">
-                  <CheckCircle2 className="w-4 h-4 text-[#ff6b35] mt-0.5" />
-                  <span>{item}</span>
+            <CTAButton id="cta-header" label="QUERO GARANTIR MINHA VAGA" onClick={() => handleCta("header")} />
+          </div>
+        </header>
+      </div>
+
+      <main>
+        <Section id="hero" className="pt-10">
+          <div className="grid lg:grid-cols-[1.05fr,0.95fr] gap-12 items-center">
+            <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-6">
+              <Badge className="w-fit bg-white/10 text-white border border-white/20 uppercase tracking-[0.2em]">
+                Imersão presencial • Maringá/PR
+              </Badge>
+              <div className="space-y-3">
+                <h1 className="font-heading text-4xl md:text-5xl leading-tight text-white drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)]">
+                  Se sua empresa dobrar de tamanho amanhã…{" "}
+                  <span className="text-[#ff754f]">ela lucra ou ela quebra?</span>
+                </h1>
+                <h2 className="text-lg md:text-xl text-gray-200 leading-relaxed">
+                  Pare de ser o <span className="font-semibold text-white">Bombeiro de Luxo</span> da operação. Nesta imersão você instala
+                  IA real que corta retrabalho e libera você para crescer.
+                  <br />
+                  Ferramentas funcionando, não teoria.
+                </h2>
+              </div>
+
+              <div className="grid sm:grid-cols-3 gap-2">
+                {credibilidade.map((item) => (
+                  <div key={item} className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200">
+                    <Check className="w-4 h-4 text-[#f5c451]" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                  <CTAButton id="cta-hero" label="QUERO GARANTIR MINHA VAGA" onClick={() => handleCta("hero")} />
+                  <Button
+                    variant="outline"
+                    className="rounded-full border-white/20 text-white px-6 py-3"
+                    onClick={() => handleCta("hero-whatsapp", "#whatsapp-flutuante")}
+                  >
+                    Falar agora no WhatsApp
+                  </Button>
                 </div>
-              ))}
-            </div>
-            <CTAButton id="cta-sobre" label="Quero aprender IA com quem aplica todo dia" onClick={() => handleCta("sobre")} />
-          </div>
-
-          <div className="relative max-w-md w-full lg:justify-self-end">
-            <div className="absolute -inset-5 bg-[radial-gradient(circle_at_20%_20%,rgba(255,107,53,0.1),transparent_35%),radial-gradient(circle_at_80%_20%,rgba(79,179,255,0.12),transparent_35%)] blur-2xl" />
-            <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
-              <img src="/alan2.jpeg" alt="Alan Silva" className="w-full h-full object-cover" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-3 left-3 text-xs font-semibold tracking-[0.12em] uppercase">Alan Silva</div>
-              <div className="absolute top-3 right-3 rounded-full bg-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] border border-white/20">
-                P→P→S
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </Section>
-
-      <Section id="oferta">
-        <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-8">
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold">O fim do caos operacional começa aqui.</h2>
-          <div className="grid lg:grid-cols-[1.1fr,0.9fr] gap-8 items-start">
-            <Card className="bg-white/5 border border-white/10 backdrop-blur">
-              <CardContent className="p-6 space-y-3">
-                <p className="text-sm uppercase tracking-[0.18em] text-gray-400">Checklist</p>
-                <ul className="space-y-2">
-                  {checklistOferta.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-gray-200">
-                      <CheckCircle2 className="w-4 h-4 text-[#ff6b35] mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-
-            <div className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-3">
-                <Card
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => selectPlan("parcelado")}
-                  onKeyDown={(e) => e.key === "Enter" && selectPlan("parcelado")}
-                  className={`border ${selectedPlan === "parcelado" ? "border-[#ff6b35]" : "border-white/10"} bg-white/5 backdrop-blur cursor-pointer transition-all`}
-                >
-                  <CardContent className="p-5 space-y-1">
-                    <p className="text-sm text-gray-400 uppercase tracking-[0.18em]">Parcelado</p>
-                    <p className="text-3xl font-bold">10x de R$ 250</p>
-                    <p className="text-xs text-gray-400">no cartão</p>
-                  </CardContent>
-                </Card>
-                <Card
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => selectPlan("avista")}
-                  onKeyDown={(e) => e.key === "Enter" && selectPlan("avista")}
-                  className={`border ${selectedPlan === "avista" ? "border-[#ff6b35]" : "border-white/10"} bg-white/5 backdrop-blur cursor-pointer transition-all`}
-                >
-                  <CardContent className="p-5 space-y-1">
-                    <p className="text-sm text-gray-400 uppercase tracking-[0.18em]">À vista</p>
-                    <p className="text-3xl font-bold">R$ 1.997</p>
-                    <p className="text-xs text-gray-400">pagamento único</p>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <CTAButton id="cta-oferta" label="GARANTIR MINHA VAGA NO PRESENCIAL" onClick={() => handleCta("oferta")} />
-              <div className="flex flex-col sm:flex-row sm:items-start gap-3">
-                <BonusMentoria />
+                <p className="text-sm text-gray-400">Turma reduzida, máximo de 10 participantes. Restam 4 vagas.</p>
                 <GuaranteeRibbon />
+                <div className="grid sm:grid-cols-3 gap-2 pt-2">
+                  {heroSteps.map((step) => (
+                    <div key={step.label} className="flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-3 py-2 text-xs text-gray-200">
+                      <span className="h-8 w-8 flex items-center justify-center rounded-full bg-[#ff5c39]/10 text-[#ff5c39]">
+                        {step.icon}
+                      </span>
+                      <span className="font-semibold">{step.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              transition={{ delay: 0.1 }}
+              className="relative rounded-[28px] overflow-hidden border border-white/10 bg-[#0f121d] shadow-[0_25px_70px_rgba(0,0,0,0.5)]"
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(255,92,57,0.16),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(245,196,81,0.15),transparent_40%)]" />
+              <img src="/alan.jpeg" alt="Alan Silva" className="relative w-full h-full object-cover opacity-95" loading="lazy" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-black/50 px-3 py-1 text-[11px] uppercase tracking-[0.22em] border border-white/10">
+                Prova rápida
+              </div>
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                <div className="rounded-full bg-white/10 px-3 py-2 border border-white/15 text-xs uppercase tracking-[0.18em]">
+                  Postura forte, ambiente real
+                </div>
+                <div className="flex items-center gap-2 rounded-full bg-[#ff5c39] text-[#0b0909] px-3 py-2 text-xs font-bold shadow-[0_8px_30px_rgba(255,92,57,0.35)]">
+                  <Flame size={14} />
+                  IA na rotina
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </Section>
+
+        <Section id="identificacao">
+          <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-8">
+            <div className="space-y-2">
+              <p className="text-sm uppercase tracking-[0.24em] text-gray-400">Espelhamento da ruminação</p>
+              <h2 className="font-heading text-3xl md:text-4xl text-white">O ciclo que prende empresários no operacional</h2>
+              <p className="text-gray-300">Se isso aqui parece que foi escrito sobre você, não é coincidência.</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              {dores.map((dor) => (
+                <Card key={dor.title} className="bg-[#0d0f16]/80 border border-white/10 backdrop-blur shadow-[0_25px_65px_rgba(0,0,0,0.4)]">
+                  <CardContent className="p-6 space-y-3">
+                    <div className="flex items-center gap-2">
+                      <div className="h-10 w-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#f5c451]">
+                        {dor.icon}
+                      </div>
+                      <p className="text-lg font-semibold text-white">{dor.title}</p>
+                    </div>
+                    <p className="text-sm text-gray-300 leading-relaxed">{dor.desc}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <blockquote className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-gray-200 italic">
+              Se você disse “sim” para pelo menos uma… o problema não é você. O problema é que{" "}
+              <span className="font-semibold text-white">sua empresa não tem um Sistema Operacional.</span>
+            </blockquote>
+          </motion.div>
+        </Section>
+
+        <Section id="o-que-leva">
+          <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-8">
+            <div className="space-y-2">
+              <h2 className="font-heading text-3xl md:text-4xl text-white">
+                O que vamos juntos “instalar” na sua empresa em 3 encontros
+              </h2>
+              <p className="text-gray-300">Não é curso. É construção do seu sistema.</p>
+            </div>
+
+            <div className="rounded-3xl border border-white/10 bg-[#0d0f16] p-6 md:p-8 shadow-[0_25px_70px_rgba(0,0,0,0.45)]">
+              <p className="text-sm uppercase tracking-[0.18em] text-gray-400 mb-4">Método PPS em fluxo</p>
+              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-2 lg:gap-6">
+                {[
+                  { title: "Cérebro", icon: <Brain className="w-10 h-10 text-[#f5c451]" />, desc: "Base de conhecimento" },
+                  { title: "Músculo", icon: <Dumbbell className="w-10 h-10 text-[#f5c451]" />, desc: "Processos repetitivos" },
+                  { title: "Sistema", icon: <Cog className="w-10 h-10 text-[#f5c451]" />, desc: "IA aplicada e integrada" }
+                ].map((item, idx, arr) => (
+                  <div key={item.title} className="flex flex-col sm:flex-row sm:items-center gap-3 flex-1">
+                    <Card className="flex-1 bg-[#0f121d] border border-white/10 backdrop-blur">
+                      <CardContent className="p-4 space-y-1">
+                        <div className="flex items-center gap-3">
+                          <div className="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                            {item.icon}
+                          </div>
+                          <div>
+                            <p className="text-lg font-semibold text-white">{item.title}</p>
+                            <p className="text-xs uppercase tracking-[0.16em] text-gray-400">{item.desc}</p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                    {idx < arr.length - 1 && (
+                      <>
+                        <div className="hidden sm:flex items-center justify-center w-10">
+                          <ArrowRight className="text-[#ff5c39]" />
+                        </div>
+                        <div className="sm:hidden flex items-center justify-center w-full">
+                          <ArrowRight className="text-[#ff5c39] rotate-90" />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className="grid md:grid-cols-3 gap-4 mt-6">
+                {pilares.map((pilar) => (
+                  <div key={pilar.title} className="space-y-3">
+                    <div className="flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-[#f5c451]">
+                      <Sparkles size={14} />
+                      Pilar
+                    </div>
+                    <p className="text-lg font-semibold text-white">{pilar.title}</p>
+                    <ul className="space-y-2 text-sm text-gray-300">
+                      {pilar.bullets.map((bullet) => (
+                        <li key={bullet} className="flex items-start gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-[#ff5c39] mt-0.5" />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-        </motion.div>
-      </Section>
 
-      <Section id="perfil">
-        <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-6">
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold">Para quem é / Para quem não é</h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            <Card className="bg-white/5 border border-white/10 backdrop-blur">
-              <CardContent className="p-6 space-y-2">
-                <p className="text-lg font-semibold">É para quem:</p>
-                <ul className="space-y-2 text-sm text-gray-200">
-                  {paraQuem.map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#ff6b35] mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="bg-white/5 border border-white/10 backdrop-blur">
-              <CardContent className="p-6 space-y-2">
-                <p className="text-lg font-semibold">Não é para quem:</p>
-                <ul className="space-y-2 text-sm text-gray-200">
-                  {naoPara.map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#ff6b35] mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </motion.div>
-      </Section>
-
-      <Section id="alan-ia" className="border-b border-white/10">
-        <motion.div variants={fadeUp} initial="hidden" animate="show" className="grid lg:grid-cols-[0.9fr,1.1fr] gap-8 items-start">
-          <div className="space-y-4">
-            <Badge className="w-fit bg-white/10 text-white border border-white/20 uppercase tracking-[0.18em]">
-              Alan IA • Agente Comercial
-            </Badge>
-            <div className="space-y-2">
-              <h3 className="font-heading text-3xl font-semibold">Converse agora com a Alan IA</h3>
-              <p className="text-gray-300">
-                Tire dúvidas sobre o método, confira como o fluxo funciona e veja a IA reagir em tempo real antes de se inscrever.
-              </p>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 space-y-4">
+              <h3 className="font-heading text-2xl text-white">O que você leva no fim da imersão</h3>
+              <div className="grid md:grid-cols-3 gap-4">
+                {[
+                  { title: "Imediato", items: entregaveis.imediato },
+                  { title: "Estrutural", items: entregaveis.estrutural },
+                  { title: "Operacional", items: entregaveis.operacional }
+                ].map((block) => (
+                  <Card key={block.title} className="bg-[#0f121d] border border-white/10 backdrop-blur">
+                    <CardContent className="p-4 space-y-2">
+                      <p className="text-sm uppercase tracking-[0.18em] text-[#f5c451]">{block.title}</p>
+                      <ul className="space-y-2 text-sm text-gray-200">
+                        {block.items.map((item) => (
+                          <li key={item} className="flex items-start gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-[#ff5c39] mt-0.5" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              <p className="text-sm text-gray-300">Processo para colocar solução de pé, não teoria.</p>
             </div>
-            <ul className="space-y-2 text-sm text-gray-200">
-              {[
-                "Perguntas frequentes respondidas pelo próprio workflow que usamos nas turmas.",
-                "Veja diagnósticos e sugestões sob medida para o seu caos operacional.",
-                "Experimente a experiência que levamos para o seu time ao instalar o sistema."
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#ff6b35] mt-0.5" />
-                  <span>{item}</span>
-                </li>
+
+            <div className="rounded-3xl border border-white/10 bg-[#0a0d18] p-8 md:p-10 space-y-4">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.2em] text-gray-400">Demonstração visual</p>
+                  <h4 className="font-heading text-2xl text-white">Veja em 5–7 segundos o que já está rodando</h4>
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-[#ff5c39] text-[#0b0909] px-4 py-2 text-xs font-bold shadow-[0_10px_32px_rgba(255,92,57,0.35)]">
+                  <Play size={14} />
+                  Preview ao vivo
+                </div>
+              </div>
+              <div className="grid md:grid-cols-3 gap-6">
+                {demos.map((demo) => (
+                  <div
+                    key={demo.title}
+                    className="relative overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(135deg,#111829,#0c1022)] p-5 shadow-[0_26px_60px_rgba(0,0,0,0.5)] min-h-[210px]"
+                  >
+                    <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-[#ff5c39]/10 blur-3xl" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(245,196,81,0.12),transparent_40%)]" />
+                    <div
+                      className="absolute inset-0 opacity-40 blur-sm"
+                      style={{ backgroundImage: `url(${demo.img})`, backgroundSize: "cover", backgroundPosition: "center" }}
+                    />
+                    <div className="relative flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-gray-400">
+                      <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                      Fluxo real
+                    </div>
+                    <p className="relative mt-3 text-white font-semibold">{demo.title}</p>
+                    <p className="relative mt-2 text-sm text-gray-300">{demo.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </Section>
+
+        <Section id="social-proof">
+          <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-10">
+            <div className="space-y-2">
+              <h2 className="font-heading text-3xl md:text-4xl text-white">Empresas que já usam meu Sistema na prática</h2>
+              <p className="text-gray-300">Casos reais e números mensuráveis.</p>
+            </div>
+            <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+              {socialProof.map((item) => (
+                <Card key={item.name} className="bg-[#f5f5f5] text-[#0b0909] border border-transparent shadow-[0_25px_60px_rgba(0,0,0,0.2)]">
+                  <CardContent className="p-6 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="h-8 w-8 rounded-full bg-[#0b0909] text-white text-sm font-bold flex items-center justify-center">
+                          {item.name[0]}
+                        </div>
+                        <span className="text-sm uppercase tracking-[0.16em]">{item.name}</span>
+                      </div>
+                      <span className="h-2 w-2 rounded-full bg-[#ff5c39]" />
+                    </div>
+                    <p className="text-4xl font-black leading-tight text-[#ff5c39]">{item.stat}</p>
+                    <p className="text-sm text-[#1b1b1b]">{item.desc}</p>
+                  </CardContent>
+                </Card>
               ))}
-            </ul>
-          </div>
+            </div>
+          </motion.div>
+        </Section>
 
-          <AlanChatWidget />
-        </motion.div>
-      </Section>
+        <Section id="cronograma">
+          <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-10">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+              <div>
+                <h2 className="font-heading text-3xl md:text-4xl text-white">Como funcionam os 4 encontros</h2>
+                <p className="text-gray-300">Encontros práticos, direto ao que gera entrega.</p>
+              </div>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 text-white px-4 py-2 text-xs uppercase tracking-[0.18em] border border-white/10">
+                Máximo 10 participantes
+              </div>
+            </div>
 
-      <Section id="faq" className="border-b border-white/10">
-        <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-6 max-w-4xl">
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold">Perguntas Frequentes</h2>
-          <div className="space-y-3">
-            {faqs.map((item) => (
-              <details key={item.q} className="group rounded-xl border border-white/10 bg-white/5 p-4">
-                <summary className="flex items-center justify-between cursor-pointer text-lg font-semibold">
-                  {item.q}
-                  <span className="text-[#4fb3ff] group-open:rotate-45 transition-transform">+</span>
-                </summary>
-                <p className="pt-3 text-sm text-gray-300">{item.a}</p>
-              </details>
-            ))}
-          </div>
-        </motion.div>
-      </Section>
+            <div className="relative">
+              <div className="absolute left-5 top-0 bottom-0 w-px bg-white/10" aria-hidden />
+              <div className="space-y-8">
+                {cronograma.map((item, idx) => (
+                  <div key={item.titulo} className="relative pl-12">
+                    <div className="absolute left-2 top-2 h-6 w-6 rounded-full bg-[#ff5c39] shadow-[0_10px_30px_rgba(255,92,57,0.4)] flex items-center justify-center text-[#0b0909] font-bold text-xs">
+                      {idx + 1}
+                    </div>
+                    <Card className="bg-[#0d0f16] border border-white/10 backdrop-blur shadow-[0_28px_65px_rgba(0,0,0,0.45)]">
+                      <CardContent className="p-6 space-y-3">
+                        <div className="flex items-center gap-3">
+                          <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#f5c451]">
+                            {item.icon}
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="text-xs uppercase tracking-[0.18em] text-gray-400">Linha do tempo</span>
+                            <p className="text-lg font-semibold text-white">{item.titulo}</p>
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-300">{item.data}</p>
+                        <ul className="space-y-2 text-sm text-gray-200">
+                          {item.bullets.map((bullet) => (
+                            <li key={bullet} className="flex items-start gap-2">
+                              <CheckCircle2 className="w-4 h-4 text-[#ff5c39] mt-0.5" />
+                              <span>{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="rounded-xl border border-white/10 bg-white/5 p-3 text-sm text-gray-200">
+                          <span className="text-[#f5c451] font-semibold">Você sai com:</span> {item.saida}
+                        </div>
+                      </CardContent>
+                    </Card>
+                    {idx < cronograma.length - 1 && (
+                      <div className="absolute left-[22px] -bottom-7 w-px h-7 bg-white/10" aria-hidden />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </Section>
 
-      <Section id="cta-final" className="border-t border-white/10">
-        <motion.div variants={fadeUp} initial="hidden" animate="show" className="grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-start">
-          <div className="space-y-4">
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold">Pronto para transformar IA em rotina diária?</h2>
+        <Section id="anti-custo">
+          <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-6">
+            <h2 className="font-heading text-3xl md:text-4xl text-white">Quanto custa continuar no caos?</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              <Card className="bg-[#120f0f] border border-red-900/40">
+                <CardContent className="p-6 space-y-3">
+                  <div className="flex items-center justify-between text-white">
+                    <p className="text-lg font-semibold">Sem Sistema</p>
+                    <span className="h-2 w-2 rounded-full bg-red-500" />
+                  </div>
+                  <ul className="space-y-2 text-sm text-red-100">
+                    {comparativo.sem.map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-red-400 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-[#0f1610] border border-emerald-700/30">
+                <CardContent className="p-6 space-y-3">
+                  <div className="flex items-center justify-between text-white">
+                    <p className="text-lg font-semibold">Com Sistema IA</p>
+                    <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                  </div>
+                  <ul className="space-y-2 text-sm text-emerald-100">
+                    {comparativo.com.map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
             <p className="text-gray-300">
-              Se você quer sair do improviso e montar ferramentas reais usando IA na operação, essa é a próxima etapa lógica.
+              Você não compra conhecimento. <span className="font-semibold text-white">Compra tempo, lucro e liberdade.</span>
             </p>
-            <CTAButton id="cta-final" label="Quero entrar na próxima turma" onClick={() => handleCta("final", "#cta-final")} />
-            <p className="text-sm text-gray-400">Sistema Operacional – IA na Prática</p>
-          </div>
+          </motion.div>
+        </Section>
 
-          <InscricaoForm
-            formData={formData}
-            onChange={(field, value) => setFormData((prev) => ({ ...prev, [field]: value }))}
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleSubmit(formData);
-            }}
-          />
-        </motion.div>
-      </Section>
+        <Section id="investimento">
+          <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+              <div>
+                <h2 className="font-heading text-3xl md:text-4xl text-white">Investimento para a Turma 1 (Preço Especial)</h2>
+                <p className="text-gray-300">Valores para quem decide agora.</p>
+              </div>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.18em] border border-white/10">
+                Bônus inclusos
+              </div>
+            </div>
 
-      <div className="fixed bottom-6 left-4 right-4 md:left-8 md:right-8 z-40 flex items-center justify-between gap-3">
+            <div className="grid md:grid-cols-3 gap-4">
+              <Card
+                role="button"
+                tabIndex={0}
+                onClick={() => selectPlan("parcelado")}
+                onKeyDown={(e) => e.key === "Enter" && selectPlan("parcelado")}
+                className={`cursor-pointer transition-all ${
+                  selectedPlan === "parcelado"
+                    ? "border-[#ff5c39] shadow-[0_20px_50px_rgba(255,92,57,0.25)] scale-[1.02]"
+                    : "border-white/10"
+                } bg-[#0d0f16]`}
+              >
+                <CardContent className="p-6 space-y-2">
+                  <p className="text-xs uppercase tracking-[0.18em] text-gray-400">Plano recomendado</p>
+                  <p className="text-5xl font-black text-white leading-none">R$ 250</p>
+                  <p className="text-sm text-gray-400">12x no cartão</p>
+                </CardContent>
+              </Card>
+
+              <Card
+                role="button"
+                tabIndex={0}
+                onClick={() => selectPlan("avista")}
+                onKeyDown={(e) => e.key === "Enter" && selectPlan("avista")}
+                className={`cursor-pointer transition-all ${
+                  selectedPlan === "avista"
+                    ? "border-[#ff5c39] shadow-[0_20px_50px_rgba(255,92,57,0.25)] scale-[1.02]"
+                    : "border-white/10"
+                } bg-[#0d0f16]`}
+              >
+                <CardContent className="p-6 space-y-2">
+                  <p className="text-xs uppercase tracking-[0.18em] text-gray-400">À vista</p>
+                  <p className="text-4xl font-black text-white leading-none">R$ 1.997</p>
+                  <p className="text-sm text-gray-400">Transferência ou cartão</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-[#0d0f16] border border-white/10">
+                <CardContent className="p-6 space-y-3">
+                  <p className="text-xs uppercase tracking-[0.18em] text-gray-400">Bônus inclusos</p>
+                  <ul className="space-y-2 text-sm text-gray-200">
+                    {["Biblioteca de prompts", "Mentoria individual pós-imersão", "Grupo exclusivo no WhatsApp"].map((bonus) => (
+                      <li key={bonus} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#f5c451] mt-0.5" />
+                        <span>{bonus}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+
+            <a
+              href={checkoutUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackEvent("click_cta_checkout")}
+              className="inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-semibold transition-all bg-[#ff5c39] text-[#0b0909] hover:bg-[#ff754f] shadow-[0_18px_45px_rgba(255,92,57,0.35)] animate-pulse"
+            >
+              QUERO GARANTIR MINHA VAGA
+              <ArrowUpRight size={18} className="ml-2" />
+            </a>
+          </motion.div>
+        </Section>
+
+        <Section id="garantia">
+          <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-4">
+            <h2 className="font-heading text-3xl md:text-4xl text-white">Protocolo Risco Zero</h2>
+            <Card className="bg-[#0d0f16] border border-white/10">
+              <CardContent className="p-6 space-y-3">
+                <p className="text-lg text-white font-semibold">Participe sem medo.</p>
+                <p className="text-gray-200">
+                  Participe dos dois primeiros encontros. Aplique a IA na sua empresa. Se não sentir valor real e imediato…
+                  <span className="font-semibold text-white"> devolvo 100% do seu investimento.</span> Sem culpas, sem perguntas, sem
+                  burocracia.
+                </p>
+                <GuaranteeRibbon />
+              </CardContent>
+            </Card>
+          </motion.div>
+        </Section>
+
+        <Section id="faq">
+          <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-6 max-w-4xl">
+            <h2 className="font-heading text-3xl md:text-4xl text-white">FAQ – Quebra de Objeções</h2>
+            <div className="space-y-3">
+              {faqs.map((item) => (
+                <details key={item.q} className="group rounded-2xl border border-white/10 bg-white/5">
+                  <summary className="flex items-center justify-between cursor-pointer text-lg font-semibold px-5 py-4 gap-3">
+                    <span className="flex items-center gap-2">
+                      <HelpCircle className="w-5 h-5 text-[#f5c451]" />
+                      {item.q}
+                    </span>
+                    <span className="text-[#ff5c39] group-open:rotate-45 transition-transform">+</span>
+                  </summary>
+                  <p className="px-5 pb-5 text-sm text-gray-300">{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </motion.div>
+        </Section>
+
+        <Section id="cta-final" className="border-b border-white/10">
+          <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-6 text-center max-w-3xl mx-auto">
+            <p className="text-sm uppercase tracking-[0.2em] text-gray-400">Turma presencial • Alta intensidade</p>
+            <h2 className="font-heading text-3xl md:text-4xl text-white">[ QUERO GARANTIR MINHA VAGA NA TURMA ]</h2>
+            <p className="text-gray-300">
+              Clique no botão abaixo e vá direto para o checkout. Você decide rápido, garante a vaga e só então preenche os dados.
+            </p>
+            <p className="text-sm text-[#f5c451] font-semibold">Risco zero até o 2º encontro. Se não sentir valor, devolvo 100%.</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href={checkoutUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackEvent("click_cta_checkout_final")}
+                className="inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-semibold transition-all bg-[#ff5c39] text-[#0b0909] hover:bg-[#ff754f] shadow-[0_20px_50px_rgba(255,92,57,0.4)] animate-[pulse_2s_ease-in-out_infinite]"
+              >
+                GARANTIR VAGA AGORA
+                <ArrowUpRight size={18} className="ml-2" />
+              </a>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-4 py-2 text-xs uppercase tracking-[0.18em] text-white">
+                Restam 4 vagas
+              </div>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-4 py-2 text-xs uppercase tracking-[0.18em] text-gray-200">
+                <Sparkles size={14} />
+                Turma presencial em Maringá
+              </div>
+            </div>
+          </motion.div>
+        </Section>
+      </main>
+
+      <div
+        id="whatsapp-flutuante"
+        className="fixed bottom-6 right-4 z-40 flex flex-col items-end gap-3 drop-shadow-[0_12px_30px_rgba(0,0,0,0.35)]"
+      >
         <a
-          href="https://wa.me/5544999999999?text=Quero%20entrar%20na%20pr%C3%B3xima%20turma%20do%20Workshop%20IA%20na%20Pr%C3%A1tica"
+          href="https://wa.me/5544999999999?text=Quero%20saber%20se%20serve%20para%20minha%20empresa"
           target="_blank"
           rel="noreferrer"
           id="cta-whatsapp"
@@ -557,52 +789,17 @@ export default function Home() {
           }}
         >
           <MessageCircle className="w-4 h-4" />
-          Tirar dúvida no WhatsApp
+          Quero saber se serve para minha empresa
         </a>
-
-        <button
-          type="button"
-          id="cta-alan-floating"
-          data-analytics="click-cta-alan-floating"
-          className="inline-flex items-center gap-2 rounded-full bg-[#ff6b35] px-4 py-3 text-sm font-semibold text-black shadow-xl hover:shadow-2xl transition-all"
-          onClick={() => {
-            trackEvent("click_cta_alan_floating");
-            setIsChatOpen(true);
-          }}
-        >
-          <MessageCircle className="w-4 h-4" />
-          Falar com Alan IA
-        </button>
       </div>
 
-      {isChatOpen && (
-        <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/60 backdrop-blur-sm px-4 py-6 md:py-10">
-          <div
-            className="relative w-full max-w-4xl"
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-          >
-            <div className="absolute -top-10 right-0 flex gap-2 text-sm text-gray-300">
-              <button
-                type="button"
-                className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 border border-white/20 hover:bg-white/15 transition"
-                onClick={() => setIsChatOpen(false)}
-              >
-                <X className="w-4 h-4" />
-                Fechar
-              </button>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-[#0b0b0f] shadow-2xl overflow-hidden">
-              <AlanChatWidget />
-            </div>
-          </div>
-        </div>
-      )}
-
-      <footer className="py-8 bg-[#0a0a0a] border-t border-white/10">
-        <div className="container text-center text-xs text-gray-500">
-          Sistema Operacional – IA na Prática • Momentum Aceleradora
+      <footer className="py-8 bg-[#050507] border-t border-white/10">
+        <div className="container flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-gray-500">
+          <span>Sistema Operacional – IA na Prática • Momentum Aceleradora</span>
+          <span className="flex items-center gap-2 text-gray-400">
+            <PhoneCall size={12} />
+            Atendimento humano para fechar vaga
+          </span>
         </div>
       </footer>
     </div>
