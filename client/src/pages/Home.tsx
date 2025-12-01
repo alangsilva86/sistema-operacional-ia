@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { TrustBar } from "@/components/TrustBar";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -241,7 +242,7 @@ export default function Home() {
           <div className="container flex items-center justify-between py-2">
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-yellow-300 animate-pulse" aria-hidden />
-              ⚠️ Turma Presencial em Maringá • Restam 4 vagas
+              ⚠️ Turma Presencial em Maringá • Restam 6 vagas
             </div>
             <span className="hidden sm:inline text-xs uppercase tracking-[0.16em]">Decida rápido — alta demanda</span>
           </div>
@@ -265,55 +266,46 @@ export default function Home() {
 
       <main>
         <Section id="hero" className="pt-10">
-          <div className="grid lg:grid-cols-[1.05fr,0.95fr] gap-12 items-center">
-            <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-6">
-              <Badge className="w-fit bg-white/10 text-white border border-white/20 uppercase tracking-[0.2em]">
-                Imersão presencial • Maringá/PR
-              </Badge>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-5 order-1">
+              <div className="inline-flex items-center gap-2 rounded-full bg-[#ff5c39]/15 border border-[#ff5c39]/40 px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-white">
+                <span className="h-2 w-2 rounded-full bg-red-400 animate-pulse" aria-hidden />
+                Turma presencial Maringá | Apenas 6 vagas restantes
+              </div>
               <div className="space-y-3">
                 <h1 className="font-heading text-4xl md:text-5xl leading-tight text-white drop-shadow-[0_12px_30px_rgba(0,0,0,0.55)]">
-                  Se sua empresa dobrar de tamanho amanhã…{" "}
-                  <span className="text-[#ff754f]">ela lucra ou ela quebra?</span>
+                  APRENDA E CRIE SOLUÇÕES DE VERDADE <span className="text-[#ff754f]">COM I.A.</span>
                 </h1>
                 <h2 className="text-lg md:text-xl text-gray-200 leading-relaxed">
-                  Pare de ser o <span className="font-semibold text-white">Bombeiro de Luxo</span> da operação. Nesta imersão você instala
-                  IA real que corta retrabalho e libera você para crescer.
-                  <br />
-                  Ferramentas funcionando, não teoria.
+                  Se sua empresa dobrar de tamanho amanhã... ela lucra ou ela quebra?
                 </h2>
               </div>
 
-              <div className="grid sm:grid-cols-3 gap-2">
-                {credibilidade.map((item) => (
-                  <div key={item} className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200">
+              <div className="hidden lg:flex flex-col gap-4">
+                <a
+                  href={checkoutUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackEvent("click_cta_checkout_hero")}
+                  className="inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-semibold transition-all bg-[#ff5c39] text-[#0b0909] hover:bg-[#ff754f] shadow-[0_20px_50px_rgba(255,92,57,0.4)]"
+                >
+                  GARANTIR UMA DAS 6 VAGAS
+                  <ArrowUpRight size={18} className="ml-2" />
+                </a>
+                <p className="text-sm text-[#f5c451] font-semibold">🔒 Risco Zero: Devolução de 100% até o 2º encontro.</p>
+                <div className="grid sm:grid-cols-2 gap-2">
+                  <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200">
                     <Check className="w-4 h-4 text-[#f5c451]" />
-                    <span>{item}</span>
+                    <span>Pare de ser o <span className="font-semibold text-white">Bombeiro de Luxo</span> da operação.</span>
                   </div>
-                ))}
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                  <CTAButton id="cta-hero" label="QUERO GARANTIR MINHA VAGA" onClick={() => handleCta("hero")} />
-                  <Button
-                    variant="outline"
-                    className="rounded-full border-white/20 text-white px-6 py-3"
-                    onClick={() => handleCta("hero-whatsapp", "#whatsapp-flutuante")}
-                  >
-                    Falar agora no WhatsApp
-                  </Button>
-                </div>
-                <p className="text-sm text-gray-400">Turma reduzida, máximo de 10 participantes. Restam 4 vagas.</p>
-                <GuaranteeRibbon />
-                <div className="grid sm:grid-cols-3 gap-2 pt-2">
-                  {heroSteps.map((step) => (
-                    <div key={step.label} className="flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-3 py-2 text-xs text-gray-200">
-                      <span className="h-8 w-8 flex items-center justify-center rounded-full bg-[#ff5c39]/10 text-[#ff5c39]">
-                        {step.icon}
-                      </span>
-                      <span className="font-semibold">{step.label}</span>
-                    </div>
-                  ))}
+                  <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200">
+                    <Check className="w-4 h-4 text-[#f5c451]" />
+                    <span>Crie ferramentas reais, não teoria.</span>
+                  </div>
+                  <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200">
+                    <Check className="w-4 h-4 text-[#f5c451]" />
+                    <span>3 encontros presenciais de imersão e prática.</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -323,32 +315,60 @@ export default function Home() {
               initial="hidden"
               animate="show"
               transition={{ delay: 0.1 }}
-              className="relative rounded-[28px] overflow-hidden border border-white/10 bg-[#0f121d] shadow-[0_25px_70px_rgba(0,0,0,0.5)]"
+              className="relative order-2 lg:order-2 rounded-[28px] overflow-hidden border border-white/10 bg-[#0f121d] shadow-[0_25px_70px_rgba(0,0,0,0.5)] w-full"
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(255,92,57,0.16),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(245,196,81,0.15),transparent_40%)]" />
-              <img src="/alan.jpeg" alt="Alan Silva" className="relative w-full h-full object-cover opacity-95" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-              <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-black/50 px-3 py-1 text-[11px] uppercase tracking-[0.22em] border border-white/10">
-                Prova rápida
-              </div>
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                <div className="rounded-full bg-white/10 px-3 py-2 border border-white/15 text-xs uppercase tracking-[0.18em]">
-                  Postura forte, ambiente real
+              <div className="relative aspect-[16/9] w-full">
+                <img src="/alanh.jpeg" alt="Alan Silva" className="w-full h-full object-cover opacity-95" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="h-16 w-16 rounded-full bg-[#ff5c39] text-[#0b0909] flex items-center justify-center shadow-[0_20px_55px_rgba(255,92,57,0.45)]">
+                    <Play size={28} />
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 rounded-full bg-[#ff5c39] text-[#0b0909] px-3 py-2 text-xs font-bold shadow-[0_8px_30px_rgba(255,92,57,0.35)]">
-                  <Flame size={14} />
-                  IA na rotina
+                <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-black/60 px-3 py-1 text-[11px] uppercase tracking-[0.22em] border border-white/10">
+                  Assista antes de aplicar
                 </div>
               </div>
             </motion.div>
           </div>
-        </Section>
 
-        <Section id="identificacao">
-          <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-8">
-            <div className="space-y-2">
-              <p className="text-sm uppercase tracking-[0.24em] text-gray-400">Espelhamento da ruminação</p>
-              <h2 className="font-heading text-3xl md:text-4xl text-white">O ciclo que prende empresários no operacional</h2>
+          <div className="lg:hidden space-y-4 mt-6">
+            <a
+              href={checkoutUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackEvent("click_cta_checkout_hero_mobile")}
+              className="inline-flex items-center justify-center rounded-full w-full px-8 py-4 text-base font-semibold transition-all bg-[#ff5c39] text-[#0b0909] hover:bg-[#ff754f] shadow-[0_20px_50px_rgba(255,92,57,0.4)]"
+            >
+              GARANTIR UMA DAS 6 VAGAS
+              <ArrowUpRight size={18} className="ml-2" />
+            </a>
+            <p className="text-sm text-[#f5c451] font-semibold">🔒 Risco Zero: Devolução de 100% até o 2º encontro.</p>
+            <div className="grid sm:grid-cols-2 gap-2">
+              <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200">
+                <Check className="w-4 h-4 text-[#f5c451]" />
+                <span>Pare de ser o <span className="font-semibold text-white">Bombeiro de Luxo</span> da operação.</span>
+              </div>
+              <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200">
+                <Check className="w-4 h-4 text-[#f5c451]" />
+                <span>Crie ferramentas reais, não teoria.</span>
+              </div>
+              <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200">
+                <Check className="w-4 h-4 text-[#f5c451]" />
+                <span>3 encontros presenciais de imersão e prática.</span>
+              </div>
+            </div>
+      </div>
+    </Section>
+
+    <TrustBar />
+
+    <Section id="identificacao">
+      <motion.div variants={fadeUp} initial="hidden" animate="show" className="space-y-8">
+        <div className="space-y-2">
+          <p className="text-sm uppercase tracking-[0.24em] text-gray-400">Espelhamento da ruminação</p>
+          <h2 className="font-heading text-3xl md:text-4xl text-white">O ciclo que prende empresários no operacional</h2>
               <p className="text-gray-300">Se isso aqui parece que foi escrito sobre você, não é coincidência.</p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
