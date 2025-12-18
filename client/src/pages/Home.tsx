@@ -319,14 +319,18 @@ export default function Home() {
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(255,92,57,0.16),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(245,196,81,0.15),transparent_40%)]" />
               <div className="relative aspect-[16/9] w-full">
-                <img src="/alanh.jpeg" alt="Alan Silva" className="w-full h-full object-cover opacity-95" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="h-16 w-16 rounded-full bg-[#ff5c39] text-[#0b0909] flex items-center justify-center shadow-[0_20px_55px_rgba(255,92,57,0.45)]">
-                    <Play size={28} />
-                  </div>
-                </div>
-                <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-black/60 px-3 py-1 text-[11px] uppercase tracking-[0.22em] border border-white/10">
+                <video
+                  className="w-full h-full object-cover"
+                  poster="/alanh.jpeg"
+                  controls
+                  preload="metadata"
+                  playsInline
+                >
+                  <source src="/video-alan-ia.mp4" type="video/mp4" />
+                  Seu navegador não suporta a reprodução de vídeos.
+                </video>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="pointer-events-none absolute top-4 left-4 flex items-center gap-2 rounded-full bg-black/60 px-3 py-1 text-[11px] uppercase tracking-[0.22em] border border-white/10">
                   Assista antes de aplicar
                 </div>
               </div>
