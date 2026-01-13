@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050505;
+  --foreground: #ffffff;
+  --muted: #bdbdbd;
+  --muted-strong: #8a8a8a;
+  --accent: #ff4500;
+  --border: #222222;
+  --radius: 1.25rem;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+a {
+  color: inherit;
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .font-heading {
+    font-family: inherit;
+  }
+
+  .font-body {
+    font-family: inherit;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1200px;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}

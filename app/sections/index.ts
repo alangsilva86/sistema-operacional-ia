@@ -1,0 +1,12 @@
+export { HeroSection } from "@/app/sections/HeroSection";
+export { IcpSection } from "@/app/sections/IcpSection";
+export { LogosSection } from "@/app/sections/LogosSection";
+export { CaseStudiesSection } from "@/app/sections/CaseStudiesSection";
+export { DeliverablesSection } from "@/app/sections/DeliverablesSection";
+export { HowItWorksSection } from "@/app/sections/HowItWorksSection";
+export { AgendaSection } from "@/app/sections/AgendaSection";
+export { UrgencySection } from "@/app/sections/UrgencySection";
+export { PricingSection } from "@/app/sections/PricingSection";
+export { FaqSection } from "@/app/sections/FaqSection";
+export { FinalCtaSection } from "@/app/sections/FinalCtaSection";
+export { FooterSection } from "@/app/sections/FooterSection";
