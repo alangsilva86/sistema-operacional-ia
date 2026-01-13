@@ -12,11 +12,11 @@ const logos = [
 
 export function TrustBar() {
   return (
-    <section className="border-t border-white/5 bg-[#050b14]">
+    <section className="border-t border-white/5 bg-[#050505]">
       <div className="container py-10 flex flex-col gap-6">
-        <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-gray-500">
+        <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8A8A8A]">
           <Building2 size={14} />
-          Aplico e crio soluções diariamente nas seguintes empresas:
+          Empresas onde o metodo ja foi aplicado
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-7 gap-6 place-items-center">
           {logos.map((logo) => (

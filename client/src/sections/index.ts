@@ -1,0 +1,9 @@
+export { HeroSection } from "@/sections/HeroSection";
+export { IcpFilterSection } from "@/sections/IcpFilterSection";
+export { CaseStudiesSection } from "@/sections/CaseStudiesSection";
+export { DeliverablesSection } from "@/sections/DeliverablesSection";
+export { HowItWorksSection } from "@/sections/HowItWorksSection";
+export { UrgencySection } from "@/sections/UrgencySection";
+export { PricingSection } from "@/sections/PricingSection";
+export { FaqSection } from "@/sections/FaqSection";
+export { FinalCtaSection } from "@/sections/FinalCtaSection";

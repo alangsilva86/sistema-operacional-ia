@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -44,33 +43,33 @@
 }
 
 :root {
-  --primary: #ff5c39;
-  --primary-foreground: #0b0909;
-  --secondary: #f5c451;
-  --secondary-foreground: #0b0909;
-  --background: #050507;
-  --foreground: #f4f1ea;
-  --card: #0d0f16;
-  --card-foreground: #f4f1ea;
-  --popover: #0d0f16;
-  --popover-foreground: #f4f1ea;
-  --muted: #11131b;
-  --muted-foreground: #c8c3b8;
-  --accent: #101320;
-  --accent-foreground: #f4f1ea;
+  --primary: #ff4500;
+  --primary-foreground: #050505;
+  --secondary: #121212;
+  --secondary-foreground: #ffffff;
+  --background: #050505;
+  --foreground: #ffffff;
+  --card: #0b0b0b;
+  --card-foreground: #ffffff;
+  --popover: #0b0b0b;
+  --popover-foreground: #ffffff;
+  --muted: #101010;
+  --muted-foreground: #8a8a8a;
+  --accent: #111111;
+  --accent-foreground: #ffffff;
   --destructive: #d94b38;
   --destructive-foreground: #fff4ec;
-  --border: #1d202c;
-  --input: #1d202c;
-  --ring: #ff5c39;
-  --chart-1: #f5c451;
-  --chart-2: #ff5c39;
-  --chart-3: #f4f1ea;
-  --chart-4: #1d202c;
-  --chart-5: #11131b;
-  --radius: 0.75rem;
-  --sidebar: #050507;
-  --sidebar-foreground: #f4f1ea;
+  --border: #222222;
+  --input: #222222;
+  --ring: #ff4500;
+  --chart-1: #ffffff;
+  --chart-2: #8a8a8a;
+  --chart-3: #ff4500;
+  --chart-4: #222222;
+  --chart-5: #101010;
+  --radius: 1.25rem;
+  --sidebar: #050505;
+  --sidebar-foreground: #ffffff;
   --sidebar-primary: var(--secondary);
   --sidebar-primary-foreground: var(--secondary-foreground);
   --sidebar-accent: var(--accent);
@@ -85,7 +84,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "Manrope", "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -143,11 +142,11 @@
   }
 
   .font-heading {
-    font-family: "Sora", "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
   .font-body {
-    font-family: "Manrope", "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 }
 
