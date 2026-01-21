@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], display: "swap" });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Sistema Operacional - IA na Prática | Imersão para PMEs",
   description:
@@ -30,11 +35,33 @@ export const metadata: Metadata = {
     apple: "/favicon.svg",
   },
 };
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="pt-BR" className="bg-[#050505]">
-      <body className={`${inter.className} bg-[#050505] text-white antialiased`}>
+      <body
+        className={`${inter.className} bg-[#050505] text-white antialiased`}
+      >
         {children}
+
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-69MC50BTWC"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-69MC50BTWC');
+          `}
+        </Script>
+
         <Analytics />
       </body>
     </html>
