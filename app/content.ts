@@ -2,18 +2,18 @@ export const content = {
   checkoutUrl: "https://pay.kiwify.com.br/eeAM4On",
   ctaLabel: "Quero garantir minha vaga",
   header: {
-    left: "Turma presencial em Maringa",
+    left: "Turma presencial em Maringá",
     badge: "10 vagas"
   },
   hero: {
     title: "Crie a sua ferramenta com IA para sua empresa operar sem depender de pessoas-chave.",
     subtitle:
-      "Nao e curso. E implementacao guiada em 4 encontros (3 presenciais + 1 sessao online individual). Voce sai com pelo menos uma ferramenta personalizada criada para sua operacao.",
+      "Não é curso. É implementação guiada em 4 encontros (3 presenciais + 1 sessão online individual). Você sai com pelo menos uma ferramenta personalizada criada para sua operação.",
     bullets: [
-      "Para socios e gestores operacionais de PMEs",
-      "Voce sai com rotina, donos e automacao conectada a realidade",
+      "Para sócios e gestores operacionais de PMEs",
+      "Você sai com rotina, donos e automação conectada a realidade",
       "Sem hack. Sem teoria solta. Sistema rodando.",
-      "Risco Zero: 100% de reembolso ate o 2o encontro"
+      "Risco Zero: 100% de reembolso até o 2o encontro"
     ],
     ctaMicrocopy: "Somente 10 vagas presenciais.",
     secondaryLink: "Assistir 2 min antes de comprar (o que voce leva pronto + como funciona).",
