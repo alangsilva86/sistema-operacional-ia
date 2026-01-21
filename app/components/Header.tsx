@@ -3,16 +3,13 @@ import { content } from "@/app/content";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#050505]/80 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0b0f18]/70 backdrop-blur-xl">
       <div className="container flex items-center justify-between py-4">
-        <div className="flex items-center gap-3 text-sm text-white">
-          <span className="text-xs uppercase tracking-[0.22em] text-[#8A8A8A]">{content.header.left}</span>
-          <span className="rounded-full border border-[#222] px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-white">
-            {content.header.badge}
-          </span>
-        </div>
+        <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-slate-200">
+          {content.hero.tag}
+        </span>
         <div className="hidden sm:flex">
-          <CtaButton label={content.ctaLabel} baseUrl={content.checkoutUrl} location="hero" />
+          <CtaButton label={content.hero.primaryCta} baseUrl={content.checkoutUrl} location="header" />
         </div>
       </div>
     </header>

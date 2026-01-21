@@ -1,198 +1,162 @@
 export const content = {
   checkoutUrl: "https://pay.kiwify.com.br/eeAM4On",
-  ctaLabel: "Quero garantir minha vaga",
-  header: {
-    left: "Turma presencial em Maringá",
-    badge: "10 vagas"
-  },
   hero: {
-    title: "Crie a sua ferramenta com IA para sua empresa operar sem depender de pessoas-chave.",
+    tag: "🔒 Turma Presencial Exclusiva em Maringá",
+    title: 'Instale um "Cérebro Digital" na sua empresa e pare de apagar incêndio todo dia.',
     subtitle:
-      "Não é curso. É implementação guiada em 4 encontros (3 presenciais + 1 sessão online individual). Você sai com pelo menos uma ferramenta personalizada criada para sua operação.",
-    bullets: [
-      "Para sócios e gestores operacionais de PMEs",
-      "Você sai com rotina, donos e automação conectada a realidade",
-      "Sem hack. Sem teoria solta. Sistema rodando.",
-      "Risco Zero: 100% de reembolso até o 2o encontro"
-    ],
-    ctaMicrocopy: "Somente 10 vagas presenciais.",
-    secondaryLink: "Assistir 2 min antes de comprar (o que você leva pronto + como funciona).",
-    video: {
-      src: "/video-alan-ia.mp4",
-      poster: "/alanh.jpeg",
-      caption: "Em 2 minutos: o que você leva pronto + como funciona."
-    }
-  },
-  icp: {
-    title: "Para quem é / Para quem não é",
-    yes: [
-      "Sócio ou gestor operacional de PME",
-      "Quer autonomia e previsibilidade",
-      "Tem processos repetitivos (vendas/atendimento/rotina)",
-      "Topa rotina, donos e dados",
-      "Quer algo rodando, não conteudo"
-    ],
-    no: [
-      "Curioso por hacks rápidos",
-      "Quer milagre sem processo",
-      "Não quer medir nada",
-      "Quer terceirizar responsabilidade para IA",
-      "Não tem tempo para aplicar"
-    ]
+      "Transforme processos manuais, atendimento lento e dados soltos em um Sistema Operacional Autônomo em apenas 3+1(individual) encontros. Sem precisar programar uma linha de código.",
+    primaryCta: "QUERO BLINDAR MINHA OPERAÇÃO",
+    secondaryCta: "Ver exemplos de IA aplicada",
+    supporting: "✅ Implementação guiada passo a passo • 🛡️ Risco Zero: Garantia total até o 2º encontro."
   },
   logos: {
-    title: "Experiência aplicada em operações reais.",
+    title: "Empresas que confiam",
     items: [
-      { name: "Fatorcard", src: "/fatorcard.png" },
       { name: "Acessus", src: "/acessus.png" },
-      { name: "Prospera", src: "/prospera.png" },
-      { name: "Opta", src: "/opta.png" },
-      { name: "Flycost", src: "/flycost.png" },
       { name: "Dafnee", src: "/dafnee.png" },
-      { name: "Momentum", src: "/momentum.png" }
+      { name: "Fatorcard", src: "/fatorcard.png" },
+      { name: "Flycost", src: "/flycost.png" },
+      { name: "Momentum", src: "/momentum.png" },
+      { name: "Opta", src: "/opta.png" },
+      { name: "Paramettrus", src: "/paramettrus.png" },
+      { name: "Prospera", src: "/prospera.png" }
     ]
   },
-  cases: {
-    title: "Cases Reais",
-    badge: "Exemplo ilustrativo",
-    items: [
-      {
-        company: "Acessus",
-        title: "Mais agendamentos com menos conversa Inútil ",
-        before: "Leads chegavam e morriam por demora / falta de qualificação",
-        after: "Triagem automática + encaminhamento com contexto para o humano",
-        period: "Piloto em 2-4 semanas",
-        installed: "Agente de Triagem no WhatsApp + tags + registro no CRM",
-        note: "Depende de volume de lead e disciplina no CRM"
-      },
-      {
-        company: "Fatorcard",
-        title: "Dashboard e campanha de incentivos",
-        before: "Falta de controle e motivação comercial",
-        after: "Acompanhamento e competição em tempo real",
-        period: "Piloto em 2-6 semanas",
-        installed: "Campanha de incentivo e acompanhamento comercial",
-        note: "Não substitui humano: reduz atrito e acelera ciclo"
-      },
-      {
-        company: "Opta",
-        title: "Menos retrabalho com fonte única da verdade",
-        before: "Informação espalhada em mensagens/planilhas",
-        after: "Base consultável + playbooks + dono por rotina",
-        period: "Piloto em 2-4 semanas",
-        installed: "Cérebro (base) + processos + painel minimo",
-        note: "Ganho cresce com adesão do time"
-      },
-      {
-        company: "Flycost",
-        title: "Decisão mais rápida com painel mínimo",
-        before: "Dados espalhados e conciliação lenta",
-        after: "5 KPIs com donos + alertas simples",
-        period: "Piloto em 2-4 semanas",
-        installed: "Dashboard + ritual semanal + donos",
-        note: "Sem ritual, dashboard vira enfeite"
-      }
-    ]
-  },
-  deliverables: {
-    title: "O que vamos instalar",
-    subtitle: "Ferramenta prática para tirar a operação do improviso.",
-    items: [
-      {
-        title: "Agente de Triagem Comercial (WhatsApp -> CRM)",
-        outputs: ["Perguntas de qualificação + tags", "Registro no CRM e encaminhamento"],
-        timing: "Primeira versão no Encontro 3",
-        location: "WhatsApp + CRM/Planilha"
-      },
-      {
-        title: "Motor de Reativação de Base (follow-up automatico)",
-        outputs: ["Sequência curta + gatilhos", "Reativação de proposta parada"],
-        timing: "Encontro 3",
-        location: "WhatsApp/E-mail + CRM/Planilha"
-      },
-      {
-        title: "Dashboard de Controle (5 KPIs + alertas simples)",
-        outputs: ["5 números para gestão", "Dono por KPI e rotina de leitura"],
-        timing: "Encontro 3",
-        location: "Planilha/Painel Web"
-      }
-    ]
-  },
-  howItWorks: {
-    title: "O que voce recebe + como funciona",
+  pain: {
+    title: "O sintoma de uma empresa sem Sistema Operacional:",
     cards: [
-      { label: "Local", value: "Maringá (presencial) + 1 sessão online individual" },
-      { label: "Turma", value: "10 vagas" },
-      { label: "Duração", value: "4 encontros" },
-      { label: "Para quem", value: "Sócios e gestores operacionais" },
-      { label: "O que você recebe", value: "Aprende a usar IA de forma produtiva e util" }
-    ]
+      {
+        title: '❌ A "Dona-Dependência":',
+        description:
+          "Se você (ou seu gerente) não estiver olhando, a coisa não anda. Tudo depende de uma pessoa-chave."
+      },
+      {
+        title: "❌ Dados no Limbo:",
+        description: "Vendas anotadas em papel, planilhas que ninguém atualiza e decisões tomadas no \"feeling\"."
+      },
+      {
+        title: "❌ Equipe Lenta:",
+        description:
+          "Funcionários caros gastando horas em tarefas repetitivas que um robô faria em segundos (e sem errar)."
+      },
+      {
+        title: "❌ Atendimento Reativo:",
+        description: "Leads esfriando no WhatsApp porque a triagem manual demora demais."
+      }
+    ],
+    transition: "A IA não é sobre 'futuro'. É sobre parar de sangrar dinheiro com ineficiência hoje."
   },
-  agenda: {
-    title: "Como funcionam os 4 encontros",
-    items: [
+  solution: {
+    title: "Não é um curso. É uma instalação.",
+    subtitle: "A maioria ensina \"prompts soltos\". Nós instalamos um processo. Usamos o Método Momentum (P-P-S):",
+    steps: [
       {
-        title: "Diagnóstico e blueprint",
-        bullets: ["Definir objetivo (comecar pelo final)", "Mapear gargalos e vazamentos", "Base de conhecimento inicial"]
+        title: "👤 PESSOAS→PROMPT:",
+        description: "Definimos quem executa, o papel de cada um e organizamos o conhecimento."
       },
       {
-        title: "Construção rápida (Ferramenta 1.0)",
-        bullets: ["Escolher ferramenta e fluxo inicial", "Configurar IA e rotina base", "Primeira versão rodando"]
+        title: "⚙️ PROCESSOS:",
+        description: "Desenhamos o fluxo (o que acontece depois do quê)."
       },
       {
-        title: "Automação e integrações reais",
-        bullets: ["Conectar WhatsApp/E-mail/Planilha", "Gatilhos e rotas simples", "Operação funcionando no dia a dia"]
+        title: "🤖 SISTEMAS (IA):",
+        description: "Só agora a automação entra para escalar o que já funciona."
+      }
+    ],
+    deliverablesTitle: "O que você pode instalar (Entregáveis Reais):",
+    deliverables: [
+      {
+        title: "📱 Agente de Triagem (WhatsApp):",
+        description: "Responde, qualifica e agenda sem humano."
       },
       {
-        title: "Consultoria individual (online)",
-        bullets: ["Ajustes finos e priorização", "Plano de continuidade", "Checklist final para manter vivo"]
+        title: "📊 Dashboard de Comando:",
+        description: "5 KPIs vitais atualizados automaticamente."
+      },
+      {
+        title: "🔄 Motor de Reativação:",
+        description: "O robô que busca clientes antigos e traz de volta para o jogo."
       }
     ]
   },
-  urgency: {
-    title: "CAC tende a subir. Eficiência virou defesa de margem.",
-    text:
-      "Midia mais cara e operação mais complexa punem processo manual. Automação com método não é luxo: é proteção de margem."
+  proof: {
+    title: "Quem já instalou o Sistema:",
+    cases: [
+      {
+        name: "Case 1: Opta (Crédito)",
+        before: "Antes: Vendas em papel, erro de digitação, comissão errada.",
+        after: "Depois: Fluxo 100% digital, zero erro, comissão automática.",
+        result: "Resultado: *Dobrou seu faturamento em 6 meses (100% de crescimento)*"
+      },
+      {
+        name: "Case 2: Flycost (Serviços)",
+        before: "Antes: Caminhão de dinheiro gasto em desenvolvimento, produto obsoleto antes de lançar.",
+        after: "Depois: MVP rodando com WEb e aplicativo ja em mais de 20 aeronaves.",
+        result: "Resultado: Valuation em MILHÕES DE R$ Reais"
+      }
+    ],
+    mentorTitle: "Sobre o Mentor:",
+    mentorName: "Alan | Founder Momentum",
+    mentorLines: [
+      "Não sou \"guru de palco\". Sou operador de bastidor.",
+      "Sócio de diversas startups (Fintech, Aviação, Seguros).",
+      "Criei este método porque precisava dele para minhas próprias operacões sobreviverem e escalarem. Agora, vou abrir a caixa preta com você."
+    ]
   },
-  pricing: {
-    title: "Preço transparente, sem surpresa",
-    oneTime: "R$ 1.997",
-    installments: { count: 12, value: 200, total: 2400 },
-    note: "Parcelamento inclui taxas do meio de pagamento.",
-    guaranteeTitle: "Risco Zero",
+  journey: {
+    title: "4 Encontros para mudar sua realidade:",
+    items: [
+      {
+        title: "📍 Encontro 1 P: O Diagnóstico",
+        description: "Mapeamento dos gargalos e vazamentos de dinheiro na sua operação atual."
+      },
+      {
+        title: "🛠️ Encontro 2 P: A Construção",
+        description: "Escolha das ferramentas e configuração da \"V 1.0\" do seu sistema."
+      },
+      {
+        title: "🚀 Encontro 3 S: A Automação",
+        description: "Conectando comunicação, CRM e Planilhas. O sistema ganha vida."
+      },
+      {
+        title: "💎 Encontro 4: O Refinamento (Individual)",
+        description: "Ajustes finos e plano de longo prazo para você e sua empresa voarem."
+      }
+    ]
+  },
+  offer: {
+    title: "O investimento para blindar sua operação:",
+    anchor: "De: R$ 15.000 (Valor de uma consultoria individual)",
+    price: "Por: 12x de R$ 200,00 (ou R$ 1.997 à vista)",
+    includedTitle: "O que está incluso:",
+    includedItems: [
+      "✅ 3 Encontros Presenciais em Maringá.",
+      "✅ 1 Sessão de Consultoria Individual e personalizada.",
+      "✅ Acesso vitalício aos templates e prompts prontos.",
+      "✅ Networking com grupo seleto de empresários locais.",
+      "✅ Gravação e todo material utilizado na integra."
+    ],
+    guaranteeTitle: "🔒 GARANTIA DE RISCO ZERO:",
     guaranteeText:
-      "Reembolso de 100% ate o 2º encontro. Se você aplicar e não enxergar valor prático, devolvemos.",
-    microcopy: "10 vagas. Turma presencial em Maringá."
+      "Participe do 1º e do 2º encontro. Se achar que não valeu cada centavo, eu devolvo 100% do seu dinheiro. Sem letras miúdas. O risco é todo meu.",
+    cta: "QUERO MINHA VAGA AGORA",
+    seats: "Restam apenas 7 vagas."
   },
   faq: {
-    title: "Perguntas diretas",
+    title: "FAQ (Quebra de Objeções)",
     items: [
       {
         q: "Preciso saber programar?",
-        a: "Não. Você precisa aplicar. A imersão e guiada e você sai com entregáveis rodando."
+        a: "Não. Usamos ferramentas \"No-Code\" (sem código). É arrastar e soltar. Se você sabe usar o Excel, você sabe fazer isso."
       },
       {
-        q: "Serve para meu nicho?",
-        a: "Serve para operações com rotina repetitiva (vendas, atendimento, follow-up, processos). Se sua empresa vive de improviso, isso e para você."
+        q: "Serve para o meu nicho?",
+        a: "Se você tem clientes, processos repetitivos e equipe, serve. O método é universal, a aplicação é personalizada."
       },
       {
-        q: "O que exatamente eu levo pronto?",
-        a: "Ferramenta prática e útil no seu dia a dia + o conhecimento prático de como usar IA na prática."
-      },
-      {
-        q: "E se eu não conseguir aplicar?",
-        a: "Você sai com blueprint e checklist, mas sem execução não existe resultado. A imersão e feita para construir e rodar ainda durante os encontros."
-      },
-      {
-        q: "Como funciona a garantia?",
-        a: "Até o 2º encontro: se você aplicar e não enxergar valor prático, reembolso total. Sem burocracia."
+        q: "E se eu não puder ir presencialmente?",
+        a: "Esta turma é exclusiva presencial para garantir o \"mão na massa\". Se não puder vir a Maringá, me acompanhe nas redes sociais."
       }
     ]
-  },
-  footer: {
-    organization: "Organização: [Nome/CNPJ]",
-    contact: "Contato: WhatsApp + e-mail",
-    refundPolicy:
-      "Politica de reembolso: você pode solicitar devolução integral ate o 2º encontro, desde que tenha participado e aplicado as orientações."
   }
 };

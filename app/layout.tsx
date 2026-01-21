@@ -26,14 +26,14 @@ export const metadata: Metadata = {
     images: ["/alanh.jpeg"],
   },
   icons: {
-    icon: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: [{ url: "/momentum-negativo 2.png", type: "image/png" }],
+    apple: [{ url: "/momentum-negativo 2.png", type: "image/png" }],
   },
 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className="bg-[#050505]">
-      <body className={`${inter.className} bg-[#050505] text-white antialiased`}>
+    <html lang="pt-BR" className="bg-[#06070d]">
+      <body className={`${inter.className} bg-[#06070d] text-slate-100 antialiased`}>
         {children}
         <Analytics />
       </body>

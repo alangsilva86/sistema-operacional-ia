@@ -31,7 +31,7 @@ export function CtaButton({ label, baseUrl, location, className = "", fullWidth 
       target="_blank"
       rel="noreferrer noopener"
       onClick={handleClick}
-      className={`inline-flex items-center justify-center gap-2 rounded-full bg-[#FF4500] px-7 py-4 text-base font-semibold text-[#050505] shadow-[0_18px_45px_rgba(255,69,0,0.35)] transition-all duration-200 hover:bg-[#ff5f26] focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-[#FF4500] active:scale-[0.98] ${
+      className={`relative inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-300 via-sky-300 to-blue-400 px-7 py-4 text-base font-semibold text-slate-950 shadow-[0_18px_45px_rgba(56,189,248,0.35)] transition-all duration-200 before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-gradient-to-r before:from-cyan-300/40 before:via-sky-300/40 before:to-blue-400/40 before:opacity-0 before:blur-2xl before:transition-opacity before:content-[''] hover:translate-y-[-1px] hover:shadow-[0_24px_55px_rgba(56,189,248,0.45)] hover:before:opacity-100 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-cyan-300 active:translate-y-0 active:scale-[0.98] ${
         fullWidth ? "w-full" : ""
       } ${className}`}
     >

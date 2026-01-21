@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050505;
-  --foreground: #ffffff;
-  --muted: #bdbdbd;
-  --muted-strong: #8a8a8a;
-  --accent: #ff4500;
-  --border: #222222;
+  --background: #06070d;
+  --foreground: #f8fafc;
+  --muted: #94a3b8;
+  --muted-strong: #64748b;
+  --accent: #22d3ee;
+  --border: rgba(255, 255, 255, 0.08);
   --radius: 1.25rem;
 }
 
@@ -21,6 +21,26 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
+  font-feature-settings: "ss01" 1, "ss02" 1, "cv01" 1;
+}
+
+@keyframes logo-ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-ticker {
+  animation: logo-ticker 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-ticker {
+    animation: none;
+  }
 }
 
 a {
