@@ -8,29 +8,37 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 export const metadata: Metadata = {
-  title: "Sistema Operacional - IA na Prática | Imersão para PMEs",
+  title: "Sistema Operacional de IA | Tire sua empresa do manual",
   description:
-    "Imersão presencial para sócios e gestores de PMEs instalarem triagem comercial, reativação de base e dashboard com IA.",
-  metadataBase: new URL("https://sua-url.com"),
+    "Workshop Presencial em Maringá. Instale processos autônomos, agentes de triagem e dashboards de gestão em 4 encontros. Com Alan (Momentum).",
+  // IMPORTANTE: Substitua pela URL final de produção (vercel) assim que tiver
+  metadataBase: new URL("https://sistema-operacional-ia.vercel.app"),
   openGraph: {
-    title: "Sistema Operacional - IA na Prática",
-    description:
-      "Imersão presencial para sócios e gestores de PMEs instalarem triagem comercial, reativação de base e dashboard com IA.",
-    url: "https://sua-url.com/sistema-operacional-ia",
+    title: "A IA não vai te substituir (Mas quem usa vai)",
+    description: "Pare de apagar incêndio. Instale um Sistema Operacional de IA na sua empresa em 4 encontros práticos.",
+    url: "https://sistema-operacional-ia.vercel.app",
+    siteName: "Sistema Operacional IA",
+    locale: "pt_BR",
     type: "website",
-    images: [{ url: "/alanh.jpeg" }],
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Sistema Operacional de IA - Dashboard Preview"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sistema Operacional - IA na Prática",
-    description:
-      "Imersão presencial para sócios e gestores de PMEs instalarem triagem comercial, reativação de base e dashboard com IA.",
-    images: ["/alanh.jpeg"],
+    title: "A IA não vai te substituir (Mas quem usa vai)",
+    description: "Deixe de ser obsoleto em 4 encontros. Workshop presencial em Maringá.",
+    images: ["/og.png"]
   },
   icons: {
     icon: [{ url: "/momentum-negativo 2.png", type: "image/png" }],
-    apple: [{ url: "/momentum-negativo 2.png", type: "image/png" }],
-  },
+    apple: [{ url: "/momentum-negativo 2.png", type: "image/png" }]
+  }
 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
