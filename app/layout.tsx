@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 
 import { ConciergeWidget } from "@/app/components/ConciergeWidget";
 
@@ -45,6 +46,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-BR" className="bg-[#06070d]">
       <body className={`${inter.className} bg-[#06070d] text-slate-100 antialiased`}>
         {children}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-69MC50BTWC"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-69MC50BTWC');
+          `}
+        </Script>
         <ConciergeWidget />
         <Analytics />
       </body>
