@@ -2,12 +2,13 @@ export const content = {
   checkoutUrl: "https://pay.kiwify.com.br/eeAM4On",
   hero: {
     tag: "🔒 Turma Presencial Exclusiva em Maringá",
+    badge: "🛡️ Risco Zero: Garantia total até o 2º encontro.",
     title: 'Instale um "Cérebro Digital" na sua empresa e pare de apagar incêndio todo dia.',
     subtitle:
-      "Transforme processos manuais, atendimento lento e dados soltos em um Sistema Operacional Autônomo em apenas 3+1(individual) encontros. Sem precisar programar uma linha de código.",
-    primaryCta: "QUERO BLINDAR MINHA OPERAÇÃO",
+      "Use Inteligência Artificial para transformar processos manuais, atendimento lento e dados soltos em um Sistema Operacional Autônomo em 3+1(individual) encontros. \nSem precisar programar uma linha de código.",
+    primaryCta: "TIRAR MINHA EMPRESA DO MANUAL",
     secondaryCta: "Ver exemplos de IA aplicada",
-    supporting: "✅ Implementação guiada passo a passo • 🛡️ Risco Zero: Garantia total até o 2º encontro."
+    supporting: "✅ Implementação guiada passo a passo"
   },
   logos: {
     title: "Empresas que confiam",
@@ -105,27 +106,32 @@ export const content = {
   },
   journey: {
     title: "4 Encontros para mudar sua realidade:",
+    location: "📍 Local: Átrium Centro Empresarial (Av. Pedro Taques, 294 - Sala 31, Maringá - PR)",
     items: [
       {
-        title: "📍 Encontro 1 P: O Diagnóstico",
-        description: "Mapeamento dos gargalos e vazamentos de dinheiro na sua operação atual."
+        theme: "Diagnóstico & Mapa de Gargalos",
+        date: "Sábado, 21/02 às 10:00",
+        badgeTone: "blue"
       },
       {
-        title: "🛠️ Encontro 2 P: A Construção",
-        description: "Escolha das ferramentas e configuração da \"V 1.0\" do seu sistema."
+        theme: "Ferramentas & Fluxo V1.0",
+        date: "Quarta, 25/02 às 18:30",
+        badgeTone: "purple"
       },
       {
-        title: "🚀 Encontro 3 S: A Automação",
-        description: "Conectando comunicação, CRM e Planilhas. O sistema ganha vida."
+        theme: "Integração WhatsApp & CRM",
+        date: "Sábado, 28/02 às 10:00",
+        badgeTone: "green"
       },
       {
-        title: "💎 Encontro 4: O Refinamento (Individual)",
-        description: "Ajustes finos e plano de longo prazo para você e sua empresa voarem."
+        theme: "Refinamento Individual",
+        date: "Agendamento Individual",
+        badgeTone: "orange"
       }
     ]
   },
   offer: {
-    title: "O investimento para blindar sua operação:",
+    title: "O investimento para tirar sua empresa do manual:",
     anchor: "De: R$ 15.000 (Valor de uma consultoria individual)",
     price: "Por: 12x de R$ 200,00 (ou R$ 1.997 à vista)",
     includedTitle: "O que está incluso:",
@@ -139,7 +145,7 @@ export const content = {
     guaranteeTitle: "🔒 GARANTIA DE RISCO ZERO:",
     guaranteeText:
       "Participe do 1º e do 2º encontro. Se achar que não valeu cada centavo, eu devolvo 100% do seu dinheiro. Sem letras miúdas. O risco é todo meu.",
-    cta: "QUERO MINHA VAGA AGORA",
+    cta: "TIRAR MINHA EMPRESA DO MANUAL",
     seats: "Restam apenas 7 vagas."
   },
   faq: {

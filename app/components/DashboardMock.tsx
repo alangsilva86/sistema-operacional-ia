@@ -40,7 +40,7 @@ export function DashboardMock() {
             {shimmer.map((value, index) => (
               <div key={`row-${value}`} className="h-1.5 w-full rounded-full bg-white/10">
                 <motion.span
-                  className="block h-full rounded-full bg-gradient-to-r from-emerald-300/70 via-emerald-400/70 to-emerald-200/70"
+                  className="block h-full rounded-full bg-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.4)]"
                   initial={{ width: "0%" }}
                   whileInView={{ width: `${Math.round(value * 100)}%` }}
                   viewport={{ once: true, amount: 0.6 }}
@@ -60,7 +60,7 @@ export function DashboardMock() {
             {bars.map((value, index) => (
               <motion.div
                 key={`bar-${value}`}
-                className="w-full rounded-full bg-blue-500 shadow-lg shadow-blue-500/20"
+                className="w-full rounded-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.4)]"
                 initial={{ height: "18%" }}
                 whileInView={{ height: `${Math.round(value * 100)}%` }}
                 viewport={{ once: true, amount: 0.6 }}

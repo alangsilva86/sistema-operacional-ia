@@ -3,12 +3,19 @@ import { FadeIn, Stagger, StaggerItem } from "@/app/components/Motion";
 import { Section } from "@/app/components/Section";
 import { content } from "@/app/content";
 
+const guaranteeHighlight = "100% do seu dinheiro";
+
 export function OfferSection() {
   const priceLabel = content.offer.price.startsWith("Por:") ? "Por:" : "";
   const priceValue = content.offer.price.replace("Por:", "").trim();
   const [installmentsRaw, cashRaw] = priceValue.split("(ou");
   const installments = installmentsRaw.trim();
   const cash = cashRaw ? cashRaw.replace(")", "").trim() : "";
+  const guaranteeParts = content.offer.guaranteeText.split(guaranteeHighlight);
+  const hasGuaranteeHighlight = content.offer.guaranteeText.includes(guaranteeHighlight);
+  const installmentParts = installments.split("de");
+  const installmentPrefix = installmentParts.length > 1 ? `${installmentParts[0].trim()} de` : "";
+  const installmentValue = installmentParts.length > 1 ? installmentParts.slice(1).join("de").trim() : installments;
 
   return (
     <Section id="oferta">
@@ -19,10 +26,15 @@ export function OfferSection() {
 
         <Stagger className="grid gap-6 lg:grid-cols-3">
           <StaggerItem className="rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur">
-            <p className="text-sm text-slate-600 line-through decoration-slate-600">{content.offer.anchor}</p>
+            <p className="text-sm text-slate-400 line-through decoration-slate-400">{content.offer.anchor}</p>
             <div className="mt-4 space-y-2">
               {priceLabel ? <p className="text-xs text-slate-400">{priceLabel}</p> : null}
-              <p className="text-4xl font-bold tracking-tight text-white md:text-5xl">{installments}</p>
+              <p className="flex flex-wrap items-baseline gap-2 text-4xl tracking-tight text-white md:text-5xl">
+                {installmentPrefix ? (
+                  <span className="text-2xl font-semibold text-slate-200 md:text-3xl">{installmentPrefix}</span>
+                ) : null}
+                <span className="font-bold">{installmentValue}</span>
+              </p>
               {cash ? <p className="text-base text-slate-400">{cash}</p> : null}
             </div>
           </StaggerItem>
@@ -37,9 +49,23 @@ export function OfferSection() {
         </Stagger>
 
         <FadeIn>
-          <div className="rounded-[28px] border border-white/10 bg-gradient-to-r from-cyan-300/10 via-white/5 to-blue-500/10 p-6 backdrop-blur">
-            <p className="text-sm font-semibold text-white">{content.offer.guaranteeTitle}</p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-300">{content.offer.guaranteeText}</p>
+          <div className="rounded-[28px] border border-emerald-400/25 bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.25),transparent_55%),linear-gradient(120deg,rgba(16,185,129,0.12),rgba(255,255,255,0.04),rgba(56,189,248,0.12))] p-6 shadow-[0_0_50px_rgba(16,185,129,0.12)] backdrop-blur">
+            <div className="space-y-3">
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-100">
+                {content.offer.guaranteeTitle}
+              </p>
+              <p className="text-sm leading-relaxed text-slate-200">
+                {hasGuaranteeHighlight ? (
+                  <>
+                    {guaranteeParts[0]}
+                    <span className="font-semibold text-emerald-100">{guaranteeHighlight}</span>
+                    {guaranteeParts.slice(1).join(guaranteeHighlight)}
+                  </>
+                ) : (
+                  content.offer.guaranteeText
+                )}
+              </p>
+            </div>
           </div>
         </FadeIn>
 

@@ -6,3 +6,4 @@ export { ProofSection } from "@/app/sections/ProofSection";
 export { JourneySection } from "@/app/sections/JourneySection";
 export { OfferSection } from "@/app/sections/OfferSection";
 export { FaqSection } from "@/app/sections/FaqSection";
+export { ConciergeSection } from "@/app/sections/ConciergeSection";

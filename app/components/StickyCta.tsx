@@ -9,7 +9,7 @@ export function StickyCta() {
       <div className="container flex flex-col gap-2 py-3">
         <span className="text-xs text-slate-200">{content.offer.seats}</span>
         <CtaButton
-          label="Blindar Operação"
+          label={content.offer.cta}
           baseUrl={content.checkoutUrl}
           location="sticky"
           fullWidth

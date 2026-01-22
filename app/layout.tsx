@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 
+import { ConciergeWidget } from "@/app/components/ConciergeWidget";
+
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
@@ -35,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-BR" className="bg-[#06070d]">
       <body className={`${inter.className} bg-[#06070d] text-slate-100 antialiased`}>
         {children}
+        <ConciergeWidget />
         <Analytics />
       </body>
     </html>

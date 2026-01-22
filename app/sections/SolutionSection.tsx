@@ -17,13 +17,16 @@ export function SolutionSection() {
         </FadeIn>
 
         <Stagger className="grid gap-6 md:grid-cols-3">
-          {content.solution.steps.map((step) => (
+          {content.solution.steps.map((step, index) => (
             <StaggerItem
               key={step.title}
-              className="rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur"
+              className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur"
             >
               <p className="text-sm font-semibold text-white">{step.title}</p>
               <p className="mt-3 text-sm leading-relaxed text-slate-400">{step.description}</p>
+              <span className="pointer-events-none absolute bottom-4 right-4 text-9xl font-black text-white/5">
+                {String(index + 1).padStart(2, "0")}
+              </span>
             </StaggerItem>
           ))}
         </Stagger>

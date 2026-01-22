@@ -9,7 +9,8 @@ import {
   OfferSection,
   PainSection,
   ProofSection,
-  SolutionSection
+  SolutionSection,
+  ConciergeSection
 } from "@/app/sections";
 
 export default function HomePage() {
@@ -28,7 +29,14 @@ export default function HomePage() {
         <JourneySection />
         <OfferSection />
         <FaqSection />
+        <ConciergeSection />
       </main>
+      <footer className="border-t border-white/10 bg-[#05060b]">
+        <div className="container flex flex-col items-center gap-2 py-10 text-center text-xs text-slate-400">
+          <p>Momentum Aceleradora de Negócios | CNPJ 56.170.296/0001-43</p>
+          <p>Maringá - PR</p>
+        </div>
+      </footer>
       <StickyCta />
     </div>
   );
