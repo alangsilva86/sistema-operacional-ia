@@ -78,15 +78,7 @@ export function ConciergeWidget() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen]);
-  
-  const trackInterest = (trigger: string) => {
-    if (typeof window !== "undefined" && window.gtag) {
-      window.gtag("event", "interest_conversation", {
-        trigger,
-        page_path: window.location.pathname
-      });
-    }
-  };
+
 
 
   const whatsappUrl = useMemo(() => {
@@ -124,7 +116,7 @@ export function ConciergeWidget() {
     setTimeout(() => {
       window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     }, 150);
-    
+
     setIsOpen(false);
     setForm(initialForm);
     setErrors({});
