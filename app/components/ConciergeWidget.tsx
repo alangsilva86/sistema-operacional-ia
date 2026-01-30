@@ -157,7 +157,12 @@ export function ConciergeWidget() {
               <motion.button
                 type="button"
                 onClick={() => {
-                  trackInterest("floating_button");
+                  try {
+                    trackInterest("floating_button");
+                  } catch (error) {
+                    // eslint-disable-next-line no-console
+                    console.warn("trackInterest failed:", error);
+                  }
                   setIsOpen(true);
                 }}
                 className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg shadow-blue-600/30 transition-transform duration-200 hover:scale-110 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-400"

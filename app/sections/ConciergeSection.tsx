@@ -29,8 +29,14 @@ export function ConciergeSection() {
             <button
               type="button"
               onClick={() => {
-                trackInterest("hero_button");
-                window.dispatchEvent(new Event("concierge:open"));
+                try {
+                  trackInterest("hero_button");
+                } catch (error) {
+                  // não bloquear o fluxo principal se analytics falhar
+                  // eslint-disable-next-line no-console
+                  console.warn("trackInterest failed:", error);
+                }
+                window.dispatchEvent(new CustomEvent("concierge:open", { detail: { location: "post-faq" } }));
               }}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/30 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-blue-600/40 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-400"
             >
