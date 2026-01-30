@@ -31,3 +31,17 @@ export function getCheckoutUrl(baseUrl: string) {
   });
   return url.toString();
 }
+
+export function trackInterest(trigger: string) {
+  trackEvent("interest_conversation", {
+    trigger,
+    page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
+  });
+}
+
+export function trackWhatsappStart(source: string = "concierge") {
+  trackEvent("start_whatsapp_conversation", {
+    source,
+    page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
+  });
+}
