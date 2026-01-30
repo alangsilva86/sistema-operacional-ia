@@ -30,7 +30,7 @@ export function ConciergeSection() {
               type="button"
               onClick={() => {
                 trackInterest("hero_button");
-                handleOpen();
+                window.dispatchEvent(new Event("concierge:open"));
               }}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/30 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-blue-600/40 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-400"
             >
