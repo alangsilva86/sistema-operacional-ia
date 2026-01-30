@@ -3,15 +3,17 @@ export const content = {
   hero: {
     tag: "🔒 Turma Presencial Exclusiva em Maringá",
     badge: "🛡️ Risco Zero: Garantia total até o 2º encontro.",
-    title: 'Instale um "Cérebro Digital" na sua empresa e pare de apagar incêndio todo dia.',
+    title: "CRIE SUAS PRÓPRIAS FERRAMENTAS COM IA, SEM SABER PROGRAMAR.",
     subtitle:
-      "Use Inteligência Artificial para transformar processos manuais, atendimento lento e dados soltos em um Sistema Operacional Autônomo em 3+1(individual) encontros. \nSem precisar programar uma linha de código.",
-    primaryCta: "TIRAR MINHA EMPRESA DO MANUAL",
-    secondaryCta: "Ver exemplos de IA aplicada",
-    supporting: "✅ Implementação guiada passo a passo"
+      "Em 4 encontros, você vai montar automações que organizam dados, atendem clientes e cobram pagamentos no piloto automático. A plataforma é sua. O controle é seu.",
+    primaryCta: "PARAR DE DEPENDER DE TERCEIROS ↗",
+    secondaryCta: "Diagnóstico Gratuito IA",
+    supporting: "",
+    microText: "⚠️ Não é curso teórico. É mão na massa."
   },
   logos: {
     title: "Empresas que confiam",
+    intro: "O método que gerencia operações críticas em múltiplos setores:",
     items: [
       { name: "Acessus", src: "/acessus.png" },
       { name: "Dafnee", src: "/dafnee.png" },
@@ -24,59 +26,53 @@ export const content = {
     ]
   },
   pain: {
-    title: "O sintoma de uma empresa sem Sistema Operacional:",
+    title: "A AUDITORIA FORENSE: ONDE VOCÊ ESTÁ PERDENDO DINHEIRO?",
     cards: [
       {
-        title: '❌ A "Dona-Dependência":',
-        description:
-          "Se você (ou seu gerente) não estiver olhando, a coisa não anda. Tudo depende de uma pessoa-chave."
+        title: "Bombeiro de Luxo",
+        description: "Você é interrompido a cada 10 minutos. Trabalha PARA a empresa, não ela para você."
       },
       {
-        title: "❌ Dados no Limbo:",
-        description: "Vendas anotadas em papel, planilhas que ninguém atualiza e decisões tomadas no \"feeling\"."
+        title: "Taxa Invisível",
+        description: "Estima-se que você paga 18% do faturamento em retrabalho e erro humano."
       },
       {
-        title: "❌ Equipe Lenta:",
-        description:
-          "Funcionários caros gastando horas em tarefas repetitivas que um robô faria em segundos (e sem errar)."
-      },
-      {
-        title: "❌ Atendimento Reativo:",
-        description: "Leads esfriando no WhatsApp porque a triagem manual demora demais."
+        title: "Dependência de Heróis",
+        description: "Se o seu funcionário chave sair hoje, sua operação para. Você é refém do CPF dele."
       }
     ],
     transition: "A IA não é sobre 'futuro'. É sobre parar de sangrar dinheiro com ineficiência hoje."
   },
   solution: {
-    title: "Não é um curso. É uma instalação.",
-    subtitle: "A maioria ensina \"prompts soltos\". Nós instalamos um processo. Usamos o Método Momentum (P-P-S):",
+    title: "O MÉTODO I.O.C.: ENGENHARIA DE SOLUÇÕES",
+    subtitle: "Três movimentos para instalar soberania operacional sem depender de código:",
     steps: [
       {
-        title: "👤 PESSOAS→PROMPT:",
-        description: "Definimos quem executa, o papel de cada um e organizamos o conhecimento."
+        title: "IDENTIFICAR",
+        description: "Auditar a operação e achar o dinheiro na mesa."
       },
       {
-        title: "⚙️ PROCESSOS:",
-        description: "Desenhamos o fluxo (o que acontece depois do quê)."
+        title: "ORGANIZAR",
+        description: "Limpar o processo. Automatizar bagunça gera caos."
       },
       {
-        title: "🤖 SISTEMAS (IA):",
-        description: "Só agora a automação entra para escalar o que já funciona."
+        title: "CRIAR",
+        description: "Usar No-Code + IA para construir a ferramenta na hora."
       }
     ],
-    deliverablesTitle: "O que você pode instalar (Entregáveis Reais):",
+    deliverablesTitle: "EXEMPLOS DO QUE PODE CONSTRUIR:",
     deliverables: [
       {
-        title: "📱 Agente de Triagem (WhatsApp):",
-        description: "Responde, qualifica e agenda sem humano."
+        title: "Painel Financeiro em Tempo Real",
+        description: "Monitoramento contínuo construído ao vivo para o seu fluxo."
       },
       {
-        title: "📊 Dashboard de Comando:",
-        description: "5 KPIs vitais atualizados automaticamente."
+        title: "Agente de Triagem de WhatsApp (24/7)",
+        description: "Responde, qualifica e agenda sem depender de atendente."
       },
       {
-        title: "🔄 Motor de Reativação:",
-        description: "O robô que busca clientes antigos e traz de volta para o jogo."
+        title: "Auditor de Notas Fiscais",
+        description: "Validação automática para zerar erro humano em cobrança."
       }
     ]
   },
@@ -97,11 +93,11 @@ export const content = {
       }
     ],
     mentorTitle: "Sobre o Mentor:",
-    mentorName: "Alan | Founder Momentum",
+    mentorName: "Alan | Builder e Founder Momentum",
     mentorLines: [
-      "Não sou \"guru de palco\". Sou operador de bastidor.",
-      "Sócio de diversas startups (Fintech, Aviação, Seguros).",
-      "Criei este método porque precisava dele para minhas próprias operacões sobreviverem e escalarem. Agora, vou abrir a caixa preta com você."
+      "Operador que constrói sistemas sob pressão — não professor de palco.",
+      "Empreendedor em fintech, aviação e seguros, sempre com squads enxutas e muito automação.",
+      "Criei o I.O.C. para sair do modo emergência; agora abro a arquitetura completa com você."
     ]
   },
   journey: {
@@ -133,7 +129,7 @@ export const content = {
   offer: {
     title: "O investimento para tirar sua empresa do manual:",
     anchor: "De: R$ 15.000 (Valor de uma consultoria individual)",
-    price: "Por: 12x de R$ 200,00 (ou R$ 1.997 à vista)",
+    price: "Por: 12x de R$ 199,97 (ou R$ 1.997 à vista)",
     includedTitle: "O que está incluso:",
     includedItems: [
       "✅ 3 Encontros Presenciais em Maringá.",
@@ -146,7 +142,12 @@ export const content = {
     guaranteeText:
       "Participe do 1º e do 2º encontro. Se achar que não valeu cada centavo, eu devolvo 100% do seu dinheiro. Sem letras miúdas. O risco é todo meu.",
     cta: "TIRAR MINHA EMPRESA DO MANUAL",
-    seats: "Restam apenas 7 vagas."
+    seats: "Restam apenas 7 vagas.",
+    priceAnchors: [
+      { label: "Contratar um desenvolvedor: R$ 5.000/mês", tone: "negative" },
+      { label: "Assinar 5 softwares gringos: R$ 1.500/mês", tone: "negative" },
+      { label: "Tornar-se Soberano: R$ 199,97 (12X)", tone: "positive" }
+    ]
   },
   faq: {
     title: "FAQ (Quebra de Objeções)",

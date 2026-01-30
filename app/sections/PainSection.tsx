@@ -1,12 +1,12 @@
-import { Clock, Database, MessageSquareWarning, UserX } from "lucide-react";
+import { Flame, Lock, TrendingDown } from "lucide-react";
 
 import { FadeIn, Stagger, StaggerItem } from "@/app/components/Motion";
 import { Section } from "@/app/components/Section";
 import { content } from "@/app/content";
 
-const icons = [UserX, Database, Clock, MessageSquareWarning];
-const iconStyles = ["text-orange-400", "text-sky-300", "text-amber-300", "text-red-400"];
-const layout = ["md:col-span-3", "md:col-span-3", "md:col-span-2", "md:col-span-4"];
+const icons = [Flame, TrendingDown, Lock];
+const iconStyles = ["text-orange-400", "text-rose-300", "text-cyan-300"];
+const layout = ["md:col-span-2", "md:col-span-2", "md:col-span-2"];
 
 export function PainSection() {
   return (

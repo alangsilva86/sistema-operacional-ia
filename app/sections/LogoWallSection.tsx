@@ -10,6 +10,9 @@ export function LogoWallSection() {
       <div className="space-y-6">
         <FadeIn>
           <p className="text-xs uppercase tracking-[0.3em] text-slate-400">{content.logos.title}</p>
+          {content.logos.intro ? (
+            <p className="mt-2 text-center text-sm text-gray-400">{content.logos.intro}</p>
+          ) : null}
         </FadeIn>
         <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 px-6 py-6 backdrop-blur">
           <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#06070d]/80 to-transparent" />

@@ -1,3 +1,5 @@
+import { CheckCircle2, XCircle } from "lucide-react";
+
 import { CtaButton } from "@/app/components/CtaButton";
 import { FadeIn, Stagger, StaggerItem } from "@/app/components/Motion";
 import { Section } from "@/app/components/Section";
@@ -22,6 +24,32 @@ export function OfferSection() {
       <div className="space-y-10">
         <FadeIn>
           <h2 className="text-3xl font-semibold tracking-[-0.02em] text-white md:text-4xl">{content.offer.title}</h2>
+        </FadeIn>
+
+        <FadeIn>
+          <div className="rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-300">Comparativo rápido</p>
+            <div className="mt-4 space-y-3">
+              {content.offer.priceAnchors?.map((item) => {
+                const isPositive = item.tone === "positive";
+                return (
+                  <div
+                    key={item.label}
+                    className="flex items-start gap-3 rounded-2xl border border-white/5 bg-white/5 px-4 py-3"
+                  >
+                    {isPositive ? (
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 text-emerald-300" />
+                    ) : (
+                      <XCircle className="mt-0.5 h-5 w-5 text-rose-400" />
+                    )}
+                    <p className={`text-sm leading-relaxed ${isPositive ? "text-emerald-100" : "text-slate-200"}`}>
+                      {item.label}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </FadeIn>
 
         <Stagger className="grid gap-6 lg:grid-cols-3">
