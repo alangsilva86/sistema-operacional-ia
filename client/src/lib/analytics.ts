@@ -60,3 +60,19 @@ export function useScrollDepthTracking(depths: number[] = [25, 50, 75, 90]) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [depths.join(",")]);
 }
+
+// ---- Conversão / WhatsApp / Concierge ----
+
+export function trackInterest(trigger: string) {
+  trackEvent("interest_conversation", {
+    trigger,
+    page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
+  });
+}
+
+export function trackWhatsappStart(source: string = "concierge") {
+  trackEvent("start_whatsapp_conversation", {
+    source,
+    page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
+  });
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { MessageSquare } from "lucide-react";
+import { trackInterest } from "@/lib/analytics";
 
 import { FadeIn } from "@/app/components/Motion";
 import { Section } from "@/app/components/Section";

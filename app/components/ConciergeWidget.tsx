@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { MessageSquare, Send, X } from "lucide-react";
+import { trackInterest, trackWhatsappStart } from "@/lib/analytics";
+
 
 const WHATSAPP_NUMBER = "5544998539056";
 const WHATSAPP_BASE_URL = "https://wa.me";
@@ -117,18 +119,9 @@ export function ConciergeWidget() {
     event.preventDefault();
     if (!validateForm()) return;
 
-    if (window.gtag) {
-      window.gtag("event", "click_whatsapp", {
-        origin: "concierge_form",
-        page_path: window.location.pathname
-      });
-    }
-
-    // pequeno delay para garantir envio do evento
-    setTimeout(() => {
-      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-    }, 200);
-    
+    trackWhatsappStart("concierge_form");
+  
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     setIsOpen(false);
     setForm(initialForm);
     setErrors({});
