@@ -76,6 +76,16 @@ export function ConciergeWidget() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen]);
+  
+  const trackInterest = (trigger: string) => {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "interest_conversation", {
+        trigger,
+        page_path: window.location.pathname
+      });
+    }
+  };
+
 
   const whatsappUrl = useMemo(() => {
     const message = `Olá Alan! Sou *${form.name}* da *${form.company}*. Li sobre o Sistema Operacional de IA, mas tenho uma dúvida específica sobre o meu cenário antes de fazer a inscrição. Pode me ajudar?`;
@@ -107,7 +117,18 @@ export function ConciergeWidget() {
     event.preventDefault();
     if (!validateForm()) return;
 
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    if (window.gtag) {
+      window.gtag("event", "click_whatsapp", {
+        origin: "concierge_form",
+        page_path: window.location.pathname
+      });
+    }
+
+    // pequeno delay para garantir envio do evento
+    setTimeout(() => {
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    }, 200);
+    
     setIsOpen(false);
     setForm(initialForm);
     setErrors({});
