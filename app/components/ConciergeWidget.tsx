@@ -144,9 +144,13 @@ export function ConciergeWidget() {
                   </motion.div>
                 ) : null}
               </AnimatePresence>
+              {/* Botão flutuante do concierge */}
               <motion.button
                 type="button"
-                onClick={() => setIsOpen(true)}
+                onClick={() => {
+                  trackInterest("floating_button");
+                  setIsOpen(true);
+                }}
                 className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg shadow-blue-600/30 transition-transform duration-200 hover:scale-110 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-400"
                 whileTap={{ scale: 0.97 }}
                 aria-label="Abrir concierge"
@@ -238,6 +242,7 @@ export function ConciergeWidget() {
                   />
                   {errors.email ? <p className="text-xs text-red-300">{errors.email}</p> : null}
                 </div>
+                {/*botão que encaminha para o whatsapp*/}
                 <button
                   type="submit"
                   className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-green-500/30 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-green-500/40 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-green-400"
