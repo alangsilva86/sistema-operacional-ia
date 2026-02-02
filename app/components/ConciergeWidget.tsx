@@ -111,12 +111,10 @@ export function ConciergeWidget() {
     event.preventDefault();
     if (!validateForm()) return;
 
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
     trackWhatsappStart("concierge_form");
   
-    setTimeout(() => {
-      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-    }, 150);
-
     setIsOpen(false);
     setForm(initialForm);
     setErrors({});
