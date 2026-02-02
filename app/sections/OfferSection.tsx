@@ -2,6 +2,7 @@ import { CheckCircle2, XCircle } from "lucide-react";
 
 import { CtaButton } from "@/app/components/CtaButton";
 import { FadeIn, Stagger, StaggerItem } from "@/app/components/Motion";
+import { SecondaryCtaLink } from "@/app/components/SecondaryCtaLink";
 import { Section } from "@/app/components/Section";
 import { content } from "@/app/content";
 
@@ -75,6 +76,18 @@ export function OfferSection() {
             </ul>
           </StaggerItem>
         </Stagger>
+
+        <FadeIn className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <SecondaryCtaLink
+            label={content.hero.secondaryCta}
+            baseUrl={content.diagnosticUrl}
+            location="offer-secondary"
+            className="h-11 px-5 text-xs sm:text-sm"
+          />
+          <p className="max-w-md text-xs text-slate-400 sm:text-sm">
+            Prefere começar pelo diagnóstico estratégico? Veja o que sua operação pode automatizar antes de investir.
+          </p>
+        </FadeIn>
 
         <FadeIn>
           <div className="rounded-[28px] border border-emerald-400/25 bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.25),transparent_55%),linear-gradient(120deg,rgba(16,185,129,0.12),rgba(255,255,255,0.04),rgba(56,189,248,0.12))] p-6 shadow-[0_0_50px_rgba(16,185,129,0.12)] backdrop-blur">

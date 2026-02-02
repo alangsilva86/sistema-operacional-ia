@@ -1,5 +1,6 @@
 export const content = {
   checkoutUrl: "https://pay.kiwify.com.br/eeAM4On",
+  diagnosticUrl: "https://diagnostico-web-production.up.railway.app/",
   hero: {
     tag: "🔒 Turma Presencial Exclusiva em Maringá",
     badge: "🛡️ Risco Zero: Garantia total até o 2º encontro.",

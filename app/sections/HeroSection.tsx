@@ -1,7 +1,6 @@
-import { ArrowRight } from "lucide-react";
-
 import { CtaButton } from "@/app/components/CtaButton";
 import { FadeIn, Stagger, StaggerItem } from "@/app/components/Motion";
+import { SecondaryCtaLink } from "@/app/components/SecondaryCtaLink";
 import { Section } from "@/app/components/Section";
 import { content } from "@/app/content";
 
@@ -48,13 +47,11 @@ export function HeroSection() {
             <StaggerItem className="space-y-3">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <CtaButton label={content.hero.primaryCta} baseUrl={content.checkoutUrl} location="hero" />
-                <a
-                  href="#prova"
-                  className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/10 px-6 text-sm font-semibold text-slate-200 backdrop-blur transition hover:border-white/30 hover:text-white"
-                >
-                  {content.hero.secondaryCta}
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                </a>
+                <SecondaryCtaLink
+                  label={content.hero.secondaryCta}
+                  baseUrl={content.diagnosticUrl}
+                  location="hero-secondary"
+                />
               </div>
               {content.hero.microText && (
                 <p className="text-xs leading-relaxed text-slate-300">{content.hero.microText}</p>

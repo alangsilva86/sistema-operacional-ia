@@ -1,6 +1,7 @@
 import { MapPin } from "lucide-react";
 
 import { FadeIn, Stagger, StaggerItem } from "@/app/components/Motion";
+import { SecondaryCtaLink } from "@/app/components/SecondaryCtaLink";
 import { Section } from "@/app/components/Section";
 import { content } from "@/app/content";
 
@@ -20,6 +21,14 @@ export function JourneySection() {
           <div className="mt-4 flex items-center justify-center gap-2 text-sm text-slate-400">
             <MapPin className="h-4 w-4" />
             <span>{content.journey.location}</span>
+          </div>
+          <div className="mt-6 flex justify-center">
+            <SecondaryCtaLink
+              label={content.hero.secondaryCta}
+              baseUrl={content.diagnosticUrl}
+              location="journey"
+              className="h-10 px-4 text-xs"
+            />
           </div>
         </FadeIn>
 

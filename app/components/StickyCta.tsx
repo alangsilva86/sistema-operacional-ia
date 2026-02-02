@@ -1,6 +1,7 @@
 "use client";
 
 import { CtaButton } from "@/app/components/CtaButton";
+import { SecondaryCtaLink } from "@/app/components/SecondaryCtaLink";
 import { content } from "@/app/content";
 
 export function StickyCta() {
@@ -14,6 +15,13 @@ export function StickyCta() {
           location="sticky"
           fullWidth
           className="py-3 text-sm"
+        />
+        <SecondaryCtaLink
+          label={content.hero.secondaryCta}
+          baseUrl={content.diagnosticUrl}
+          location="sticky-diagnostic"
+          fullWidth
+          className="h-10 px-4 text-xs"
         />
       </div>
     </div>

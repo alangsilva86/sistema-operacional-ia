@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { FadeIn, Stagger, StaggerItem } from "@/app/components/Motion";
+import { SecondaryCtaLink } from "@/app/components/SecondaryCtaLink";
 import { Section } from "@/app/components/Section";
 import { content } from "@/app/content";
 
@@ -51,6 +52,14 @@ export function ProofSection() {
                   {content.proof.mentorLines.map((line) => (
                     <p key={line}>{line}</p>
                   ))}
+                </div>
+                <div className="mt-5">
+                  <SecondaryCtaLink
+                    label={content.hero.secondaryCta}
+                    baseUrl={content.diagnosticUrl}
+                    location="proof"
+                    className="h-10 px-5 text-xs"
+                  />
                 </div>
               </div>
               <div className="relative h-60 w-full overflow-hidden rounded-2xl border border-white/10">
