@@ -11,9 +11,17 @@ interface CtaButtonProps {
   location: string;
   className?: string;
   fullWidth?: boolean;
+  onClick?: () => void;
 }
 
-export function CtaButton({ label, baseUrl, location, className = "", fullWidth = false }: CtaButtonProps) {
+export function CtaButton({
+  label,
+  baseUrl,
+  location,
+  className = "",
+  fullWidth = false,
+  onClick
+}: CtaButtonProps) {
   const [href, setHref] = useState(baseUrl);
 
   useEffect(() => {
@@ -21,6 +29,7 @@ export function CtaButton({ label, baseUrl, location, className = "", fullWidth 
   }, [baseUrl]);
 
   const handleClick = () => {
+    onClick?.();
     trackEvent("cta_click", { location });
     trackEvent("checkout_open", { location });
   };
